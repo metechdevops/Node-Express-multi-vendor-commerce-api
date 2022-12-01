@@ -34,8 +34,8 @@ app.enable('trust proxy');
 app.use(successHandle);
 app.use(errorHandle);
 
-// Set security HTTP headers
-app.use(helmet());
+// TODO Set security HTTP headers
+// app.use(helmet());
 
 // Set Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
