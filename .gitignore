@@ -4,4 +4,4 @@ package-lock.json
 config.env
 .env
 build
-build-docs
+# build-docs
