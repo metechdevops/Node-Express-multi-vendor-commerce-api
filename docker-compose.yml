@@ -5,7 +5,7 @@ services:
     ports:
       - 27017:27017
     networks:
-      - yahuda
+      - ecart
     volumes:
       - mongo-data:/var/app/volumes/mongo
     restart: "unless-stopped"
