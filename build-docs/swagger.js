@@ -103,7 +103,7 @@ const docs = {
     },
     {
       url: 'http://34.254.211.149:8000/api',
-      description: 'Development Server'
+      description: 'Development Server API'
     }
   ],
   components: {
