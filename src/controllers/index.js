@@ -1,6 +1,7 @@
 import {
   signin,
   signup,
+  customerSignup,
   logout,
   refreshTokens,
   forgotPassword,
@@ -86,9 +87,14 @@ import {
   checkProductInFavoriteList
 } from './favorite.controller';
 
+import {
+  createMedia,
+} from './media.controller';
+
 const authController = {
   signin,
   signup,
+  customerSignup,
   logout,
   refreshTokens,
   forgotPassword,
@@ -174,6 +180,10 @@ const favoriteController = {
   checkProductInFavoriteList
 };
 
+const mediaController = {
+  createMedia
+};
+
 export {
   authController,
   userController,
@@ -183,5 +193,6 @@ export {
   cartController,
   orderController,
   discountController,
-  favoriteController
+  favoriteController,
+  mediaController
 };

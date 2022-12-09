@@ -1,5 +1,6 @@
 // Packages
 import express from 'express';
+import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import xss from 'xss-clean';
 import compression from 'compression';
@@ -28,17 +29,24 @@ import routes from './routes';
 
 const app = express();
 
+
 app.enable('trust proxy');
 
 // Morgan Handler
 app.use(successHandle);
 app.use(errorHandle);
+app.use(express.json());
+
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 // TODO Set security HTTP headers
 // app.use(helmet());
 
 // Set Body parser, reading data from body into req.body
-app.use(express.json({ limit: '10kb' }));
+// app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 // Get the user's locale, and set a default in case there's none

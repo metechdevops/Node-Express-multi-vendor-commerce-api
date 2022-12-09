@@ -5,6 +5,8 @@ import { google } from 'googleapis';
 // Configs
 import config from '../config/config';
 
+const defaultConfig = config
+
 // Utils
 import catchAsync from './catchAsync';
 import AppError from './appError';
@@ -17,15 +19,17 @@ import AppError from './appError';
  * @returns { Promise }
  */
 const sendEmail = catchAsync(async (to, subject, text) => {
+  
   const OAuth2Client = new google.auth.OAuth2(
-    config.email.client.id,
-    config.email.client.secret,
-    config.email.RedirectUri
+    defaultConfig.email.client.id,
+    defaultConfig.email.client.secret,
+    defaultConfig.email.RedirectUri
   );
 
-  OAuth2Client.setCredentials({ refresh_token: config.email.RefreshToken });
+  OAuth2Client.setCredentials({ refresh_token: defaultConfig.email.RefreshToken });
 
   try {
+
     // Generate the accessToken on the fly
     const accessToken = await OAuth2Client.getAccessToken();
 
@@ -34,17 +38,17 @@ const sendEmail = catchAsync(async (to, subject, text) => {
       service: 'gmail',
       auth: {
         type: 'OAuth2',
-        user: config.email.from,
-        clientId: config.email.client.id,
-        clientSecret: config.email.client.secret,
-        refreshToken: config.email.RefreshToken,
+        user: defaultConfig.email.from,
+        clientId: defaultConfig.email.client.id,
+        clientSecret: defaultConfig.email.client.secret,
+        refreshToken: defaultConfig.email.RefreshToken,
         accessToken: accessToken
       }
     });
 
     // Create the email options and body
     const mailOptions = {
-      from: `Ecommerce API < ${config.email.from} >`,
+      from: `E-Cart < ${defaultConfig.email.from} >`,
       to,
       subject,
       text

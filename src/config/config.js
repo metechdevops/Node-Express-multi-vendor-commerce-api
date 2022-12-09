@@ -1,7 +1,8 @@
 import dotenv from 'dotenv';
 import Joi from 'joi';
 
-dotenv.config({ path: 'config.env' });
+// dotenv.config({ path: 'config.env' });
+dotenv.config({path: __dirname + '/../../.env'});
 
 const envVarsSchema = Joi.object()
   .keys({
@@ -11,7 +12,7 @@ const envVarsSchema = Joi.object()
     PORT: Joi.number().default(8000),
     DATABASE_CONNECTION: Joi.string().default('mongodb://localhost/e-cart').description('MongoDB URL'),
     // DATABASE_PASSWORD: Joi.string().required().description('MongoDB Password'),
-    JWT_SECRET: Joi.string().default('tqBmeTTFHqUbW4Q/NXLKXzpYq0QybNP9OOBlLagZWT/MUt3lloq9Mga8uoV2r+pI5PYPeoAjMRKQgjeFSxKMJGUIMV0AAqmNpfeoRMYBI5hHG5kOE2E5XWBdxrB2B0hbH3hqGbbkAeA7jVUN0asgg4MekWyErp4/+1t3FFpqfCpaEFsykt2MBWroHASoI/VDBiYEzC4HQyZ3KCRcf2SgNzcroU4TlKX7A==').description('JWT Secret Key'),
+    JWT_SECRET: Joi.string().description('JWT Secret Key'),
     JWT_ACCESS_EXPIRATION_MINUTES: Joi.number()
       .default(30)
       .description('Minutes After Which Access Tokens Expire'),
@@ -24,11 +25,14 @@ const envVarsSchema = Joi.object()
     JWT_VERIFY_EMAIL_EXPIRATION_MINUTES: Joi.number()
       .default(10)
       .description('Minutes After Which Verify Email Token Expires'),
-    CLIENT_EMAIL: Joi.string().description('Gmail Client Email'),
-    CLIENT_ID: Joi.string().description('Gmail Client ID'),
-    CLIENT_SECRET: Joi.string().description('Gmail Client Secret'),
-    REDIRECT_URI: Joi.string().description('Gmail Redirect URI'),
-    REFRESH_TOKEN: Joi.string().description('Gmail Refresh Token'),
+
+
+    CLIENT_EMAIL: Joi.string().required().description('Gmail Client Email'),
+    CLIENT_ID: Joi.string().required().description('Gmail Client ID'),
+    CLIENT_SECRET: Joi.string().required().description('Gmail Client Secret'),
+    REDIRECT_URI: Joi.string().required().description('Gmail Redirect URI'),
+    REFRESH_TOKEN: Joi.string().required().description('Gmail Refresh Token'),
+    
     CLOUD_NAME: Joi.string().description('Cloudinary Storage Name'),
     CLOUD_API_KEY: Joi.string().description('Cloudinary Api Key'),
     CLOUD_API_SECRET: Joi.string().description('Cloudinary Api Secret'),
@@ -76,6 +80,12 @@ const config = {
     api_key: envVars.CLOUD_API_KEY,
     api_secret: envVars.CLOUD_API_SECRET,
     project: envVars.CLOUD_PROJECT
+  },
+  awsS3: {
+    bucket: envVars.BUCKET,
+    region: envVars.REGION,
+    access_key: envVars.ACCESS_KEY,
+    secret_key: envVars.SECRET_KEY
   },
   stripe: {
     secret_key: envVars.STRIPE_SECRET_KEY

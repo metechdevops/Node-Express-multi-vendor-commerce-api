@@ -1,3 +1,5 @@
+import { object } from "joi";
+
 export const signUp = {
   security: {
     jwt: []
@@ -16,15 +18,15 @@ export const signUp = {
   requestBody: {
     required: true,
     content: {
-      'multipart/form-data': {
+      'application/json': {
         schema: {
           type: 'object',
           properties: {
-            username: {
+            firstName: {
               type: 'string',
               required: true
             },
-            name: {
+            lastName: {
               type: 'string',
               required: true
             },
@@ -36,27 +38,28 @@ export const signUp = {
               type: 'string',
               required: true
             },
-            passwordConfirmation: {
-              type: 'string',
-              required: true
-            },
             role: {
               type: 'string',
               required: true,
-              enum: ['admin', 'user', 'seller']
+              enum: ['user']
             },
-            phone: {
-              type: 'string'
-            },
-            address: {
-              type: 'string'
-            },
-            companyName: {
-              type: 'string'
-            },
-            image: {
-              type: 'string',
-              format: 'image'
+            profileImage: {
+              type: 'object',
+              properties: {
+                original: {
+                  type: 'string',
+                  format: 'url'
+                },
+                web: {
+                  type: 'string',
+                  format: 'url'
+                },
+                mobile: {
+                  type: 'string',
+                  format: 'url'
+                }
+              
+              }
             }
           }
         }
@@ -83,54 +86,46 @@ export const signUp = {
               user: {
                 type: 'object',
                 properties: {
-                  name: {
+                  firstName: {
                     type: 'string',
-                    example: 'admin'
+                    example: 'user'
                   },
-                  username: {
+                  lastName: {
                     type: 'string',
-                    example: 'admin'
+                    example: 'account'
                   },
                   email: {
                     type: 'string',
-                    example: 'admin@ecommerce.com'
+                    example: 'usr@ecommerce.com'
                   },
                   password: {
                     type: 'string',
-                    example: 'Admin_123456789'
-                  },
-                  passwordConfirmation: {
-                    type: 'string',
-                    example: 'Admin_123456789'
+                    example: 'User_123456789'
                   },
                   role: {
                     type: 'string',
-                    example: 'admin'
+                    example: 'user'
                   },
                   isEmailVerified: {
                     type: 'boolean',
                     example: false
                   },
-                  address: {
-                    type: 'string',
-                    example: 'Jam - Pakistan'
-                  },
-                  phone: {
-                    type: 'string',
-                    example: '01004468937'
-                  },
-                  companyName: {
-                    type: 'string',
-                    example: ''
-                  },
                   profileImage: {
-                    type: 'string',
-                    example:
-                      'https://res.cloudinary.com/dknma8cck/image/upload/v1629291909/EcommerceAPI/Users/admin/xxcrbfkwglqa5c5kay4u.webp'
-                  },
-                  profileImageId: {
-                    type: 'string',
-                    example: 'EcommerceAPI/Users/admin/xxcrbfkwglqa5c5kay4u'
+                    type: 'object',
+                    properties: {
+                      original: {
+                        type:"string",
+                        example: "https://res.cloudinary.com/dknma8cck/image/upload/v1629291909/EcommerceAPI/Users/admin/xxcrbfkwglqa5c5kay4u.webp",
+                      },
+                      web: {
+                        type:"string",
+                        example: "https://res.cloudinary.com/dknma8cck/image/upload/v1629291909/EcommerceAPI/Users/admin/xxcrbfkwglqa5c5kay4u.webp",
+                      },
+                      mobile: {
+                        type:"string",
+                        example: "https://res.cloudinary.com/dknma8cck/image/upload/v1629291909/EcommerceAPI/Users/admin/xxcrbfkwglqa5c5kay4u.webp",
+                      },  
+                    }
                   },
                   _id: {
                     type: 'string',
@@ -188,8 +183,8 @@ export const signUp = {
               },
               message4: {
                 type: 'string',
-                example: 'Role must be one of the following: user or seller'
-              }
+                example: 'Role must be one of the following: user'
+              },
             }
           }
         }
@@ -781,6 +776,151 @@ export const changePassword = {
                 type: 'string',
                 example:
                   'This is not your password. Please enter the correct current password.'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const sendVerificationEmail = {
+  tags: ['Auth'],
+  description: 'This route will allow you to resend verification token email.',
+  opeationId: 'sendVerificationEmail',
+  parameters: [
+    {
+      in: 'header',
+      name: 'Accept-Language',
+      type: 'string',
+      example: 'en_MX'
+    }
+  ],
+  responses: {
+    200: {
+      description: 'Send verification email.',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              type: {
+                type: 'string',
+                example: 'Success'
+              },
+              message: {
+                type: 'string',
+                example: 'Verification email sent successfully.'
+              }
+            }
+          }
+        }
+      }
+    },
+    400: {
+      description: 'Error: 400',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              type: {
+                type: 'string',
+                example: 'Error'
+              },
+              message1: {
+                type: 'string',
+                example: 'Email is already verified.'
+              },
+              message2: {
+                type: 'string',
+                example:
+                  'Email field is required.'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const verifyEmail = {
+  tags: ['Auth'],
+  description: 'This route allow you to verify user email',
+  opeationId: 'verifyEmail',
+  parameters: [
+    {
+      in: 'header',
+      name: 'Accept-Language',
+      type: 'string',
+      example: 'en_MX'
+    },
+    {
+      in: 'query',
+      name: 'token',
+      type: 'string',
+      example: '',
+      description:
+        'This will include the verification token to verify the user email.'
+    },
+  ],
+  responses: {
+    200: {
+      description: 'Verify user email.',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              type: {
+                type: 'string',
+                example: 'Success'
+              },
+              message: {
+                type: 'string',
+                example: 'Email verified successfully.'
+              }
+            }
+          }
+        }
+      }
+    },
+    400: {
+      description: 'Error: 400',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              type: {
+                type: 'string',
+                example: 'Error'
+              },
+              message1: {
+                type: 'string',
+                example: 'No token found'
+              }
+            }
+          }
+        }
+      }
+    },
+    500: {
+      description: 'Error: 500',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              type: {
+                type: 'string',
+                example: 'Error'
+              },
+              name: {
+                type: 'string',
+                example: 'Given token is expired'
               }
             }
           }

@@ -3,16 +3,17 @@ import crypto from 'crypto';
 import validator from 'validator';
 import { hash, verify } from 'argon2';
 import toJSON from './plugins/index';
+import {USER_ROLE} from '../constants/constants';
 
 const userSchema = mongoose.Schema(
   {
-    name: {
+    firstName: {
       type: String,
-      required: [true, 'Please tell us your name']
+      required: [true, 'Please tell us your first name']
     },
-    username: {
+    lastName: {
       type: String,
-      required: [true, 'Please enter your username']
+      required: [true, 'Please tell us your last name']
     },
     email: {
       type: String,
@@ -40,22 +41,26 @@ const userSchema = mongoose.Schema(
       },
       select: false
     },
-    passwordConfirmation: {
-      type: String,
-      required: true,
-      validate: {
-        // This only works with CREATE & SAVE!!!!!
-        validator: function (el) {
-          return el === this.password;
-        },
-        messege: 'Passwords are not the same'
-      },
-      select: false
-    },
+    // passwordConfirmation: {
+    //   type: String,
+    //   required: true,
+    //   validate: {
+    //     // This only works with CREATE & SAVE!!!!!
+    //     validator: function (el) {
+    //       return el === this.password;
+    //     },
+    //     messege: 'Passwords are not the same'
+    //   },
+    //   select: false
+    // },
     role: {
       type: String,
-      enum: ['user', 'admin', 'seller'],
-      default: 'user'
+      enum: [
+        USER_ROLE.USER,
+        USER_ROLE.ADMIN,
+        USER_ROLE.SELLER
+      ],
+      default: USER_ROLE.USER
     },
     isEmailVerified: {
       type: Boolean,
@@ -72,12 +77,18 @@ const userSchema = mongoose.Schema(
       type: String
     },
     profileImage: {
-      type: String,
-      required: true
-    },
-    profileImageId: {
-      type: String,
-      required: true
+      original: {
+        url: String,
+        id:String
+      },
+      web: {
+        url: String,
+        id:String
+      },
+      mobile: {
+        url: String,
+        id:String
+      },
     },
     discountCode: {
       type: String

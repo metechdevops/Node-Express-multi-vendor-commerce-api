@@ -3,8 +3,12 @@ import tokenTypes from '../config/tokens';
 
 // Utils
 import catchAsync from '../utils/catchAsync';
-import dataUri from '../utils/datauri';
-import { uploadFile } from '../utils/cloudinary';
+import validator from '../validators/field-validator';
+import {USER_ROLE} from '../constants/constants';
+import customerSignupValidation from '../validations/customer/registration-schema.json';
+
+
+// Utils
 import {
   sendVerificationEmail,
   sendAfterResetPasswordMessage
@@ -21,54 +25,114 @@ import {
 import { User, Token } from '../models/index';
 
 /**
+ * @desc    Customer Sign Up Service
+ * @param   { Object } body - Body object data
+ * @param   { Object } profileImage - User profile image
+ * @return  { Object<type|statusCode|message|user|tokens> }
+ */
+export const customerSignup = catchAsync(async (body) => {
+  
+
+  const { email, role } = body;
+
+  // 1) Validate required fields
+  let fieldErrors = validator.validate(body,customerSignupValidation);
+  
+  // 2) Check if body request data is valid.
+  if(fieldErrors){
+
+    fieldErrors = fieldErrors.map((item) => item.message)
+    return {
+      type: 'Error',
+      message: 'fieldsRequired',
+      statusCode: 400,
+      errors: fieldErrors
+    };
+  }
+
+  // 3) Make admin role forbidden
+  if ([USER_ROLE.ADMIN, USER_ROLE.SELLER].includes(role)) {
+    return {
+      type: 'Error',
+      message: 'roleRestriction',
+      statusCode: 400
+    };
+  }
+
+  const isEmailTaken = await User.isEmailTaken(email);
+
+  // 4) Check if the email already taken
+  if (isEmailTaken) {
+    return {
+      type: 'Error',
+      message: 'emailTaken',
+      statusCode: 409
+    };
+  }
+
+  // 5) Specifiy folder name where the images are going to be uploaded in cloudinary
+  // const folderName = `Users/${name.trim().split(' ').join('')}`;
+
+  // 5) Create new user account
+  const user = await User.create(body);
+
+  // 8) Generate tokens (access token & refresh token)
+  const tokens = await generateAuthTokens(user);
+
+  // 9) Generate Verification Email Token
+  const verifyEmailToken = await generateVerifyEmailToken(user);
+
+  // 10) Sending Verification Email
+  await sendVerificationEmail(user.email, verifyEmailToken);
+
+  // 11) Remove the password from the output
+  user.password = undefined;
+
+  // 12) If everything is OK, send user data
+  return {
+    type: 'Success',
+    statusCode: 201,
+    message: 'successfulSignUp',
+    user,
+    tokens
+  };
+
+});
+
+
+/**
  * @desc    Sign Up Service
  * @param   { Object } body - Body object data
  * @param   { Object } profileImage - User profile image
  * @return  { Object<type|statusCode|message|user|tokens> }
  */
-export const signup = catchAsync(async (body, profileImage) => {
+export const signup = catchAsync(async (body) => {
   
-  // 1) Check if profile image not provided
-  // if (profileImage === undefined) {
-  //   return {
-  //     type: 'Error',
-  //     message: 'profileImageRequired',
-  //     statusCode: 400
-  //   };
-  // }
-  console.log(body);
-  const { name, username, email, password, passwordConfirmation, role } = body;
+
+  const { firstName, lastName, email, password, passwordConfirmation, role } = body;
   let { companyName, address, phone } = body;
 
-  // 2) Check all fields
-  if (!companyName) companyName = '';
-  if (!address) address = '';
-  if (!phone) phone = '';
-
-  if (
-    !name ||
-    !username ||
-    !email ||
-    !password ||
-    !passwordConfirmation ||
-    !role 
-    // || profileImage.length === 0
-  ) {
+  // 1) Validate required fields
+  const fieldErrors = validator.validate(body,customerSignupValidation);
+  
+  // 2) Check if body request data is valid.
+  if(fieldErrors){
     return {
       type: 'Error',
       message: 'fieldsRequired',
-      statusCode: 400
+      statusCode: 400,
+      errors: fieldErrors
     };
   }
 
   // 3) Check if password length less than 8
-  if (password.length < 8) {
-    return {
-      type: 'Error',
-      message: 'passwordLength',
-      statusCode: 400
-    };
-  }
+  // if (password.length < 8) {
+  //   return {
+  //     type: 'Error',
+  //     message: 'passwordLength',
+  //     statusCode: 400
+  //   };
+  // }
 
   // 4) Make admin role forbidden
   if (!['user', 'seller'].includes(role)) {
@@ -91,7 +155,7 @@ export const signup = catchAsync(async (body, profileImage) => {
   }
 
   // 5) Specifiy folder name where the images are going to be uploaded in cloudinary
-  const folderName = `Users/${name.trim().split(' ').join('')}`;
+  // const folderName = `Users/${name.trim().split(' ').join('')}`;
 
   // 6) Upload image to cloudinary
   // const image = await uploadFile(
@@ -102,17 +166,22 @@ export const signup = catchAsync(async (body, profileImage) => {
 
   // 7) Create new user account
   const user = await User.create({
-    name,
-    username,
+    firstName,
+    lastName,
     email,
     password,
     passwordConfirmation,
     role,
-    companyName,
-    address,
-    phone,
-    profileImage: "https://res.cloudinary.com/dknma8cck/image/upload/v1629746804/EcommerceAPI/Users/armar/cmt6rf3l45rs0lqaviq7.webp",
-    profileImageId: "sdsa342324342"
+    profileImage: {
+      original:"",
+      web:"",
+      mobile:""
+    }
+    // companyName,
+    // address,
+    // phone,
+    // profileImage: "https://res.cloudinary.com/dknma8cck/image/upload/v1629746804/EcommerceAPI/Users/armar/cmt6rf3l45rs0lqaviq7.webp",
+    // profileImageId: "sdsa342324342"
     // profileImage: image.secure_url,
     // profileImageId: image.public_id
     // profileImageId: image.public_id
@@ -138,6 +207,7 @@ export const signup = catchAsync(async (body, profileImage) => {
     user,
     tokens
   };
+  
 });
 
 /**
@@ -166,9 +236,17 @@ export const signin = catchAsync(async (email, password) => {
     };
   }
 
+  // 5) Check if user does not exist
+  // if (!user.isEmailVerified) {
+  //   return {
+  //     statusCode: 401,
+  //     message: 'isUserVerified'
+  //   };
+  // }
+
   const isMatch = await user.isPasswordMatch(password);
 
-  // 4) Check if passwords match
+  // 6) Check if passwords match
   if (!isMatch) {
     return {
       statusCode: 401,
@@ -176,10 +254,10 @@ export const signin = catchAsync(async (email, password) => {
     };
   }
 
-  // 5) Generate authentication tokens
+  // 7) Generate authentication tokens
   const tokens = await generateAuthTokens(user);
 
-  // 6) If everything ok, send data
+  // 8) If everything ok, send data
   return {
     type: 'Success',
     statusCode: 200,

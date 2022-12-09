@@ -10,6 +10,7 @@ export const messages = {
     emailTaken: 'Email is already taken.',
     emailPasswordRequired: 'Please enter both email and password!',
     incorrectEmailOrPassword: 'Incorrect email or password.',
+    isUserVerified: 'Unable to login, please verify your Email.',
     passConfirm: 'Password and passwordConfirmation must be the same.',
     invalidLink: 'Invalid link or expired',
     notSamePassword:

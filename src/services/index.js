@@ -1,6 +1,7 @@
 import {
   signin,
   signup,
+  customerSignup,
   logout,
   refreshAuth,
   resetPassword,
@@ -83,9 +84,14 @@ import {
   checkProductInFavoriteList
 } from './favorite.service';
 
+import {
+  createMedia,
+} from './media.service';
+
 const authService = {
   signin,
   signup,
+  customerSignup,
   logout,
   refreshAuth,
   resetPassword,
@@ -99,6 +105,10 @@ const reviewService = {
   queryReviewById,
   updateReview,
   deleteReview
+};
+
+const mediaService = {
+  createMedia
 };
 
 const userService = {
@@ -177,5 +187,6 @@ export {
   cartService,
   orderService,
   discountService,
-  favoriteService
+  favoriteService,
+  mediaService
 };

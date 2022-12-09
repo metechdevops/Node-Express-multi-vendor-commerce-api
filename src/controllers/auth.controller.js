@@ -15,6 +15,47 @@ import {
 import { authService } from '../services';
 
 /**
+ * @desc      Customer Sign Up Controller
+ * @param     { Object } req - Request object
+ * @param     { Object } res - Response object
+ * @property  { Object } req.body - Body data
+ * @property  { Object } req.file - User image
+ * @returns   { JSON } - A JSON object representing the type, message, user data, and tokens
+ */
+export const customerSignup = catchAsync(async (req,res) => {
+  
+  // 1) Calling sign up service
+  const { type, message, statusCode, user, tokens,errors } = await authService.customerSignup(req.body);
+
+
+  // 2) Check if validation
+  if (type === 'Error') {
+    return res.status(statusCode).json({
+      type,
+      message: req.polyglot.t(message),
+      errors
+    });
+  }
+
+  //   // 2) Check if something went wrong
+  // if (type === 'Error') {
+  //   return res.status(statusCode).json({
+  //     type,
+  //     message: req.polyglot.t(message)
+  //   });
+  // }
+
+  // 3) If everything is OK, send data
+  return res.status(statusCode).json({
+    type,
+    message: req.polyglot.t(message),
+    user,
+    tokens
+  });
+
+});
+
+/**
  * @desc      Sign Up Controller
  * @param     { Object } req - Request object
  * @param     { Object } res - Response object
@@ -22,14 +63,20 @@ import { authService } from '../services';
  * @property  { Object } req.file - User image
  * @returns   { JSON } - A JSON object representing the type, message, user data, and tokens
  */
-export const signup = catchAsync(async (req, res) => {
+export const signup = catchAsync(async (req,files,res) => {
   // 1) Calling sign up service
-  const { type, message, statusCode, user, tokens } = await authService.signup(
-    req.body,
-    req.file
-  );
+  const { type, message, statusCode, user, tokens,errors } = await authService.signup(req.body);
 
-  // 2) Check if something went wrong
+
+  // 2) Check if validation
+  if (type === 'Error') {
+    return res.status(statusCode).json({
+      type,
+      message: req.polyglot.t(message),
+      errors
+    });
+  }
+    // 2) Check if something went wrong
   if (type === 'Error') {
     return res.status(statusCode).json({
       type,
@@ -44,6 +91,7 @@ export const signup = catchAsync(async (req, res) => {
     user,
     tokens
   });
+
 });
 
 /**

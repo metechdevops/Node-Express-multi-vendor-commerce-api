@@ -5,7 +5,9 @@ import {
   generateTokens,
   forgotPassword,
   resetPassword,
-  changePassword
+  changePassword,
+  verifyEmail,
+  sendVerificationEmail
 } from './auth.swagger';
 
 import {
@@ -142,6 +144,12 @@ const docs = {
     },
     '/auth/change-password': {
       patch: changePassword
+    },
+    '/auth/verify-email': {
+      post: verifyEmail
+    },
+    '/auth/send-verification-email': {
+      post: sendVerificationEmail
     },
     // '/user': {
     //   get: getAllUsers,

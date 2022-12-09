@@ -8,6 +8,7 @@ import cartRoute from './cart.route';
 import orderRoute from './order.route';
 import discountRoute from './discount.route';
 import favoriteRoute from './favorite.route';
+import mediaRoute from './media.route';
 
 const router = express.Router();
 
@@ -19,5 +20,6 @@ router.use('/cart', cartRoute);
 router.use('/order', orderRoute);
 router.use('/discount', discountRoute);
 router.use('/favorite', favoriteRoute);
+router.use('/media', mediaRoute);
 
 export default router;

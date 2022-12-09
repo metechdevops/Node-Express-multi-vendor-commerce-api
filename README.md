@@ -189,6 +189,7 @@ set your env variables
 $ yarn run start
 ```
 
+
 ## Known Bugs
 Feel free to email me at mle.mahmoud.yasser@gmail.com if you run into any issues or have questions, ideas or concerns.
 Please enjoy and feel free to share your opinion, constructive criticism, or comments about my work. Thank you! 🙂
@@ -216,3 +217,5 @@ Facebook - [MahmoudYasserMLE](https://www.facebook.com/MahmoudYasserMLE/)
 https://github.com/Braineanear/EcommerceAPI
 
 Project: [https://github.com/Braineanear/EcommerceAPI](https://github.com/Braineanear/EcommerceAPI)
+
+Google Auth2 Setup: https://alexb72.medium.com/how-to-send-emails-using-a-nodemailer-gmail-and-oauth2-fe19d66451f9
