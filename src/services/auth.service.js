@@ -1,5 +1,5 @@
 // Configs
-import tokenTypes from '../config/tokens';
+const tokenTypes = require('../config/tokens');
 
 // Utils
 import catchAsync from '../utils/catchAsync';
