@@ -1,4 +1,4 @@
-{
+export const registrationSchema = {
     "type": "object",
     "required": [
         "firstName",

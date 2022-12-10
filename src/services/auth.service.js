@@ -5,7 +5,7 @@ import tokenTypes from '../config/tokens';
 import catchAsync from '../utils/catchAsync';
 import validator from '../validators/field-validator';
 import {USER_ROLE} from '../constants/constants';
-import customerSignupValidation from '../validations/customer/registration-schema.json';
+import {registrationSchema} from '../validators/entities/customer/registration-schema';
 
 
 // Utils
@@ -36,7 +36,7 @@ export const customerSignup = catchAsync(async (body) => {
   const { email, role } = body;
 
   // 1) Validate required fields
-  let fieldErrors = validator.validate(body,customerSignupValidation);
+  let fieldErrors = validator.validate(body,registrationSchema);
   
   // 2) Check if body request data is valid.
   if(fieldErrors){

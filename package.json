@@ -86,5 +86,5 @@
     "prettier": "^2.4.0",
     "supertest": "^6.1.6"
   },
-  "repository": "https://github.com/Braineanear/EcommerceAPI.git"
+  "repository": "https://github.com/metechdevops/node-multi-vendor-commerce-api.git"
 }
