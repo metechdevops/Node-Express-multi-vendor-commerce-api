@@ -39,7 +39,7 @@ router.post('/reset-password', resetPassword);
 
 router.post('/verify-email', verifyEmail);
 
-// router.use(protect);
+router.use(protect);
 
 router.post('/send-verification-email', sendVerificationEmail);
 
