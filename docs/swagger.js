@@ -1,5 +1,6 @@
 import {
   signUp,
+  sellerSignUp,
   signIn,
   logout,
   generateTokens,
@@ -129,6 +130,9 @@ const docs = {
     },
     '/auth/register': {
       post: signUp
+    },
+    '/auth/seller/register': {
+      post: sellerSignUp
     },
     '/auth/logout': {
       post: logout

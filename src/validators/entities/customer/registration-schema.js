@@ -1,3 +1,5 @@
+const {USER_ROLE} = require('../../../constants/constants')
+
 export const registrationSchema = {
     "type": "object",
     "required": [
@@ -20,7 +22,8 @@ export const registrationSchema = {
         },
         "role": {
             "type": "string",
-            "errorMessage": "Role feild is required"
+            "enum": [USER_ROLE.USER],
+            "errorMessage": `must be equal to one of the allowed values [${USER_ROLE.USER}]`
         },
         "email": {
             "type": "string",
@@ -29,7 +32,8 @@ export const registrationSchema = {
         },
         "password": {
             "type": "string",
-            "minLength":8,
+            "maxLength":8,
+            "minLength":3,
             "errorMessage": "Password must be longer than 8 characters and contains letters, numbers, and symbols."
         }
     }

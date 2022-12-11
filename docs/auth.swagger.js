@@ -1,4 +1,33 @@
 import { object } from "joi";
+import {
+  SellerSignUpRequestBody,
+  SellerSignUpResponse200,
+  SellerSignUpResponse400,
+  SellerSignUpResponse409
+} from './components/auth/seller/register'
+
+export const sellerSignUp = {
+  security: {
+    jwt: []
+  },
+  tags: ['Auth'],
+  description: 'This route allow you to sign up as seller into the api',
+  opeationId: 'sellerSignUp',
+  parameters: [
+    {
+      in: 'header',
+      name: 'Accept-Language',
+      type: 'string',
+      example: 'en_MX'
+    }
+  ],
+  requestBody: SellerSignUpRequestBody,
+  responses: {
+    201: SellerSignUpResponse200,
+    400: SellerSignUpResponse400,
+    409: SellerSignUpResponse409
+  }
+};
 
 export const signUp = {
   security: {

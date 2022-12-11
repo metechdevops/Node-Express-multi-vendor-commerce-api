@@ -1,6 +1,6 @@
 import {
   signin,
-  signup,
+  sellerSignup,
   customerSignup,
   logout,
   refreshAuth,
@@ -90,7 +90,7 @@ import {
 
 const authService = {
   signin,
-  signup,
+  sellerSignup,
   customerSignup,
   logout,
   refreshAuth,

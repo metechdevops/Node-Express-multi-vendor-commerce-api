@@ -10,7 +10,7 @@ import protect from '../middlewares/protect';
 
 const {
   signin,
-  signup,
+  sellerSignup,
   customerSignup,
   logout,
   refreshTokens,
@@ -27,7 +27,7 @@ router.post('/login', signin);
 
 router.post('/register', customerSignup);
 
-router.post('seller/register', signup);
+router.post('/seller/register', sellerSignup);
 
 router.post('/logout', logout);
 
@@ -39,10 +39,10 @@ router.post('/reset-password', resetPassword);
 
 router.post('/verify-email', verifyEmail);
 
-router.use(protect);
+// router.use(protect);
 
-router.post('/send-verification-email', sendVerificationEmail);
+router.post('/send-verification-email',protect, sendVerificationEmail);
 
-router.patch('/change-password', changePassword);
+router.patch('/change-password',protect, changePassword);
 
 export default router;

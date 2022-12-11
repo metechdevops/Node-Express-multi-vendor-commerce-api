@@ -1,6 +1,6 @@
 import {
   signin,
-  signup,
+  sellerSignup,
   customerSignup,
   logout,
   refreshTokens,
@@ -93,7 +93,7 @@ import {
 
 const authController = {
   signin,
-  signup,
+  sellerSignup,
   customerSignup,
   logout,
   refreshTokens,

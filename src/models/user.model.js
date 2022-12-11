@@ -4,6 +4,7 @@ import validator from 'validator';
 import { hash, verify } from 'argon2';
 import toJSON from './plugins/index';
 import {USER_ROLE} from '../constants/constants';
+import sellerAttributes from './schema/seller/attributes';
 
 const userSchema = mongoose.Schema(
   {
@@ -41,18 +42,6 @@ const userSchema = mongoose.Schema(
       },
       select: false
     },
-    // passwordConfirmation: {
-    //   type: String,
-    //   required: true,
-    //   validate: {
-    //     // This only works with CREATE & SAVE!!!!!
-    //     validator: function (el) {
-    //       return el === this.password;
-    //     },
-    //     messege: 'Passwords are not the same'
-    //   },
-    //   select: false
-    // },
     role: {
       type: String,
       enum: [
@@ -76,18 +65,16 @@ const userSchema = mongoose.Schema(
     phone: {
       type: String
     },
+    sellerAttributes: sellerAttributes,
     profileImage: {
       original: {
-        url: String,
-        id:String
+        type: String
       },
       web: {
-        url: String,
-        id:String
+        type: String
       },
       mobile: {
-        url: String,
-        id:String
+        type: String
       },
     },
     discountCode: {

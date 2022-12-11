@@ -4,8 +4,8 @@ const tokenTypes = require('../config/tokens');
 // Utils
 import catchAsync from '../utils/catchAsync';
 import validator from '../validators/field-validator';
-import {USER_ROLE} from '../constants/constants';
 import {registrationSchema} from '../validators/entities/customer/registration-schema';
+import {sellerValidationSchema} from '../validators/entities/seller/registration-schema';
 
 
 // Utils
@@ -47,15 +47,6 @@ export const customerSignup = catchAsync(async (body) => {
       message: 'fieldsRequired',
       statusCode: 400,
       errors: fieldErrors
-    };
-  }
-
-  // 3) Make admin role forbidden
-  if ([USER_ROLE.ADMIN, USER_ROLE.SELLER].includes(role)) {
-    return {
-      type: 'Error',
-      message: 'roleRestriction',
-      statusCode: 400
     };
   }
 
@@ -106,17 +97,18 @@ export const customerSignup = catchAsync(async (body) => {
  * @param   { Object } profileImage - User profile image
  * @return  { Object<type|statusCode|message|user|tokens> }
  */
-export const signup = catchAsync(async (body) => {
+export const sellerSignup = catchAsync(async (body) => {
   
 
-  const { firstName, lastName, email, password, passwordConfirmation, role } = body;
-  let { companyName, address, phone } = body;
+  const {email } = body;
 
   // 1) Validate required fields
-  const fieldErrors = validator.validate(body,customerSignupValidation);
+  let fieldErrors = validator.validate(body,sellerValidationSchema);
   
   // 2) Check if body request data is valid.
   if(fieldErrors){
+
+    fieldErrors = fieldErrors.map((item) => item.message)
     return {
       type: 'Error',
       message: 'fieldsRequired',
@@ -125,27 +117,10 @@ export const signup = catchAsync(async (body) => {
     };
   }
 
-  // 3) Check if password length less than 8
-  // if (password.length < 8) {
-  //   return {
-  //     type: 'Error',
-  //     message: 'passwordLength',
-  //     statusCode: 400
-  //   };
-  // }
-
-  // 4) Make admin role forbidden
-  if (!['user', 'seller'].includes(role)) {
-    return {
-      type: 'Error',
-      message: 'roleRestriction',
-      statusCode: 400
-    };
-  }
-
+  // 3) Check if the email already taken
   const isEmailTaken = await User.isEmailTaken(email);
 
-  // 5) Check if the email already taken
+  // 4) Check if the email already taken
   if (isEmailTaken) {
     return {
       type: 'Error',
@@ -154,52 +129,22 @@ export const signup = catchAsync(async (body) => {
     };
   }
 
-  // 5) Specifiy folder name where the images are going to be uploaded in cloudinary
-  // const folderName = `Users/${name.trim().split(' ').join('')}`;
+  // 5) Create new user account
+  const user = await User.create(body);
 
-  // 6) Upload image to cloudinary
-  // const image = await uploadFile(
-  //   dataUri(profileImage).content,
-  //   folderName,
-  //   600
-  // );
-
-  // 7) Create new user account
-  const user = await User.create({
-    firstName,
-    lastName,
-    email,
-    password,
-    passwordConfirmation,
-    role,
-    profileImage: {
-      original:"",
-      web:"",
-      mobile:""
-    }
-    // companyName,
-    // address,
-    // phone,
-    // profileImage: "https://res.cloudinary.com/dknma8cck/image/upload/v1629746804/EcommerceAPI/Users/armar/cmt6rf3l45rs0lqaviq7.webp",
-    // profileImageId: "sdsa342324342"
-    // profileImage: image.secure_url,
-    // profileImageId: image.public_id
-    // profileImageId: image.public_id
-  });
-
-  // 8) Generate tokens (access token & refresh token)
+  // 6) Generate tokens (access token & refresh token)
   const tokens = await generateAuthTokens(user);
 
-  // 9) Generate Verification Email Token
+  // 7) Generate Verification Email Token
   const verifyEmailToken = await generateVerifyEmailToken(user);
 
-  // 10) Sending Verification Email
+  // 8) Sending Verification Email
   await sendVerificationEmail(user.email, verifyEmailToken);
 
-  // 11) Remove the password from the output
+  // 9) Remove the password from the output
   user.password = undefined;
 
-  // 12) If everything is OK, send user data
+  // 10) If everything is OK, send user data
   return {
     type: 'Success',
     statusCode: 201,

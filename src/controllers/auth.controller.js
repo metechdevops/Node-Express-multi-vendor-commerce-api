@@ -37,14 +37,6 @@ export const customerSignup = catchAsync(async (req,res) => {
     });
   }
 
-  //   // 2) Check if something went wrong
-  // if (type === 'Error') {
-  //   return res.status(statusCode).json({
-  //     type,
-  //     message: req.polyglot.t(message)
-  //   });
-  // }
-
   // 3) If everything is OK, send data
   return res.status(statusCode).json({
     type,
@@ -56,16 +48,15 @@ export const customerSignup = catchAsync(async (req,res) => {
 });
 
 /**
- * @desc      Sign Up Controller
+ * @desc      Seller Sign Up Controller
  * @param     { Object } req - Request object
  * @param     { Object } res - Response object
  * @property  { Object } req.body - Body data
- * @property  { Object } req.file - User image
  * @returns   { JSON } - A JSON object representing the type, message, user data, and tokens
  */
-export const signup = catchAsync(async (req,files,res) => {
+export const sellerSignup = catchAsync(async (req,res) => {
   // 1) Calling sign up service
-  const { type, message, statusCode, user, tokens,errors } = await authService.signup(req.body);
+  const { type, message, statusCode, user, tokens,errors } = await authService.sellerSignup(req.body);
 
 
   // 2) Check if validation
