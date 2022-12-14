@@ -3,10 +3,7 @@ import _ from "lodash";
 
 // Utils
 import catchAsync from '../utils/catchAsync';
-import {imageUploads} from '../utils/media';
-
-// Configs
-import config from '../config/config';
+import {imageUploads,fileFilter} from '../utils/media';
 
 
 /**
@@ -15,26 +12,29 @@ import config from '../config/config';
  * @param   { Object } user - An object contains logged in user data
  * @returns { Object<type|message|statusCode|order> }
  */
-export const createMedia = catchAsync(async ({params,files, user}) => {
+export const createMedia = catchAsync(async (req) => {
   
-    // 1) Extract data from parameters
-    const {type,platform} = params;
+    const {params,files, user} = req;
+    const fileValidationError = await fileFilter(req,files)
 
-    if (_.isEmpty(type) || _.isEmpty(platform)) {
+    // 4) Check file Validate method
+    if (fileValidationError) {
       return {
         type: 'Error',
-        message: 'noProductFound',
-        statusCode: 404
-      };
+        message: 'invalidImageFormate',
+        statusCode: 400
+      };  
     }
 
-    const medias = await imageUploads(files,type,platform)
+    // 1) Extract data from parameters
+    const {directory,client} = params;
+    const medias = await imageUploads(files,directory,client,user)
 
-
+ 
     // 5) If everything is OK, send data
     return {
       type: 'Success',
-      message: 'successfulOrderCreate',
+      message: 'successfulMediaUploaded',
       statusCode: 200,
       medias
     };

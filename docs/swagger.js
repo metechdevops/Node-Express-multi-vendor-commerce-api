@@ -12,6 +12,10 @@ import {
 } from './auth.swagger';
 
 import {
+  uploadMediaImages,
+} from './media.swagger';
+
+import {
   getAllCategories,
   getCategory,
   addCategory,
@@ -154,6 +158,9 @@ const docs = {
     },
     '/auth/send-verification-email': {
       post: sendVerificationEmail
+    },
+    '/media/profile/web': {
+      post: uploadMediaImages
     },
     // '/user': {
     //   get: getAllUsers,

@@ -4,6 +4,7 @@ export const messages = {
   en: {
     profileImageRequired: 'Profile image ss required, please upload an image!',
     fieldsRequired: 'All fields are required.',
+    invalidImageFormate: 'Not an image! Please upload only images. e.g[jpg|JPG|jpeg|JPEG|png|PNG|WEBP|webp]',
     passwordLength:
       'Password must be longer than 8 characters and contains letters, numbers, and symbols.',
     roleRestriction: 'Role must be one of the following: user or seller.',
@@ -85,6 +86,7 @@ export const messages = {
     successfulCategoryImage: 'Category image updated successfully.',
     successfulCategoryDelete: 'Category deleted successfully.',
     successfulOrderCreate: 'Order created successfully.',
+    successfulMediaUploaded: 'Media uploaded successfully.',
     successfulOrdersFound: 'Orders found successfully.',
     successfulOrderFound: 'Order found successfully.',
     successfulOrderCancel: 'Order cancelled successfully.',

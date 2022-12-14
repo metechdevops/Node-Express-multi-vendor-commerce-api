@@ -3,39 +3,41 @@ import sharp from 'sharp';
 const { getStorageProvider } = require("../storage-provider/storage-provider-factory");
 const StorageDirectories = require("../storage-provider/storage-directories");
 const ThumbnailsDimensions = require("../constants/thumbnail-dimensions");
+import AppError from './appError';
 
 /**
  * @desc    Upload images
  * @param   { Array } files - Media files data
- * @param   { String } media_type - An media_type contains types
+ * @param   { String } directory - An client contains [customer, vendor, product, profile, driver, collection]
+ * @param   { String } client - An client contains [web,mobile]
  * @returns { Object<type|message|statusCode|medias> }
  */
 
- export const imageUploads = async (files, media_type, media_For) => {
+ export const imageUploads = async (files, directory, client,user) => {
 
 
-    const mediaFor = media_For.toUpperCase();
-    const type = media_type.toUpperCase();
+    const mediaDirectory = directory.toUpperCase();
+    const mediaClinet = client.toUpperCase();
 
-    const [thumbnailDataForWeb, thumbnailDataForMobile] = await prepareThumbnailsData(files, type);
-    const [images, thumbnailsForWeb, thumbnailsForMobile] = await uploadImages(files, mediaFor, thumbnailDataForWeb, thumbnailDataForMobile);
+    const [thumbnailDataForWeb, thumbnailDataForMobile] = await prepareThumbnailsData(files, mediaDirectory);
+    const [images, thumbnailsForWeb, thumbnailsForMobile] = await uploadImages(files, directory, thumbnailDataForWeb, thumbnailDataForMobile);
 
     return prepareResponseData(images, thumbnailsForWeb, thumbnailsForMobile);
 };
 
-const uploadImages = (files, mediaFor, thumbnailDataForWeb, thumbnailDataForMobile) => {
+const uploadImages = (files, directory, thumbnailDataForWeb, thumbnailDataForMobile) => {
     const storageProvider = getStorageProvider();
     return Promise.all([
-        storageProvider.saveFiles(files, StorageDirectories[mediaFor],mediaFor),
-        storageProvider.saveFiles(thumbnailDataForWeb, StorageDirectories[mediaFor]),
-        storageProvider.saveFiles(thumbnailDataForMobile, StorageDirectories[mediaFor])
+        storageProvider.saveFiles(files,directory),
+        storageProvider.saveFiles(thumbnailDataForWeb,directory),
+        storageProvider.saveFiles(thumbnailDataForMobile,directory)
     ]);
 }
 
 const  prepareThumbnailsData = (files, type) => {
     return Promise.all([
-        prepareFileDataForThumbnail(files, ThumbnailsDimensions[type].forWeb),
-        prepareFileDataForThumbnail(files, ThumbnailsDimensions[type].forMobile)
+        prepareFileDataForThumbnail(files, ThumbnailsDimensions[type].web),
+        prepareFileDataForThumbnail(files, ThumbnailsDimensions[type].mobile)
     ]);
 }
 
@@ -63,3 +65,19 @@ const prepareResponseData = (images, thumbnailsForWeb, thumbnailsForMobile) => {
     return response;
 }
 
+export const fileFilter = (req, files, cb) => {
+    let isInValid = false 
+    files.map((file) => {
+        if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|WEBP|webp)$/)) {
+            req.fileValidationError = 'Only image files are allowed!';
+            isInValid = true;
+        }
+    })
+
+    return isInValid;
+};
+
+export const limits = {
+    files: 1, // allow only 1 file per request
+    fileSize: 1024 * 1024 * 10 // 10 MB (max file size)
+};
