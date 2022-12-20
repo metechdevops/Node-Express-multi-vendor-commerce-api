@@ -1,10 +1,17 @@
 import { object } from "joi";
+
 import {
   SellerSignUpRequestBody,
   SellerSignUpResponse200,
   SellerSignUpResponse400,
   SellerSignUpResponse409
-} from './components/auth/seller/register'
+} from './components/auth/seller/register';
+
+const {
+  customerProfileRequestBody,
+  customerProfileResponse200,
+  customerProfileResponse400
+} = require ('./components/auth/customer/profile')
 
 export const sellerSignUp = {
   security: {
@@ -731,6 +738,11 @@ export const resetPassword = {
 
 export const changePassword = {
   tags: ['Auth'],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   description: 'This route allow you to user to change his password',
   opeationId: 'changePassword',
   parameters: [
@@ -816,6 +828,11 @@ export const changePassword = {
 
 export const sendVerificationEmail = {
   tags: ['Auth'],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   description: 'This route will allow you to resend verification token email.',
   opeationId: 'sendVerificationEmail',
   parameters: [
@@ -877,6 +894,11 @@ export const sendVerificationEmail = {
 
 export const verifyEmail = {
   tags: ['Auth'],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   description: 'This route allow you to verify user email',
   opeationId: 'verifyEmail',
   parameters: [
@@ -956,5 +978,54 @@ export const verifyEmail = {
         }
       }
     }
+  }
+};
+
+
+export const updateCustomerProfile = {
+  tags: ['Auth'],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
+  description: 'This route allow you update customer user profile',
+  opeationId: 'updateCustomerProfile',
+  parameters: [
+    {
+      in: 'header',
+      name: 'Accept-Language',
+      type: 'string',
+      example: 'en_MX'
+    }
+  ],
+  requestBody: customerProfileRequestBody,
+  responses: {
+    200: customerProfileResponse200,
+    400: customerProfileResponse400
+  }
+};
+
+export const updateSellerProfile = {
+  tags: ['Auth'],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
+  description: 'This route allow you update seller profile',
+  opeationId: 'updateSellerProfile',
+  parameters: [
+    {
+      in: 'header',
+      name: 'Accept-Language',
+      type: 'string',
+      example: 'en_MX'
+    }
+  ],
+  requestBody: customerProfileRequestBody,
+  responses: {
+    200: customerProfileResponse200,
+    400: customerProfileResponse400
   }
 };

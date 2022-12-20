@@ -70,6 +70,7 @@ export const messages = {
     successfulDeleteProductSize: 'Size deleted successfully.',
     successfulTokenGeneration: 'Tokens generated successfully.',
     successfulPasswordChange: 'Password changed successfully.',
+    successfullyProfileUpdated: 'Your profile updated successfully.',
     successfulEmailVerification: 'Email verified successfully.',
     successfulResetLink: 'Reset password link sent successfully.',
     successfulSendVerificationEmail: 'Verification email sent successfully.',

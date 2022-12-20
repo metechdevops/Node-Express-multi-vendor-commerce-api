@@ -8,7 +8,9 @@ import {
   resetPassword,
   verifyEmail,
   sendVerificationEmail,
-  changePassword
+  changePassword,
+  updateCustomerProfile,
+  updateSellerProfile
 } from './auth.controller';
 
 import {
@@ -101,7 +103,9 @@ const authController = {
   resetPassword,
   verifyEmail,
   sendVerificationEmail,
-  changePassword
+  changePassword,
+  updateCustomerProfile,
+  updateSellerProfile
 };
 
 const userController = {

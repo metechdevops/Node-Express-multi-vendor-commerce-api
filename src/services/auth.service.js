@@ -5,6 +5,7 @@ const tokenTypes = require('../config/tokens');
 import catchAsync from '../utils/catchAsync';
 import validator from '../validators/field-validator';
 import {registrationSchema} from '../validators/entities/customer/registration-schema';
+import {customerProfileSchema} from '../validators/entities/customer/customer-profile-schema';
 import {sellerValidationSchema} from '../validators/entities/seller/registration-schema';
 
 
@@ -328,6 +329,98 @@ export const changePassword = catchAsync(
     };
   }
 );
+
+/**
+ * @desc    Update Customer Profile Service
+ * @return  { Object<type|statusCode|message> }
+ */
+export const updateCustomerProfile = catchAsync(
+async ({body,user}) => {
+
+    const {firstName,lastName,profileImage} = body;
+    // 1) Validate required fields
+    let fieldErrors = validator.validate(body,customerProfileSchema);
+    
+    // 2) Check if body request data is valid.
+    if(fieldErrors){
+
+      // fieldErrors = fieldErrors.map((item) => item.message)
+      return {
+        type: 'Error',
+        message: 'fieldsRequired',
+        statusCode: 400,
+        errors: fieldErrors
+      };
+    }
+    
+    // 3) Get user data.
+    const customer = await User.findById(user.id);
+
+    // 4) Update user data
+    user.firstName = firstName;
+    user.lastName = lastName;
+
+    // 5) set profile images 
+    if(profileImage){
+      user.profileImage = {...profileImage};
+    }
+
+    await customer.save();
+
+    // 6) If everything is OK, send data
+    return {
+      type: 'Success',
+      statusCode: 200,
+      message: 'successfullyProfileUpdated'
+    };
+  }
+);
+
+/**
+ * @desc    Update Customer Profile Service
+ * @return  { Object<type|statusCode|message> }
+ */
+export const updateSellerProfile = catchAsync(
+  async ({body,user}) => {
+  
+      const {firstName,lastName,profileImage} = body;
+      // 1) Validate required fields
+      let fieldErrors = validator.validate(body,customerProfileSchema);
+      
+      // 2) Check if body request data is valid.
+      if(fieldErrors){
+  
+        // fieldErrors = fieldErrors.map((item) => item.message)
+        return {
+          type: 'Error',
+          message: 'fieldsRequired',
+          statusCode: 400,
+          errors: fieldErrors
+        };
+      }
+      
+      // 3) Get user data.
+      const customer = await User.findById(user.id);
+  
+      // 4) Update user data
+      user.firstName = firstName;
+      user.lastName = lastName;
+  
+      // 5) set profile images 
+      if(profileImage){
+        user.profileImage = {...profileImage};
+      }
+  
+      await customer.save();
+  
+      // 6) If everything is OK, send data
+      return {
+        type: 'Success',
+        statusCode: 200,
+        message: 'successfullyProfileUpdated'
+      };
+    }
+  );
 
 /**
  * @desc    Reset Password Service

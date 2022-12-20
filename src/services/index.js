@@ -6,7 +6,9 @@ import {
   refreshAuth,
   resetPassword,
   verifyEmail,
-  changePassword
+  changePassword,
+  updateCustomerProfile,
+  updateSellerProfile
 } from './auth.service';
 
 import {
@@ -26,6 +28,12 @@ import {
   deleteUser,
   deleteMyAccount
 } from './user.service';
+
+// import {
+//   updateUserDetails,
+//   updateUserProfileImage,
+
+// } from './seller.service';
 
 import {
   createCategory,
@@ -96,7 +104,9 @@ const authService = {
   refreshAuth,
   resetPassword,
   verifyEmail,
-  changePassword
+  changePassword,
+  updateCustomerProfile,
+  updateSellerProfile
 };
 
 const reviewService = {
@@ -120,6 +130,11 @@ const userService = {
   deleteUser,
   deleteMyAccount
 };
+
+// const sellerService = {
+//   updateUserDetails,
+//   updateUserProfileImage
+// };
 
 const categoryService = {
   createCategory,
@@ -181,6 +196,7 @@ const favoriteService = {
 export {
   authService,
   userService,
+  // sellerService,
   categoryService,
   productService,
   reviewService,

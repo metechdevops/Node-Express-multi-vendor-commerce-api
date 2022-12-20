@@ -8,7 +8,8 @@ import {
   resetPassword,
   changePassword,
   verifyEmail,
-  sendVerificationEmail
+  sendVerificationEmail,
+  updateCustomerProfile
 } from './auth.swagger';
 
 import {
@@ -116,17 +117,16 @@ const docs = {
   components: {
     securitySchemes: {
       bearerAuth: {
-        type: 'http',
-        scheme: 'bearer',
-        in: 'header',
-        bearerFormat: 'JWT'
-      }
-    }
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT",
+      },
+    },
   },
   security: [
     {
-      jwt: []
-    }
+      jwt: ['secret']
+    },
   ],
   paths: {
     '/auth/login': {
@@ -158,6 +158,9 @@ const docs = {
     },
     '/auth/send-verification-email': {
       post: sendVerificationEmail
+    },
+    '/auth/customer/update-profile': {
+      post: updateCustomerProfile
     },
     '/media/profile/web': {
       post: uploadMediaImages

@@ -4,9 +4,12 @@ import express from 'express';
 // Controllers
 import { authController } from '../controllers/index';
 
+// Constants 
+const {USER_ROLE} = require('../constants/constants')
 
 // Middlewares
 import protect from '../middlewares/protect';
+import restrictedTo from '../middlewares/restrictedTo';
 
 const {
   signin,
@@ -18,7 +21,9 @@ const {
   resetPassword,
   verifyEmail,
   sendVerificationEmail,
-  changePassword
+  changePassword,
+  updateCustomerProfile,
+  updateSellerProfile
 } = authController;
 
 const router = express.Router();
@@ -39,10 +44,14 @@ router.post('/reset-password', resetPassword);
 
 router.post('/verify-email', verifyEmail);
 
-// router.use(protect);
+router.use(protect);
 
-router.post('/send-verification-email',protect, sendVerificationEmail);
+router.post('/send-verification-email', sendVerificationEmail);
 
-router.patch('/change-password',protect, changePassword);
+router.post('/customer/update-profile',restrictedTo(USER_ROLE.USER), updateCustomerProfile);
+
+router.post('/seller/update-profile',restrictedTo(USER_ROLE.SELLER), updateSellerProfile);
+
+router.patch('/change-password', changePassword);
 
 export default router;

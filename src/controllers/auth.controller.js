@@ -267,6 +267,60 @@ export const changePassword = catchAsync(async (req, res) => {
 });
 
 /**
+ * @desc      Update Customer Profil
+ * @param     { Object } req - Request object
+ * @param     { Object } res - Response object
+ * @returns   { JSON } - A JSON object representing the type and message
+ */
+export const updateCustomerProfile = catchAsync(async (req, res) => {
+
+  // 1) Calling reset password service
+  const { type, message, statusCode,errors } = await authService.updateCustomerProfile(req);
+
+  // 2) Check if something went wrong
+  if (type === 'Error') {
+    return res.status(statusCode).json({
+      type,
+      message: req.polyglot.t(message),
+      errors:errors
+    });
+  }
+
+  // 3) If everything is OK, send data
+  return res.status(statusCode).json({
+    type,
+    message: req.polyglot.t(message)
+  });
+});
+
+/**
+ * @desc      Update Seller Profile Controller
+ * @param     { Object } req - Request object
+ * @param     { Object } res - Response object
+ * @returns   { JSON } - A JSON object representing the type and message
+ */
+export const updateSellerProfile = catchAsync(async (req, res) => {
+
+  // 1) Calling reset password service
+  const { type, message, statusCode,errors } = await authService.updateSellerProfile(req);
+
+  // 2) Check if something went wrong
+  if (type === 'Error') {
+    return res.status(statusCode).json({
+      type,
+      message: req.polyglot.t(message),
+      errors:errors
+    });
+  }
+
+  // 3) If everything is OK, send data
+  return res.status(statusCode).json({
+    type,
+    message: req.polyglot.t(message)
+  });
+});
+
+/**
  * @desc      Send Verification Email Controller
  * @param     { Object } req - Request object
  * @param     { Object } res - Response object
