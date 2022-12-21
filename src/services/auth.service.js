@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 // Configs
 const tokenTypes = require('../config/tokens');
 
@@ -383,41 +385,35 @@ async ({body,user}) => {
 export const updateSellerProfile = catchAsync(
   async ({body,user}) => {
   
-      const {firstName,lastName,profileImage} = body;
+      // const {firstName,lastName,profileImage} = body;
+      
       // 1) Validate required fields
-      let fieldErrors = validator.validate(body,customerProfileSchema);
+      // let fieldErrors = validator.validate(body,customerProfileSchema);
       
       // 2) Check if body request data is valid.
-      if(fieldErrors){
+      // if(fieldErrors){
   
         // fieldErrors = fieldErrors.map((item) => item.message)
-        return {
-          type: 'Error',
-          message: 'fieldsRequired',
-          statusCode: 400,
-          errors: fieldErrors
-        };
-      }
+      //   return {
+      //     type: 'Error',
+      //     message: 'fieldsRequired',
+      //     statusCode: 400,
+      //     errors: fieldErrors
+      //   };
+      // }
       
-      // 3) Get user data.
-      const customer = await User.findById(user.id);
-  
-      // 4) Update user data
-      user.firstName = firstName;
-      user.lastName = lastName;
-  
-      // 5) set profile images 
-      if(profileImage){
-        user.profileImage = {...profileImage};
-      }
-  
-      await customer.save();
+      let newObject = {...body };
+
+
+      // write update to database
+      const customer = await User.findOneAndUpdate({_id:mongoose.Types.ObjectId(user._id)}, {$set: newObject})
   
       // 6) If everything is OK, send data
       return {
         type: 'Success',
         statusCode: 200,
-        message: 'successfullyProfileUpdated'
+        message: 'successfullyProfileUpdated',
+        data:customer
       };
     }
   );

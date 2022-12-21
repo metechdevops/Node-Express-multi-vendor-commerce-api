@@ -302,7 +302,7 @@ export const updateCustomerProfile = catchAsync(async (req, res) => {
 export const updateSellerProfile = catchAsync(async (req, res) => {
 
   // 1) Calling reset password service
-  const { type, message, statusCode,errors } = await authService.updateSellerProfile(req);
+  const { type, message, statusCode,errors,data } = await authService.updateSellerProfile(req);
 
   // 2) Check if something went wrong
   if (type === 'Error') {
@@ -316,7 +316,8 @@ export const updateSellerProfile = catchAsync(async (req, res) => {
   // 3) If everything is OK, send data
   return res.status(statusCode).json({
     type,
-    message: req.polyglot.t(message)
+    message: req.polyglot.t(message),
+    customer:data
   });
 });
 

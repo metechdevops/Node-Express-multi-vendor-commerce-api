@@ -13,6 +13,13 @@ const {
   customerProfileResponse400
 } = require ('./components/auth/customer/profile')
 
+const {
+  SellerProfileRequestBody,
+  SellerProfileResponse200,
+  SellerProfileResponse400,
+  SellerProfileResponse409
+} = require ('./components/auth/seller/profile')
+
 export const sellerSignUp = {
   security: {
     jwt: []
@@ -1023,9 +1030,10 @@ export const updateSellerProfile = {
       example: 'en_MX'
     }
   ],
-  requestBody: customerProfileRequestBody,
+  requestBody: SellerProfileRequestBody,
   responses: {
-    200: customerProfileResponse200,
-    400: customerProfileResponse400
+    200: SellerProfileResponse200,
+    400: SellerProfileResponse400,
+    409: SellerProfileResponse409
   }
 };

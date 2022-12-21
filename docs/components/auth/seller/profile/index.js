@@ -1,13 +1,13 @@
-import {secondaryContact} from "./secondary-conatct"
-import {businessDetails} from "./business-detail"
-import {bankDetail} from "./bank-detail"
-import {taxationDetail} from "./taxation-detail"
-import {socialLinks} from "./social-links"
-import {Branding} from "./branding"
-import {profileImage} from "./profile-image"
+import {secondaryContact} from "././../register/secondary-conatct"
+import {businessDetails} from "././../register/business-detail"
+import {bankDetail} from "././../register/bank-detail"
+import {taxationDetail} from "././../register/taxation-detail"
+import {socialLinks} from "././../register/social-links"
+import {Branding} from "././../register/branding"
+import {profileImage} from "././../register/profile-image"
 import { USER_ROLE } from "../../../../../src/constants/constants"
 
-const SellerSignUpRequestBody = {
+const SellerProfileRequestBody = {
   required: true,
   content: {
     'application/json': {
@@ -60,7 +60,7 @@ const SellerSignUpRequestBody = {
   }
 }
 
-const SellerSignUpResponse200 = {
+const SellerProfileResponse200 = {
   description: 'User data with access token and refresh token',
   content: {
     'application/json': {
@@ -164,7 +164,7 @@ const SellerSignUpResponse200 = {
   }
 }
 
-const SellerSignUpResponse400 = {
+const SellerProfileResponse400 = {
   description: 'Error: 400',
   content: {
     'application/json': {
@@ -194,7 +194,7 @@ const SellerSignUpResponse400 = {
   }
 }
 
-const SellerSignUpResponse409 = {
+const SellerProfileResponse409 = {
   description: 'Error: 409',
   content: {
     'application/json': {
@@ -216,8 +216,8 @@ const SellerSignUpResponse409 = {
 }
 
 module.exports = {
-  SellerSignUpRequestBody,
-  SellerSignUpResponse200,
-  SellerSignUpResponse400,
-  SellerSignUpResponse409
+  SellerProfileRequestBody,
+  SellerProfileResponse200,
+  SellerProfileResponse400,
+  SellerProfileResponse409
 }

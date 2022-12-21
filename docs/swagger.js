@@ -9,7 +9,8 @@ import {
   changePassword,
   verifyEmail,
   sendVerificationEmail,
-  updateCustomerProfile
+  updateCustomerProfile,
+  updateSellerProfile
 } from './auth.swagger';
 
 import {
@@ -161,6 +162,9 @@ const docs = {
     },
     '/auth/customer/update-profile': {
       post: updateCustomerProfile
+    },
+    '/auth/seller/update-profile': {
+      post: updateSellerProfile
     },
     '/media/profile/web': {
       post: uploadMediaImages
