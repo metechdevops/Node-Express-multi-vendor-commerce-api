@@ -1,7 +1,13 @@
+import { ImageSchema } from './components/common';
+
+const {
+  CategoryRequestBody,
+  CategoryResponse201,
+  CategoryResponse400,
+  CategoryResponse404
+} = require ('./components/category')
+
 export const getAllCategories = {
-  security: {
-    jwt: []
-  },
   tags: ['Category'],
   description: 'This route allow to get all categories',
   opeationId: 'getAllCategories',
@@ -78,16 +84,7 @@ export const getAllCategories = {
                       example:
                         'This category contains all products related to makeup.'
                     },
-                    image: {
-                      type: 'string',
-                      example:
-                        'https://res.cloudinary.com/dknma8cck/image/upload/v1629411601/EcommerceAPI/Category/Makeup/wnxfwht979aao486afll.webp'
-                    },
-                    imageId: {
-                      type: 'string',
-                      example:
-                        'EcommerceAPI/Category/Makeup/wnxfwht979aao486afll'
-                    },
+                    image: ImageSchema,
                     createdAt: {
                       type: 'string',
                       example: '2021-08-19T22:20:01.688Z'
@@ -128,9 +125,6 @@ export const getAllCategories = {
 };
 
 export const getCategory = {
-  security: {
-    jwt: []
-  },
   tags: ['Category'],
   description: "This route allow to get category using it's ID",
   opeationId: 'getCategory',
@@ -143,7 +137,7 @@ export const getCategory = {
     },
     {
       in: 'path',
-      name: 'id',
+      name: 'categoryId',
       type: 'integer',
       description: 'Category ID'
     }
@@ -182,16 +176,7 @@ export const getCategory = {
                       example:
                         'This category contains all products related to makeup.'
                     },
-                    image: {
-                      type: 'string',
-                      example:
-                        'https://res.cloudinary.com/dknma8cck/image/upload/v1629411601/EcommerceAPI/Category/Makeup/wnxfwht979aao486afll.webp'
-                    },
-                    imageId: {
-                      type: 'string',
-                      example:
-                        'EcommerceAPI/Category/Makeup/wnxfwht979aao486afll'
-                    },
+                    image: ImageSchema,
                     createdAt: {
                       type: 'string',
                       example: '2021-08-19T22:20:01.688Z'
@@ -240,98 +225,18 @@ export const addCategory = {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     }
   ],
-  requestBody: {
-    required: true,
-    content: {
-      'multipart/form-data': {
-        schema: {
-          type: 'object',
-          properties: {
-            name: {
-              type: 'string',
-              required: true
-            },
-            description: {
-              type: 'string',
-              required: true
-            },
-            image: {
-              type: 'string',
-              formate: 'binary',
-              required: true
-            }
-          }
-        }
-      }
-    }
-  },
-  responses: {
-    201: {
-      description: 'Add new category',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            properties: {
-              type: {
-                type: 'string',
-                example: 'Success'
-              },
-              message: {
-                type: 'string',
-                example: 'Category Created Successfully.'
-              },
-              catagory: {
-                type: 'object',
-                properties: {
-                  name: {
-                    type: 'string',
-                    example: 'Laptop'
-                  },
-                  description: {
-                    type: 'string',
-                    example:
-                      "This category contains all products related to Laptops, it's components and accessories."
-                  },
-                  image: {
-                    type: 'string',
-                    example:
-                      'https://res.cloudinary.com/dknma8cck/image/upload/v1629411453/EcommerceAPI/Category/Laptop/hqbknfppz8src5szz2w9.webp'
-                  },
-                  imageId: {
-                    type: 'string',
-                    example: 'EcommerceAPI/Category/Laptop/hqbknfppz8src5szz2w9'
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+  security: [
+    {
+      bearerAuth: [],
     },
-    400: {
-      description: 'Error: 400',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            properties: {
-              type: {
-                type: 'string',
-                example: 'Error'
-              },
-              message: {
-                type: 'string',
-                example: 'All Fields Are Required'
-              }
-            }
-          }
-        }
-      }
-    }
+  ],
+  requestBody: CategoryRequestBody,
+  responses: {
+    201: CategoryResponse201,
+    400: CategoryResponse400
   }
 };
 
@@ -340,225 +245,32 @@ export const updateCategoryDetails = {
   description:
     'This route allow only admin to update category details [name / description]',
   opeationId: 'updateCategoryDetails',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     },
     {
       in: 'path',
-      name: 'id',
+      name: 'categoryId',
       type: 'integer',
       description: 'Category ID'
     }
   ],
-  requestBody: {
-    required: true,
-    content: {
-      'application/json': {
-        schema: {
-          type: 'object',
-          properties: {
-            name: {
-              type: 'string'
-            },
-            description: {
-              type: 'string'
-            }
-          }
-        }
-      }
-    }
-  },
+  requestBody: CategoryRequestBody,
   responses: {
-    200: {
-      description: 'Updated category details',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            properties: {
-              type: {
-                type: 'string',
-                example: 'Success'
-              },
-              message: {
-                type: 'string',
-                example: 'Category Details Updated Successfully.'
-              },
-              catagory: {
-                type: 'object',
-                properties: {
-                  name: {
-                    type: 'string',
-                    example: 'Makeup'
-                  },
-                  description: {
-                    type: 'string',
-                    example:
-                      'This category contains all products related to makeup.'
-                  },
-                  image: {
-                    type: 'string',
-                    example:
-                      'https://res.cloudinary.com/dknma8cck/image/upload/v1629411601/EcommerceAPI/Category/Makeup/wnxfwht979aao486afll.webp'
-                  },
-                  imageId: {
-                    type: 'string',
-                    example: 'EcommerceAPI/Category/Makeup/wnxfwht979aao486afll'
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    404: {
-      description: 'Error: 404',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            properties: {
-              type: {
-                type: 'string',
-                example: 'Error'
-              },
-              message: {
-                type: 'string',
-                example: 'No Category Found With This ID: {id}'
-              }
-            }
-          }
-        }
-      }
-    }
+    200: CategoryResponse201,
+    404: CategoryResponse404
   }
 };
 
-export const updateCategoryImage = {
-  tags: ['Category'],
-  description: 'This route allow only admin to update category image [image]',
-  opeationId: 'updateCategoryImage',
-  parameters: [
-    {
-      in: 'header',
-      name: 'Accept-Language',
-      type: 'string',
-      example: 'ar_MX'
-    },
-    {
-      in: 'path',
-      name: 'id',
-      type: 'integer',
-      description: 'Category ID'
-    }
-  ],
-  requestBody: {
-    required: true,
-    content: {
-      'multipart/form-data': {
-        schema: {
-          type: 'object',
-          properties: {
-            image: {
-              type: 'string',
-              format: 'image'
-            }
-          }
-        }
-      }
-    }
-  },
-  responses: {
-    200: {
-      description: 'Updated category image',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            properties: {
-              type: {
-                type: 'string',
-                example: 'Success'
-              },
-              message: {
-                type: 'string',
-                example: 'Category Image Updated Successfully.'
-              },
-              catagory: {
-                type: 'object',
-                properties: {
-                  name: {
-                    type: 'string',
-                    example: 'Makeup'
-                  },
-                  description: {
-                    type: 'string',
-                    example:
-                      'This category contains all products related to makeup.'
-                  },
-                  image: {
-                    type: 'string',
-                    example:
-                      'https://res.cloudinary.com/dknma8cck/image/upload/v1629411601/EcommerceAPI/Category/Makeup/wnxfwht979aao486afll.webp'
-                  },
-                  imageId: {
-                    type: 'string',
-                    example: 'EcommerceAPI/Category/Makeup/wnxfwht979aao486afll'
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    400: {
-      description: 'Error: 400',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            properties: {
-              type: {
-                type: 'string',
-                example: 'Error'
-              },
-              message: {
-                type: 'string',
-                example: 'Image Is Required, Please Upload an Image!'
-              }
-            }
-          }
-        }
-      }
-    },
-    404: {
-      description: 'Error: 404',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            properties: {
-              type: {
-                type: 'string',
-                example: 'Error'
-              },
-              message: {
-                type: 'string',
-                example: 'No Category Found With This ID: {id}'
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-};
 
 export const deleteCategory = {
   tags: ['Category'],
@@ -573,10 +285,15 @@ export const deleteCategory = {
     },
     {
       in: 'path',
-      name: 'id',
+      name: 'categoryId',
       type: 'integer',
       description: 'Category ID'
     }
+  ],
+  security: [
+    {
+      bearerAuth: [],
+    },
   ],
   responses: {
     200: {

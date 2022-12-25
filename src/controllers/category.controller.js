@@ -82,17 +82,14 @@ export const getCategory = catchAsync(async (req, res) => {
  */
 export const addCategory = catchAsync(async (req, res) => {
   // 1) Create new category
-  const { type, message, statusCode, category } =
-    await categoryService.createCategory(
-      { name: req.body.name, description: req.body.description },
-      req.file
-    );
+  const { type, message, statusCode, category, errors } = await categoryService.createCategory(req.body);
 
   // 2) Check if there is an error
   if (type === 'Error') {
     return res.status(statusCode).json({
       type,
-      message: req.polyglot.t(message)
+      message: req.polyglot.t(message),
+      errors:errors
     });
   }
 

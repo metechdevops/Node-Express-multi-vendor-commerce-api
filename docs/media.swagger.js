@@ -46,17 +46,17 @@ export const uploadMediaImages = {
               media: {
                 type:"object",
                 properties: {
-                  orignalImage : {
+                  orignal : {
                     type:'string',
                     format:'url',
                     example:'https://e-cart-dev.s3.eu-west-1.amazonaws.com/profile/9f36572b-f478-4ee9-b22d-4d17ce695fb3.png'
                   },
-                  thumbnailImageForWeb : {
+                  web : {
                     type:'string',
                     format:'url',
                     example:'https://e-cart-dev.s3.eu-west-1.amazonaws.com/profile/9f36572b-f478-4ee9-b22d-4d17ce695fb3.png'
                   },
-                  thumbnailImageForMobile : {
+                  mobile : {
                     type:'string',
                     format:'url',
                     example:'https://e-cart-dev.s3.eu-west-1.amazonaws.com/profile/9f36572b-f478-4ee9-b22d-4d17ce695fb3.png'

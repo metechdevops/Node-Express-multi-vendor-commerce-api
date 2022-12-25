@@ -22,7 +22,6 @@ import {
   getCategory,
   addCategory,
   updateCategoryDetails,
-  updateCategoryImage,
   deleteCategory
 } from './category.swagger';
 
@@ -186,18 +185,15 @@ const docs = {
     // '/user/me': {
     //   delete: deleteMyAccount
     // },
-    // '/category': {
-    //   get: getAllCategories,
-    //   post: addCategory
-    // },
-    // '/category/{categoryId}': {
-    //   get: getCategory,
-    //   patch: updateCategoryDetails,
-    //   delete: deleteCategory
-    // },
-    // '/category/{categoryId}/image': {
-    //   patch: updateCategoryImage
-    // },
+    '/category': {
+      get: getAllCategories,
+      post: addCategory
+    },
+    '/category/{categoryId}': {
+      get: getCategory,
+      patch: updateCategoryDetails,
+      delete: deleteCategory
+    },
     // '/product': {
     //   get: getAllProducts,
     //   post: addProduct

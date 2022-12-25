@@ -15,7 +15,7 @@ const {
   getCategory,
   addCategory,
   updateCategoryDetails,
-  updateCategoryImage,
+  // updateCategoryImage,
   deleteCategory
 } = categoryController;
 
@@ -32,13 +32,13 @@ router.get('/:id', getCategory);
 router.use(protect);
 
 // Add Category (Multer Middleware) Route
-router.post('/', singleFile('image'), addCategory);
+router.post('/', addCategory);
 
 // Update Category details Route
 // Delete Category Route
 router.route('/:id').patch(updateCategoryDetails).delete(deleteCategory);
 
 // Update Category Image (Multer Middleware) Route
-router.patch('/:id/image', singleFile('image'), updateCategoryImage);
+// router.patch('/:id/image', singleFile('image'), updateCategoryImage);
 
 export default router;

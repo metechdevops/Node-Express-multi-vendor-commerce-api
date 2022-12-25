@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import toJSON from './plugins/index';
+const imageSchema = require('./schema/common/image.schema')
 
 const categorySchema = mongoose.Schema(
   {
@@ -12,14 +13,7 @@ const categorySchema = mongoose.Schema(
       type: String,
       required: true
     },
-    image: {
-      type: String,
-      required: true
-    },
-    imageId: {
-      type: String,
-      required: true
-    }
+    image: imageSchema
   },
   {
     timestamps: true

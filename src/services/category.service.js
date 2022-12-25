@@ -3,6 +3,8 @@ import catchAsync from '../utils/catchAsync';
 import APIFeatures from '../utils/apiFeatures';
 import dataUri from '../utils/datauri';
 import { uploadFile, destroyFile } from '../utils/cloudinary';
+import {CreateSchema} from '../validators/entities/category/create';
+import validator from '../validators/field-validator';
 
 // Models
 import { Category } from '../models/index';
@@ -13,33 +15,48 @@ import { Category } from '../models/index';
  * @param   { Object } file - Category image
  * @returns { Object<type|message|statusCode|category> }
  */
-export const createCategory = catchAsync(async (body, file) => {
-  const { name, description } = body;
+export const createCategory = catchAsync(async (body) => {
+  const { name, description,image } = body;
 
-  // 1) Check if the user entered all fields
-  if (!name || !description || !file) {
+
+  // 1) Validate required fields
+  let fieldErrors = validator.validate(body,CreateSchema);
+  
+  // 2) Check if body request data is valid.
+  if(fieldErrors){
+
+    fieldErrors = fieldErrors.map((item) => item.message)
     return {
       type: 'Error',
       message: 'fieldsRequired',
-      statusCode: 400
+      statusCode: 400,
+      errors: fieldErrors
     };
   }
 
+  // 1) Check if the user entered all fields
+  // if (!name || !description || !file) {
+  //   return {
+  //     type: 'Error',
+  //     message: 'fieldsRequired',
+  //     statusCode: 400
+  //   };
+  // }
+
   // 2) Specifiy folder name where the images are going to be uploaded in cloudinary
-  const folderName = `Category/${name.trim().split(' ').join('')}`;
+  // const folderName = `Category/${name.trim().split(' ').join('')}`;
 
   // 3) Generate a buffer instance from a data uri string
-  let image = dataUri(file);
+  // let image = dataUri(file);
 
   // 4) Upload image to cloudinary
-  image = await uploadFile(image.content, folderName, 600);
+  // image = await uploadFile(image.content, folderName, 600);
 
   // 5) Create body
   const object = {
     name,
     description,
-    image: image.secure_url,
-    imageId: image.public_id
+    image: image,
   };
 
   // 6) Create new category
