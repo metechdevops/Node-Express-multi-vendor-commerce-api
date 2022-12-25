@@ -110,7 +110,7 @@ const docs = {
       description: 'Local Server'
     },
     {
-      url: 'http://34.254.211.149:8000/api',
+      url: 'https://ecart.codexnova.com/api',
       description: 'Development Server API'
     }
   ],
