@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import slugify from 'slugify';
+const productImage = require("./schema/common/image.schema")
 
 // Plugins
 import toJSON from './plugins/index';
@@ -12,20 +13,27 @@ const productSchema = mongoose.Schema(
       trim: true
     },
     slug: String,
-    mainImage: {
-      type: String,
-      required: [true, 'A product must have a main image']
-    },
-    mainImageId: String,
-    images: {
-      type: [String],
-      required: [true, 'A product must have sub images']
-    },
-    imagesId: Array,
+    mainImage: productImage,
+    images: [productImage],
     description: {
       type: String,
       required: [true, 'A product must have a description']
     },
+    shortDescription: {
+      type: String,
+      required: false
+    },
+    unitType:{
+      type: String
+    },
+    unitValue: {
+      type: String
+    },
+    tags:[String],
+    attributes: [{
+        title: String,
+        detail: String,
+    }],
     category: {
       type: mongoose.Schema.ObjectId,
       ref: 'Category'
@@ -64,6 +72,12 @@ const productSchema = mongoose.Schema(
       {
         type: mongoose.Types.ObjectId,
         ref: 'Size'
+      }
+    ],
+    stores: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: 'Store'
       }
     ],
     quantity: {

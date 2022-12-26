@@ -5,14 +5,11 @@ export const bankDetail = {
         errorMessage: "Bank name feild is required"
     },
     branchName: {
-        type: 'string',
-        minLength: 1,
+        type: ['string','null'],
         errorMessage: "Branch name feild is required"
     },
     branchCode: {
-        type: 'number',
-        minLength: 1,
-        minimum:0,
+        type: ['number','null'],
         errorMessage: "Branch code feild is required"
     },
     accountNumber: {
@@ -21,8 +18,7 @@ export const bankDetail = {
         errorMessage: "Account number feild is required"
     },
     IBANNumber: {
-        type: 'string',
-        minLength: 1,
+        type: ['string','null'],
         errorMessage: "Bank IBAN number feild is required"
     },
 }

@@ -13,6 +13,14 @@ const SellerSignUpRequestBody = {
     'application/json': {
       schema: {
         type: 'object',
+        required:[
+          'firstName',
+          'lastName',
+          'email',
+          'password',
+          'role',
+          'sellerAttributes'
+        ],
         properties: {
           firstName: {
             type: 'string',
@@ -43,21 +51,49 @@ const SellerSignUpRequestBody = {
           profileImage: profileImage,
           sellerAttributes: {
             type: 'object',
+            required:[
+              'secondaryContactDetail',
+              'businessDetail',
+              'bankDetail',
+              'taxationInformation',
+              'branding'
+            ],
             properties: {
               secondaryContactDetail : {
                 type: 'object',
+                required:[
+                  'firstName',
+                  'lastName',
+                  'phone'
+                ],
                 properties: secondaryContact
               },
               businessDetail: {
                 type: 'object',
+                required:[
+                  'category',
+                  'registeredName',
+                  'registerationNumber',
+                  'registerationDate',
+                  'billingDetails',
+                ],
                 properties: businessDetails
               },
               bankDetail: {
                 type: 'object',
+                required:[
+                  'bankName',
+                  'accountNumber',
+                ],
                 properties: bankDetail
               },
               taxationInformation: {
                 type: 'object',
+                required:[
+                  'BIRNumber',
+                  'taxNumber',
+                  'VATNumber'
+                ],
                 properties: taxationDetail
               },
               socialLinks: {
@@ -66,6 +102,10 @@ const SellerSignUpRequestBody = {
               },
               branding: {
                 type: 'object',
+                required:[
+                  'logo',
+                  'bannerImage'
+                ],
                 properties: Branding
               }
             }

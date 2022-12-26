@@ -97,15 +97,15 @@ module.exports = mongoose.Schema({
     },
     taxationInformation:{
         BIRNumber: {
-            type: Number,
+            type: String,
             default: ""
         },
         taxNumber: {
-            type: Number,
+            type: String,
             default: ""
         },
         VATNumber: {
-            type: Number,
+            type: String,
             default: ""
         }
     },

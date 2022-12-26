@@ -1,17 +1,17 @@
 export const taxationDetail = {
     BIRNumber: {
-        type: 'number',
-        minimum:0,
+        type: 'string',
+        minLength: 1,
         errorMessage: "BIR number feild is required"
     },
     taxNumber: {
-        type: 'number',
-        minimum:0,
+        type: 'string',
+        minLength: 1,
         errorMessage: "TAX number feild is required"
     },
     VATNumber: {
-        type: 'number',
-        minimum:0,
+        type: 'string',
+        minLength: 1,
         errorMessage: "VAT number feild is required"
     }
 }
