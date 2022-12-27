@@ -57,7 +57,7 @@ const prepareResponseData = (images, thumbnailsForWeb, thumbnailsForMobile) => {
     const response = [];
     for (let i = 0; i < images.length; i++) {
         response.push({
-            orignal: images[i].Location,
+            original: images[i].Location,
             web: thumbnailsForWeb[i].Location,
             mobile: thumbnailsForMobile[i].Location
         });

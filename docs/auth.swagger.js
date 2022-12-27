@@ -1,4 +1,5 @@
 import { object } from "joi";
+import {ImageSchema} from "./components/common/index"
 
 import {
   SellerSignUpRequestBody,
@@ -310,6 +311,10 @@ export const signIn = {
               user: {
                 type: 'object',
                 properties: {
+                  _id: {
+                    type: 'string',
+                    example: '611d08a62fc210a30ecfb75b'
+                  },
                   name: {
                     type: 'string',
                     example: 'admin'
@@ -321,11 +326,6 @@ export const signIn = {
                   email: {
                     type: 'string',
                     example: 'admin@ecommerce.com'
-                  },
-                  password: {
-                    type: 'string',
-                    example:
-                      '$argon2i$v=19$m=4096,t=3,p=1$gdPMtw/fNAnUPooMTB4BdHfNMCdg8/2gqbfXUDJuw68$WLwxa/Ms09mUNMe3GzmEVCqzhyF+eJIhVdtn3KCKzi0'
                   },
                   role: {
                     type: 'string',
@@ -343,27 +343,7 @@ export const signIn = {
                     type: 'string',
                     example: '01004468937'
                   },
-                  companyName: {
-                    type: 'string',
-                    example: ''
-                  },
-                  profileImage: {
-                    type: 'string',
-                    example:
-                      'https://res.cloudinary.com/dknma8cck/image/upload/v1629291909/EcommerceAPI/Users/admin/xxcrbfkwglqa5c5kay4u.webp'
-                  },
-                  profileImageId: {
-                    type: 'string',
-                    example: 'EcommerceAPI/Users/admin/xxcrbfkwglqa5c5kay4u'
-                  },
-                  _id: {
-                    type: 'string',
-                    example: '611d08a62fc210a30ecfb75b'
-                  },
-                  discountCode: {
-                    type: 'string',
-                    example: 'xvgVxIV0LJ'
-                  }
+                  profileImage: ImageSchema,
                 }
               },
               tokens: {

@@ -4,8 +4,8 @@ module.exports = Object.freeze({
         mobile: {Height: 120, Width: 120}
     },
     PROFILE: {
-        web: {Height: 220, Width: 220}, 
-        mobile: {Height: 120, Width: 120}
+        web: {Height: 320, Width: 320}, 
+        mobile: {Height: 220, Width: 220}
     },
     LOGO: {
         web: {Height: 220, Width: 220}, 

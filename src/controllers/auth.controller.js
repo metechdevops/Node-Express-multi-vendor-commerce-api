@@ -275,34 +275,7 @@ export const changePassword = catchAsync(async (req, res) => {
 export const updateCustomerProfile = catchAsync(async (req, res) => {
 
   // 1) Calling reset password service
-  const { type, message, statusCode,errors } = await authService.updateCustomerProfile(req);
-
-  // 2) Check if something went wrong
-  if (type === 'Error') {
-    return res.status(statusCode).json({
-      type,
-      message: req.polyglot.t(message),
-      errors:errors
-    });
-  }
-
-  // 3) If everything is OK, send data
-  return res.status(statusCode).json({
-    type,
-    message: req.polyglot.t(message)
-  });
-});
-
-/**
- * @desc      Update Seller Profile Controller
- * @param     { Object } req - Request object
- * @param     { Object } res - Response object
- * @returns   { JSON } - A JSON object representing the type and message
- */
-export const updateSellerProfile = catchAsync(async (req, res) => {
-
-  // 1) Calling reset password service
-  const { type, message, statusCode,errors,data } = await authService.updateSellerProfile(req);
+  const { type, message, statusCode,errors,customer } = await authService.updateCustomerProfile(req);
 
   // 2) Check if something went wrong
   if (type === 'Error') {
@@ -317,7 +290,35 @@ export const updateSellerProfile = catchAsync(async (req, res) => {
   return res.status(statusCode).json({
     type,
     message: req.polyglot.t(message),
-    customer:data
+    data:customer
+  });
+});
+
+/**
+ * @desc      Update Seller Profile Controller
+ * @param     { Object } req - Request object
+ * @param     { Object } res - Response object
+ * @returns   { JSON } - A JSON object representing the type and message
+ */
+export const updateSellerProfile = catchAsync(async (req, res) => {
+
+  // 1) Calling reset password service
+  const { type, message, statusCode,errors,seller } = await authService.updateSellerProfile(req);
+
+  // 2) Check if something went wrong
+  if (type === 'Error') {
+    return res.status(statusCode).json({
+      type,
+      message: req.polyglot.t(message),
+      errors:errors
+    });
+  }
+
+  // 3) If everything is OK, send data
+  return res.status(statusCode).json({
+    type,
+    message: req.polyglot.t(message),
+    data:seller
   });
 });
 
