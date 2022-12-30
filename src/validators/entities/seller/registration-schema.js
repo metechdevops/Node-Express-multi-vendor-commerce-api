@@ -49,12 +49,6 @@ export const sellerValidationSchema = {
             properties: {
                 secondaryContactDetail : {
                     type: 'object',
-                    required: [
-                        "firstName",
-                        "lastName",
-                        "email",
-                        "phone"
-                    ],
                     properties: secondaryContact
                   },
                   businessDetail: {

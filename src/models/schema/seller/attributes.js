@@ -34,6 +34,9 @@ module.exports = mongoose.Schema({
         registerationNumber: {
             type: String,
         },
+        registerationDate: {
+            type: Date,
+        },
         billingDetails:{
             country: {
                 type: String,
