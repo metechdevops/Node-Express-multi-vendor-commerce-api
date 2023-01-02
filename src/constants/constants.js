@@ -18,5 +18,5 @@ module.exports = {
     USER:"user",
     SELLER:"seller",
   },
-
+  S3_TEMPLATE_PATH : "https://e-cart-dev.s3.eu-west-1.amazonaws.com/email-templates/"
 };

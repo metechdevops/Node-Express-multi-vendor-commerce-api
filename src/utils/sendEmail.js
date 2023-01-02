@@ -1,15 +1,18 @@
 // Packages
 import { createTransport } from 'nodemailer';
 import { google } from 'googleapis';
-
+const ejs = require('ejs');
+const {resolve} = require('path');
 // Configs
 import config from '../config/config';
+const {S3_TEMPLATE_PATH} = require('./../constants/constants')
 
 const defaultConfig = config
 
 // Utils
 import catchAsync from './catchAsync';
 import AppError from './appError';
+import { REFUSED } from 'dns';
 
 /**
  * @desc    Send an email
@@ -51,7 +54,7 @@ const sendEmail = catchAsync(async (to, subject, text) => {
       from: `E-Cart < ${defaultConfig.email.from} >`,
       to,
       subject,
-      text
+      html:text
     };
 
     // Set up the email options and delivering it
@@ -97,11 +100,18 @@ export const sendAfterResetPasswordMessage = catchAsync(async (to) => {
  * @returns { Promise }
  */
 export const sendVerificationEmail = catchAsync(async (to, token) => {
+  
   const subject = 'Email Verification';
-  const verificationEmailUrl = `/verify-email?token=${token}`;
-  const text = `Dear user,
-To verify your email, click on this link: ${verificationEmailUrl}
-If you did not create an account, then ignore this email.`;
+  const verificationEmailUrl = defaultConfig.web_url+`verify-email?token=${token}`;
 
-  await sendEmail(to, subject, text);
+    const absolutePath = __dirname + '/views/emails/welcome.ejs';
+    ejs.renderFile(absolutePath, { to, verificationLink:verificationEmailUrl, bucketPath: S3_TEMPLATE_PATH }, async(err, data) => {
+      if (err) {
+        console.log('============Email EJS Issue =====================',err);
+      } else {
+
+        await sendEmail(to, subject, data);
+      }
+    });
+
 });

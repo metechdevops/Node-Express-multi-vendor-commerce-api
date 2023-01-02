@@ -51,6 +51,7 @@ if (error) {
 
 const config = {
   env: envVars.NODE_ENV,
+  web_url: envVars.WEB_URL,
   server: {
     port: envVars.PORT
   },
