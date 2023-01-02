@@ -1,7 +1,6 @@
 export const secondaryContact = {
     firstName: {
         type: 'string',
-        minLength: 1,
         example:"Olery",
     },
     lastName: {

@@ -31,10 +31,10 @@ module.exports = mongoose.Schema({
         registeredName: {
             type: String,
         },
-        registerationNumber: {
+        registrationNumber: {
             type: String,
         },
-        registerationDate: {
+        registrationDate: {
             type: Date,
         },
         billingDetails:{
@@ -91,6 +91,10 @@ module.exports = mongoose.Schema({
         },
         accountNumber: {
             type: Number,
+            default: ""
+        },
+        accountTitle: {
+            type: String,
             default: ""
         },
         IBANNumber: {

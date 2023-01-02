@@ -52,7 +52,6 @@ const SellerSignUpRequestBody = {
           sellerAttributes: {
             type: 'object',
             required:[
-              'secondaryContactDetail',
               'businessDetail',
               'bankDetail',
               'taxationInformation',
@@ -61,11 +60,6 @@ const SellerSignUpRequestBody = {
             properties: {
               secondaryContactDetail : {
                 type: 'object',
-                required:[
-                  'firstName',
-                  'lastName',
-                  'phone'
-                ],
                 properties: secondaryContact
               },
               businessDetail: {
@@ -73,8 +67,8 @@ const SellerSignUpRequestBody = {
                 required:[
                   'category',
                   'registeredName',
-                  'registerationNumber',
-                  'registerationDate',
+                  'registrationNumber',
+                  'registrationDate',
                   'billingDetails',
                 ],
                 properties: businessDetails
@@ -84,6 +78,7 @@ const SellerSignUpRequestBody = {
                 required:[
                   'bankName',
                   'accountNumber',
+                  'accountTitle',
                 ],
                 properties: bankDetail
               },

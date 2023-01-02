@@ -7,9 +7,14 @@ export const businessDetails = {
         type: 'string',
         example: "SuperMart & Co",
     },
-    registerationNumber: {
+    registrationNumber: {
         type: 'string',
         example: "2033-23443-222",
+    },
+    registrationDate: {
+        type: 'string',
+        format: 'date',
+        example: "2023-09-01",
     },
     billingDetails: {
         type: 'object',

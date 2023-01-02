@@ -31,7 +31,7 @@ module.exports = mongoose.Schema({
         registeredName: {
             type: String,
         },
-        registerationNumber: {
+        registrationNumber: {
             type: String,
         },
         billingDetails:{

@@ -56,7 +56,7 @@ export const sellerValidationSchema = {
                     required: [
                         "category",
                         "registeredName",
-                        "registerationNumber",
+                        "registrationNumber",
                         "billingDetails"
                     ],
                     properties: businessDetails

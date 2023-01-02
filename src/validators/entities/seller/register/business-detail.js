@@ -9,12 +9,12 @@ export const businessDetails = {
         minLength: 1,
         errorMessage: "Business registered name feild is required"
     },
-    registerationNumber: {
+    registrationNumber: {
         type: 'string',
         minLength: 1,
         errorMessage: "Business registration feild is required"
     },
-    registerationDate: {
+    registrationDate: {
         type: 'string',
         format:'date',
         errorMessage: "Registration date feild is required"
