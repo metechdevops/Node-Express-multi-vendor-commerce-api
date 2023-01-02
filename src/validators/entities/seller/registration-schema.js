@@ -40,7 +40,7 @@ export const sellerValidationSchema = {
         },
         "password": {
             "type": "string",
-            "maxLength":8,
+            "maxLength":30,
             "minLength":3,
             "errorMessage": "Password must be less than 8 characters and contains letters, numbers, and symbols."
         },
