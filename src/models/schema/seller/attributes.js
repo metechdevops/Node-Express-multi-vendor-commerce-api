@@ -11,14 +11,14 @@ module.exports = mongoose.Schema({
         },
         email: {
             type: String,
-            required: [false, 'Please provide an email'],
+            // required: [false, 'Please provide an email'],
             trim: true,
             lowercase: true,
-            validate(value) {
-                if (!validator.isEmail(value)) {
-                throw new Error('Invalid email');
-                }
-            }
+            // validate(value) {
+            //     if (!validator.isEmail(value)) {
+            //     throw new Error('Invalid email');
+            //     }
+            // }
         },
         phone: {
             type: String
@@ -44,36 +44,36 @@ module.exports = mongoose.Schema({
             registeredAddress: {
                 type: String,
             },
-            primaryPhone: {
-                type: String,
-            },
-            primaryEmail: {
-                type: String,
-                required: [false, 'Please provide an email'],
-                unique: false,
-                trim: true,
-                lowercase: true,
-                validate(value) {
-                    if (!validator.isEmail(value)) {
-                    throw new Error('Invalid email');
-                    }
-                }
-            },
-            secondaryPhone: {
-                type: String,
-            },
-            secondaryEmail: {
-                type: String,
-                required: [false, 'Please provide an email'],
-                unique: false,
-                trim: true,
-                lowercase: true,
-                validate(value) {
-                    if (!validator.isEmail(value)) {
-                    throw new Error('Invalid email');
-                    }
-                }
-            }
+            // primaryPhone: {
+            //     type: String,
+            // },
+            // primaryEmail: {
+            //     type: String,
+            //     required: [false, 'Please provide an email'],
+            //     unique: false,
+            //     trim: true,
+            //     lowercase: true,
+            //     validate(value) {
+            //         if (!validator.isEmail(value)) {
+            //         throw new Error('Invalid email');
+            //         }
+            //     }
+            // },
+            // secondaryPhone: {
+            //     type: String,
+            // },
+            // secondaryEmail: {
+            //     type: String,
+            //     required: [false, 'Please provide an email'],
+            //     unique: false,
+            //     trim: true,
+            //     lowercase: true,
+            //     validate(value) {
+            //         if (!validator.isEmail(value)) {
+            //         throw new Error('Invalid email');
+            //         }
+            //     }
+            // }
         }
     },
     bankDetail: {

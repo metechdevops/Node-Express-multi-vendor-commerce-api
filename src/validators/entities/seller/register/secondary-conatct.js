@@ -1,20 +1,19 @@
 export const secondaryContact = {
     firstName: {
-        type: ['string','null'],
+        type: 'string',
         errorMessage: "Secondary constact first name feild is required"
     },
     lastName: {
-        type: ['string','null'],
+        type: 'string',
         errorMessage: "Secondary constact last name feild is required"
     },
     email: {
-        type: ['string','null'],
-        format:"email",
-        nullable: true,
+        type: 'string',
+        // format:"email",
         errorMessage: "Please enter valid secondary email"
     },
     phone: {
-        type: ['string','null'],
+        type: 'string',
         errorMessage: "Secondary constact phone feild is required"
     },
 }
