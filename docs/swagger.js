@@ -276,15 +276,15 @@ const docs = {
     //   patch: orderStatus,
     //   delete: cancelOrder
     // },
-    // '/product/{productId}/reviews': {
-    //   get: getAllProductReviews,
-    //   post: addReview
-    // },
-    // '/product/{productId}/reviews/{reviewId}': {
-    //   get: getReview,
-    //   patch: updateReview,
-    //   delete: deleteReview
-    // }
+    '/product/{productId}/reviews': {
+      get: getAllProductReviews,
+      post: addReview
+    },
+    '/product/{productId}/reviews/{reviewId}': {
+      get: getReview,
+      patch: updateReview,
+      delete: deleteReview
+    }
   }
 };
 

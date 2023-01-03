@@ -1,5 +1,6 @@
 
 import {ImageSchema} from "././../common/index"
+import {ProductAttributesSchema} from "././../common/product.attributes.schema"
 
 const addProductRequestBody = {
     description: 'Add new product request body.',
@@ -81,6 +82,10 @@ const addProductRequestBody = {
               type: 'array',
               items: ImageSchema
             },
+            attributes: {
+              type: 'array',
+              items: ProductAttributesSchema
+            },
             tags: {
                 type: 'array',
                 items: {
@@ -155,6 +160,10 @@ const addProduct201 = {
                 sold: {
                   type: 'integer',
                   example: 10
+                },
+                attributes: {
+                  type: 'array',
+                  items: ProductAttributesSchema
                 },
                 isOutOfStock: {
                   type: 'boolean',
@@ -318,6 +327,10 @@ const productObjectSchema = {
             type: 'string',
             required: false,
             example:"10"
+        },
+        attributes: {
+          type: 'array',
+          items: ProductAttributesSchema
         },
         priceAfterDiscount: {
         type: 'integer',

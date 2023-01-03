@@ -9,9 +9,9 @@ const {
 } = require ('./components/product')
 
 export const getAllProducts = {
-  security: {
-    jwt: []
-  },
+  // security: {
+  //   jwt: []
+  // },
   tags: ['Product'],
   description: 'This route allow you to get all products',
   opeationId: 'getAllProducts',
@@ -111,9 +111,6 @@ export const getAllProducts = {
 };
 
 export const getProduct = {
-  security: {
-    jwt: []
-  },
   tags: ['Product'],
   description: "This route allow you to specific product using it's ID",
   opeationId: 'getProduct',

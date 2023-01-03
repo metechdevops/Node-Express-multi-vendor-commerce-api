@@ -1,7 +1,9 @@
 export const getAllProductReviews = {
-  security: {
-    jwt: []
-  },
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   tags: ['Review'],
   description: 'This route allow you to get all product reviews',
   opeationId: 'getAllProductReviews',
@@ -112,9 +114,6 @@ export const getAllProductReviews = {
 };
 
 export const getReview = {
-  security: {
-    jwt: []
-  },
   tags: ['Review'],
   description: "This route allow you to get specific review using it's ID",
   opeationId: 'getReview',
@@ -192,6 +191,11 @@ export const getReview = {
 
 export const addReview = {
   tags: ['Review'],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   description:
     'This route allow logged in user/seller/admin to make a review on a product',
   opeationId: 'addReview',
@@ -255,6 +259,11 @@ export const addReview = {
 
 export const updateReview = {
   tags: ['Review'],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   description:
     "This route allow logged in user/seller/admin to update review using it's ID",
   opeationId: 'updateReview',
@@ -324,6 +333,11 @@ export const updateReview = {
 
 export const deleteReview = {
   tags: ['Review'],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   description:
     "This route allow logged in user/seller/admin to delete review using it's ID",
   opeationId: 'deleteReview',

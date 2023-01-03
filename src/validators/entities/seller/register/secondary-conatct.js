@@ -9,11 +9,17 @@ export const secondaryContact = {
     },
     email: {
         type: 'string',
-        // format:"email",
         errorMessage: "Please enter valid secondary email"
     },
     phone: {
-        type: 'string',
-        errorMessage: "Secondary constact phone feild is required"
+        type: 'object',
+        properties: {
+            code :{
+                type:"string",
+            },
+            number :{
+                type:"string",
+            },
+        }
     },
 }

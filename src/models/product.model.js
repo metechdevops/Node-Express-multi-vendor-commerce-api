@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import slugify from 'slugify';
 const productImage = require("./schema/common/product.image.schema")
+const productAttributes = require("./schema/common/product.attributes.schema")
 
 // Plugins
 import toJSON from './plugins/index';
@@ -30,10 +31,7 @@ const productSchema = mongoose.Schema(
       type: String
     },
     tags:[String],
-    attributes: [{
-        title: String,
-        detail: String,
-    }],
+    attributes: productAttributes,
     category: {
       type: mongoose.Schema.ObjectId,
       ref: 'Category'
