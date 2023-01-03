@@ -1,271 +1,276 @@
 <html>
-    <head>
-        <style>
-            .myDiv {
-                top: 0px;
-                left: 0px;
-                width: 100%;
-                height: 51px;
-                /* UI Properties */
-                background: #76B139 0% 0% no-repeat padding-box;
+
+<head>
+    <style>
+        .bdy {
+            padding-left: 70px;
+            padding-right: 70px;
+        }
+        .myDiv {
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 51px;
+            /* UI Properties */
+            background: #76B139 0% 0% no-repeat padding-box;
+            opacity: 1;
+        }
+
+        .secDiv {
+            background: transparent url('img/WhatsApp Image 2022-12-26 at 5.51.40 PM (1).png') 0% 0% no-repeat padding-box;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around
+        }
+
+        .thirdDiv {
+            text-align: left;
+            font: normal normal 600 22px/35px Inter;
+            letter-spacing: 0px;
+            color: #251252;
+            opacity: 1;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .fourthDiv {
+            text-align: left;
+            font: normal normal normal #251252 15px/17px Inter;
+            font-weight: bold;
+            letter-spacing: 0px;
+            opacity: 1;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: #76B139 0% 0% no-repeat padding-box;
+            width: 150px;
+            height: 30px;
+            border-radius: 9%;
+            color: #FFFFFF;
+            text-align: center;
+            margin-left: auto;
+            margin-right: 500;
+        }
+
+        .thanks {
+            top: 728px;
+            left: 452px;
+            width: 114px;
+            height: 29px;
+            /* UI Properties */
+            text-align: center;
+            font: italic normal bold 22px/32px Lora;
+            letter-spacing: 0.04px;
+            color: #000000;
+            opacity: 1;
+            margin-left: auto;
+            margin-right: 20;
+        }
+
+        .eCart {
+            top: 728px;
+            left: 452px;
+            width: 114px;
+            height: 29px;
+            /* UI Properties */
+            text-align: left;
+            font: italic normal normal 16px/30px Lora;
+            letter-spacing: 0.02px;
+            color: #000000;
+            opacity: 1;
+            margin-left: auto;
+            margin-right: 20;
+        }
+
+        .footer {
+            margin-top: 30px;
+            left: 0px;
+            width: 100%;
+            height: 31px;
+            /* UI Properties */
+            background: #76B139 0% 0% no-repeat padding-box;
+            opacity: 1;
+            text-align: center;
+        }
+
+        .text {
+            text-align: left;
+            font: normal normal normal 12px/14px Inter;
+            letter-spacing: 2.31px;
+            color: #F2F0F3;
+            opacity: 1;
+            text-align: center;
+
+        }
+
+
+        .logo2 {
+            height: 273px;
+            width: 200px;
+        }
+
+        .secDiv {
+            margin-top: 30px;
+        }
+
+        .bdy {
+            background: #F2F0F3 0% 0% no-repeat padding-box;
+            opacity: 1;
+
+        }
+
+
+        /* CSS */
+        .button-65 {
+            appearance: none;
+            backface-visibility: hidden;
+            background-color: #76B139;
+            border-radius: 10px;
+            border-style: none;
+            box-shadow: none;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            height: 50px;
+            letter-spacing: normal;
+            line-height: 1.5;
+            outline: none;
+            overflow: hidden;
+            padding: 14px 30px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transform: translate3d(0, 0, 0);
+            transition: all .3s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: top;
+            white-space: nowrap;
+        }
+
+        .button-65:hover {
+            background-color:  #76B139;
+            box-shadow: rgba(0, 0, 0, .05) 0 5px 30px, rgba(0, 0, 0, .05) 0 1px 4px;
+            opacity: 1;
+            transform: translateY(0);
+            transition-duration: .35s;
+        }
+
+        .button-65:hover:after {
+            opacity: .5;
+        }
+
+        .button-65:active {
+            box-shadow: rgba(0, 0, 0, .1) 0 3px 6px 0, rgba(0, 0, 0, .1) 0 0 10px 0, rgba(0, 0, 0, .1) 0 1px 4px -1px;
+            transform: translateY(2px);
+            transition-duration: .35s;
+        }
+
+        .button-65:active:after {
+            opacity: 1;
+        }
+
+        @media (min-width: 768px) {
+            .button-65 {
+                padding: 14px 22px;
+                width: 176px;
+            }
+        }
+
+        .center {
+            padding: 70px 0;
+            text-align: center;
+        }
+
+        @media only screen and (max-width: 1000px) {
+            .bdy {
+                padding-left: 0;
+                padding-right: 0;
+                background: #F2F0F3 0% 0% no-repeat padding-box;
                 opacity: 1;
             }
 
             .secDiv {
-                background: transparent url('img/WhatsApp Image 2022-12-26 at 5.51.40 PM (1).png') 0% 0% no-repeat padding-box;
-                margin-top: 20px;
-                display: flex;
-                justify-content: space-around
+                margin-top: 100px;
+            }
+
+            .responsiveImg {
+                margin-top: 165px;
             }
 
             .thirdDiv {
-                text-align: left;
-                font: normal normal 600 22px/35px Inter;
-                letter-spacing: 0px;
-                color: #251252;
-                opacity: 1;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                width: 50%;
-                text-align: center;
-                margin-top: 20px;
+                font-size: 30px;
             }
 
             .fourthDiv {
-                text-align: left;
-                font: normal normal normal #251252 15px/17px Inter;
-                font-weight: bold;
-                letter-spacing: 0px;
-                opacity: 1;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                width: 50%;
-                text-align: center;
-                margin-top: 20px;
-            }
-
-            .btn {
-                background: #76B139 0% 0% no-repeat padding-box;
-                width: 150px;
-                height: 30px;
-                border-radius: 9%;
-                color: #FFFFFF;
-                text-align: center;
-                margin-left: auto;
-                margin-right: 500;
+                font-size: 24px;
             }
 
             .thanks {
-                top: 728px;
-                left: 452px;
-                width: 114px;
-                height: 29px;
-                /* UI Properties */
-                text-align: center;
-                font: italic normal bold 22px/32px Lora;
-                letter-spacing: 0.04px;
-                color: #000000;
-                opacity: 1;
-                margin-left: auto;
-                margin-right: 20;
+                font-size: 23px;
             }
 
             .eCart {
-                top: 728px;
-                left: 452px;
-                width: 114px;
-                height: 29px;
-                /* UI Properties */
-                text-align: left;
-                font: italic normal normal 16px/30px Lora;
-                letter-spacing: 0.02px;
-                color: #000000;
-                opacity: 1;
-                margin-left: auto;
-                margin-right: 20;
+                font-size: 20px;
             }
+        }
+    </style>
+</head>
 
-            .footer {
-                margin-top: 30px;
-                left: 0px;
-                width: 100%;
-                height: 31px;
-                /* UI Properties */
-                background: #76B139 0% 0% no-repeat padding-box;
-                opacity: 1;
-                text-align: center;
-            }
-
-            .text {
-                text-align: left;
-                font: normal normal normal 12px/14px Inter;
-                letter-spacing: 2.31px;
-                color: #F2F0F3;
-                opacity: 1;
-                text-align: center;
-
-            }
-
-
-            .logo2 {
-                height: 273px;
-                width: 200px;
-            }
-
-            .secDiv {
-                margin-top: 30px;
-            }
-
-            .bdy {
-                background: #F2F0F3 0% 0% no-repeat padding-box;
-                opacity: 1;
-
-            }
-
-
-            /* CSS */
-            .button-65 {
-                appearance: none;
-                backface-visibility: hidden;
-                background-color: #76B139;
-                border-radius: 10px;
-                border-style: none;
-                box-shadow: none;
-                box-sizing: border-box;
-                color: #fff;
-                cursor: pointer;
-                display: inline-block;
-                font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
-                font-size: 15px;
-                font-weight: 500;
-                height: 50px;
-                letter-spacing: normal;
-                line-height: 1.5;
-                outline: none;
-                overflow: hidden;
-                padding: 14px 30px;
-                position: relative;
-                text-align: center;
-                text-decoration: none;
-                transform: translate3d(0, 0, 0);
-                transition: all .3s;
-                user-select: none;
-                -webkit-user-select: none;
-                touch-action: manipulation;
-                vertical-align: top;
-                white-space: nowrap;
-            }
-
-            .button-65:hover {
-                background-color: #1366d6;
-                box-shadow: rgba(0, 0, 0, .05) 0 5px 30px, rgba(0, 0, 0, .05) 0 1px 4px;
-                opacity: 1;
-                transform: translateY(0);
-                transition-duration: .35s;
-            }
-
-            .button-65:hover:after {
-                opacity: .5;
-            }
-
-            .button-65:active {
-                box-shadow: rgba(0, 0, 0, .1) 0 3px 6px 0, rgba(0, 0, 0, .1) 0 0 10px 0, rgba(0, 0, 0, .1) 0 1px 4px -1px;
-                transform: translateY(2px);
-                transition-duration: .35s;
-            }
-
-            .button-65:active:after {
-                opacity: 1;
-            }
-
-            @media (min-width: 768px) {
-                .button-65 {
-                    padding: 14px 22px;
-                    width: 176px;
-                }
-            }
-
-            .center {
-                padding: 70px 0;
-                text-align: center;
-            }
-
-            @media only screen and (max-width: 1000px) {
-                .bdy {
-                    padding-left: 0;
-                    padding-right: 0;
-                    background: #F2F0F3 0% 0% no-repeat padding-box;
-                    opacity: 1;
-                }
-
-                .secDiv {
-                    margin-top: 100px;
-                }
-
-                .responsiveImg {
-                    margin-top: 165px;
-                }
-
-                .thirdDiv {
-                    font-size: 30px;
-                }
-
-                .fourthDiv {
-                    font-size: 24px;
-                }
-
-                .thanks {
-                    font-size: 23px;
-                }
-
-                .eCart {
-                    font-size: 20px;
-                }
-            }
-        </style>
-    </head>
-
-    <body class="bdy">
-        <div class="myDiv">
+<body class="bdy">
+    <div class="myDiv">
+    </div>
+    <div style="position: absolute; right: 0; top: 0 ; margin-top:70px; margin-right: 90px;">
+        <img src="<%= bucketPath%>sideimg.png" />
+    </div>
+    <div style="width: 100%; text-align: center; position: relative; margin-top: 40px;">
+        <div style="display: inline-block;">
+            <img src="<%= bucketPath%>logo.png" class="responsiveImg" />
         </div>
-        <div style="width: 100%; text-align: center; position: relative; margin-top: 40px;">
-            <div style="display: inline-block;">
-                <img src="<%= bucketPath %>logo.png" class="responsiveImg" />
-            </div>
-            <div style="position: absolute; right: 0; top: 0">
-                <img src="<%= bucketPath %>sideimg.png" />
+    </div>
+    <div class="thirdDiv">Please Verify your Email</div>
+    <div class="fourthDiv">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+        tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
+        tation ullamcorper suscipit lobortis.</div>
+    <div style="width: 100%; text-align: left; position: relative;">
+        <div style="display: inline-block; margin-top: 100px;">
+            <img src="<%= bucketPath%>sideimg.png" />
+        </div>
+        <div class="responsiveImg">
+            <div style="width: 100%; text-align: center; position: relative; margin-top: -180px;">
+                <img style=" height: 273px;
+          width: 416px;" src="<%= bucketPath%>center3.png" />
             </div>
         </div>
-        <div class="thirdDiv">Please Verify your Email</div>
-        <div class="fourthDiv">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-            tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
-            tation ullamcorper suscipit lobortis.</div>
-        <div style="width: 100%; text-align: left; position: relative;">
-            <div style="display: inline-block; margin-top: 100px;">
-                <img src="<%= bucketPath %>sideimg.png" />
-            </div>
-            <div class="responsiveImg">
-                <div style="width: 100%; text-align: center; position: relative; margin-top: -180px;">
-                    <img style=" height: 273px;
-            width: 416px;" src="<%= bucketPath %>center3.png" />
-                </div>
-            </div>
-        </div>
-        <div class="responsiveImg"> </div>
-        <div class="center">
-            <a class="button-65" href="<%= verificationLink %>" role="button ">Verify Email</a>
-        </div>
-        <div class="thanks">Thank You,</div>
-        <div class="eCart">Team eCart</div>
-        <div class="responsiveImg"> </div>
-        <div class="responsiveImg"> </div>
-        <div class="responsiveImg"> </div>
+    </div>
+    <div class="responsiveImg"> </div>
+    <div class="center">
+        <a class="button-65" href="<%= verificationLink %>" role="button ">Verify Email</a>
+    </div>
+    <div class="thanks">Thank You,</div>
+    <div class="eCart">Team eCart</div>
+    <div class="responsiveImg"> </div>
+    <div class="responsiveImg"> </div>
+    <div class="responsiveImg"> </div>
 
-        <div class="footer">
-            <p class="text">www.google.com</text>
-        </div>
-    </body>
+    <div class="footer">
+        <p class="text">www.google.com</text>
+    </div>
+</body>
 
 </html>
