@@ -51,7 +51,7 @@ const sendEmail = catchAsync(async (to, subject, text) => {
 
     // Create the email options and body
     const mailOptions = {
-      from: `E-Cart < ${defaultConfig.email.from} >`,
+      from: `eCart < ${defaultConfig.email.from} >`,
       to,
       subject,
       html:text
