@@ -341,7 +341,7 @@ export const changePassword = catchAsync(
 export const updateCustomerProfile = catchAsync(
 async ({body,user}) => {
 
-    const {firstName,lastName,profileImage} = body;
+    const {firstName,lastName,profileImage,phone} = body;
     // 1) Validate required fields
     let fieldErrors = validator.validate(body,customerProfileSchema);
     
@@ -367,6 +367,11 @@ async ({body,user}) => {
     // 5) set profile images 
     if(profileImage){
       customer.profileImage = {...profileImage};
+    }
+
+    // 5) set profile images 
+    if(phone){
+      customer.phone = {...phone};
     }
 
     await customer.save();
