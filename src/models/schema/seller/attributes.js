@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
+import phoneSchema from '../common/phone.schema';
 
 module.exports = mongoose.Schema({
     secondaryContactDetail:{
@@ -20,9 +21,7 @@ module.exports = mongoose.Schema({
             //     }
             // }
         },
-        phone: {
-            type: String
-        },
+        phone: phoneSchema,
     },
     businessDetail:{
         category: {

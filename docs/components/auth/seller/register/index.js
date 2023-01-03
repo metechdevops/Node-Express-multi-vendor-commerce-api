@@ -6,6 +6,7 @@ import {socialLinks} from "./social-links"
 import {Branding} from "./branding"
 import {profileImage} from "./profile-image"
 import { USER_ROLE } from "../../../../../src/constants/constants"
+import {phoneSchema} from "../../../common/phone.schema"
 
 const SellerSignUpRequestBody = {
   required: true,
@@ -48,6 +49,7 @@ const SellerSignUpRequestBody = {
             enum: ['seller'],
             example:"seller"
           },
+          phone:phoneSchema,
           profileImage: profileImage,
           sellerAttributes: {
             type: 'object',
@@ -158,6 +160,7 @@ const SellerSignUpResponse200 = {
                 type: 'boolean',
                 example: false
               },
+              phone:phoneSchema,
               profileImage: profileImage,
               discountCode: {
                 type: 'string',

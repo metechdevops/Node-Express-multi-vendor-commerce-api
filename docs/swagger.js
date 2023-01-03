@@ -194,47 +194,47 @@ const docs = {
       patch: updateCategoryDetails,
       delete: deleteCategory
     },
-    // '/product': {
-    //   get: getAllProducts,
-    //   post: addProduct
-    // },
-    // '/product/{productId}': {
-    //   get: getProduct,
-    //   delete: deleteProduct
-    // },
-    // '/product/top-5-cheap': {
-    //   get: top5Cheap
-    // },
-    // '/product/product-stats': {
-    //   get: productStats
-    // },
-    // '/product/{productId}/details': {
-    //   patch: updateProductDetails
-    // },
+    '/product': {
+      get: getAllProducts,
+      post: addProduct
+    },
+    '/product/{productId}': {
+      get: getProduct,
+      delete: deleteProduct
+    },
+    '/product/top-5-cheap': {
+      get: top5Cheap
+    },
+    '/product/product-stats': {
+      get: productStats
+    },
+    '/product/{productId}/details': {
+      patch: updateProductDetails
+    },
     // '/product/{productId}/main-image': {
     //   patch: updateProductMainImage
     // },
     // '/product/{productId}/images': {
     //   patch: updateProductImages
     // },
-    // '/product/color/{productId}': {
-    //   post: addProductColor,
-    //   delete: deleteProductColor
-    // },
-    // '/product/size/{productId}': {
-    //   post: addProductSize,
-    //   delete: deleteProductSize
-    // },
-    // '/favorite': {
-    //   get: getFavoriteList,
-    //   post: addFavoriteProduct
-    // },
-    // '/favorite/{productId}': {
-    //   delete: deleteProductFromFavorite
-    // },
-    // '/favorite/check/{productId}': {
-    //   get: checkProductInFavoriteList
-    // },
+    '/product/color/{productId}': {
+      post: addProductColor,
+      delete: deleteProductColor
+    },
+    '/product/size/{productId}': {
+      post: addProductSize,
+      delete: deleteProductSize
+    },
+    '/favorite': {
+      get: getFavoriteList,
+      post: addFavoriteProduct
+    },
+    '/favorite/{productId}': {
+      delete: deleteProductFromFavorite
+    },
+    '/favorite/check/{productId}': {
+      get: checkProductInFavoriteList
+    },
     // '/discount': {
     //   get: getAllDiscountCodes
     // },

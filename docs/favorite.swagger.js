@@ -3,6 +3,11 @@ export const addFavoriteProduct = {
   description:
     'This route allow logged in user/seller/admin to add product to his favorite list',
   opeationId: 'addFavoriteProduct',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
@@ -96,12 +101,17 @@ export const getFavoriteList = {
   description:
     'This route allow logged in user/seller/admin to get his favorite products list',
   opeationId: 'getFavoriteList',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     }
   ],
   responses: {
@@ -172,16 +182,21 @@ export const deleteProductFromFavorite = {
   description:
     'This route allow logged in user/seller/admin to delete product from favorite list',
   opeationId: 'deleteProductFromFavorite',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     },
     {
       in: 'path',
-      name: 'id',
+      name: 'productId',
       type: 'integer',
       description: 'Product ID'
     }
@@ -235,16 +250,21 @@ export const checkProductInFavoriteList = {
   description:
     'This route allow logged in user/seller/admin to check if product in favorite list',
   opeationId: 'checkProductInFavoriteList',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     },
     {
       in: 'path',
-      name: 'id',
+      name: 'productId',
       type: 'integer',
       description: 'Product ID'
     }
@@ -272,7 +292,7 @@ export const checkProductInFavoriteList = {
     },
     404: {
       description: 'Error: 404',
-      content: {
+      content: { 
         'application/json': {
           schema: {
             type: 'object',

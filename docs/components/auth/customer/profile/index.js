@@ -1,5 +1,6 @@
 import {profileImage} from "../../seller/register/profile-image"
 import { USER_ROLE } from "../../../../../src/constants/constants"
+import {phoneSchema} from "../../../common/phone.schema"
 
 const customerProfileRequestBody = {
   required: true,
@@ -18,6 +19,7 @@ const customerProfileRequestBody = {
             required: true,
             example:"seller"
           },
+          phone:phoneSchema,
           profileImage: profileImage,
         }
       }
@@ -56,6 +58,7 @@ const customerProfileResponse200 = {
                 type: 'string',
                 example: 'account'
               },
+              phone:phoneSchema,
               profileImage: profileImage,
             }
           }

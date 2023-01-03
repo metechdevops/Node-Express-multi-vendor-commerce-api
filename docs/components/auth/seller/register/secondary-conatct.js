@@ -1,3 +1,5 @@
+import {phoneSchema} from "../../../common/phone.schema"
+
 export const secondaryContact = {
     firstName: {
         type: 'string',
@@ -12,8 +14,5 @@ export const secondaryContact = {
         example:"ecart-william@mailinator.com",
         format:"email",
     },
-    phone: {
-        type: 'string',
-        example:"(023)-2232-3232",
-    },
+    phone:phoneSchema,
 }

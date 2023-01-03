@@ -3,5 +3,6 @@ package-lock.json
 .vscode
 config.env
 .env
+yarn.lock
 build
 build-docs

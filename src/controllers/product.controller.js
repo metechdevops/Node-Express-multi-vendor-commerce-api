@@ -84,14 +84,15 @@ export const addProduct = catchAsync(async (req, res) => {
   const { body, files, user } = req;
 
   // 1) Create product
-  const { type, message, statusCode, product } =
+  const { type, message, statusCode, errors,product } =
     await productService.createProduct(body, files, user.id);
 
   // 2) Check if there is an error
   if (type === 'Error') {
     return res.status(statusCode).json({
       type,
-      message: req.polyglot.t(message)
+      message: req.polyglot.t(message),
+      errors
     });
   }
 

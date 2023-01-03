@@ -6,6 +6,7 @@ import {socialLinks} from "././../register/social-links"
 import {Branding} from "././../register/branding"
 import {profileImage} from "././../register/profile-image"
 import { USER_ROLE } from "../../../../../src/constants/constants"
+import {phoneSchema} from "../../../common/phone.schema"
 
 const SellerProfileRequestBody = {
   required: true,
@@ -24,6 +25,7 @@ const SellerProfileRequestBody = {
             required: true,
             example:"seller"
           },
+          phone:phoneSchema,
           profileImage: profileImage,
           sellerAttributes: {
             type: 'object',

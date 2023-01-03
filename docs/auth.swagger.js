@@ -1,5 +1,6 @@
 import { object } from "joi";
 import {ImageSchema} from "./components/common/index"
+import {phoneSchema} from "./components/common/phone.schema"
 
 import {
   SellerSignUpRequestBody,
@@ -87,6 +88,7 @@ export const signUp = {
               required: true,
               enum: ['user']
             },
+            phone:phoneSchema,
             profileImage: {
               type: 'object',
               properties: {
@@ -154,6 +156,7 @@ export const signUp = {
                     type: 'boolean',
                     example: false
                   },
+                  phone:phoneSchema,
                   profileImage: {
                     type: 'object',
                     properties: {
@@ -341,10 +344,7 @@ export const signIn = {
                     type: 'string',
                     example: 'Toukh - Egypt'
                   },
-                  phone: {
-                    type: 'string',
-                    example: '01004468937'
-                  },
+                  phone: phoneSchema,
                   profileImage: ImageSchema,
                 }
               },

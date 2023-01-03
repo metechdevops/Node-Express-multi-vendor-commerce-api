@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import slugify from 'slugify';
-const productImage = require("./schema/common/image.schema")
+const productImage = require("./schema/common/product.image.schema")
 
 // Plugins
 import toJSON from './plugins/index';

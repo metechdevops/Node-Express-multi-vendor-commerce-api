@@ -5,6 +5,7 @@ import { hash, verify } from 'argon2';
 import toJSON from './plugins/index';
 import {USER_ROLE} from '../constants/constants';
 import sellerAttributes from './schema/seller/attributes';
+import phoneSchema from './schema/common/phone.schema';
 
 const userSchema = mongoose.Schema(
   {
@@ -62,9 +63,7 @@ const userSchema = mongoose.Schema(
     companyName: {
       type: String
     },
-    phone: {
-      type: String
-    },
+    phone: phoneSchema,
     sellerAttributes: sellerAttributes,
     profileImage: {
       original: {

@@ -1,8 +1,14 @@
+const mongoose = require('mongoose');
+
 // Utils
 import catchAsync from '../utils/catchAsync';
 import dataUri from '../utils/datauri';
 import APIFeatures from '../utils/apiFeatures';
 import { uploadFile, destroyFile } from '../utils/cloudinary';
+
+// Validation 
+import {CreateSchema} from '../validators/entities/product/create';
+import validator from '../validators/field-validator';
 
 // Model
 import { Product, Color, Size } from '../models/index';
@@ -79,89 +85,49 @@ export const queryProductById = catchAsync(async (productId) => {
  * @returns { Object<type|message|statusCode|product> }
  */
 export const createProduct = catchAsync(async (body, files, seller) => {
+  
   const {
-    name,
-    description,
-    category,
     price,
     priceDiscount,
-    colors,
-    sizes,
     quantity,
-    sold,
-    isOutOfStock
+    sold
   } = body;
 
-  const mainImage = files.filter((image) => image.fieldname === 'mainImage');
-  const images = files.filter((image) => image.fieldname === 'images');
 
-  // 1) Check if there any empty field
-  if (
-    !name ||
-    !description ||
-    !category ||
-    !price ||
-    !priceDiscount ||
-    !colors ||
-    !sizes ||
-    !quantity ||
-    !sold ||
-    !isOutOfStock ||
-    mainImage.length === 0 ||
-    images.length === 0
-  ) {
-    return {
-      type: 'Error',
-      message: 'fieldsRequired',
-      statusCode: 400
-    };
-  }
+   // 1) Validate required fields
+   let fieldErrors = validator.validate(body,CreateSchema);
+  
+   // 2) Check if body request data is valid.
+   if(fieldErrors){
+ 
+     fieldErrors = fieldErrors.map((item) => item.message)
+     return {
+       type: 'Error',
+       message: 'fieldsRequired',
+       statusCode: 400,
+       errors: fieldErrors
+     };
+   }
 
-  const folderName = `Products/${name.trim().split(' ').join('')}`;
+  const colors = body.colors
+  const sizes = body.sizes
 
-  // 2) Upload images to cloudinary
-  const imagesPromises = images.map((image) =>
-    uploadFile(dataUri(image).content, folderName)
-  );
-  const imagesResult = await Promise.all(imagesPromises);
-  const imageResult = await uploadFile(
-    dataUri(mainImage[0]).content,
-    folderName
-  );
+  delete body.colors
+  delete body.sizes
 
-  const imagesLink = [];
-  const imagesId = [];
+  body.price = Number(price)
+  body.priceDiscount = Number(priceDiscount)
+  body.quantity = Number(quantity)
+  body.sold = Number(sold)
+  body.seller = seller
 
-  // 3) Push images links & images IDs to the arrays
-  imagesResult.forEach((image) => {
-    imagesLink.push(image.secure_url);
-    imagesId.push(image.public_id);
-  });
-
-  let priceAfterDiscount = Number(price);
 
   if (priceDiscount !== 0) {
-    priceAfterDiscount =
-      Number(price) - (Number(price) / 100) * Number(priceDiscount);
+    body.priceAfterDiscount = Number(price) - (Number(price) / 100) * Number(priceDiscount);
   }
 
   // 4) Create product
-  let product = await Product.create({
-    mainImage: imageResult.secure_url,
-    mainImageId: imageResult.public_id,
-    images: imagesLink,
-    imagesId,
-    name,
-    description,
-    category,
-    price: Number(price),
-    priceAfterDiscount,
-    priceDiscount: Number(priceDiscount),
-    seller,
-    quantity: Number(quantity),
-    sold: Number(sold),
-    isOutOfStock
-  });
+  let product = await Product.create(body);
 
   // 5) Convert colors and sizes string into an array
   const colorsArray = colors.split(',').map((color) => color.trim());
@@ -398,7 +364,7 @@ export const addProductSize = catchAsync(async (productId, sellerId, size) => {
  */
 export const deleteProductColor = catchAsync(
   async (productId, sellerId, color) => {
-    const product = await Product.findById(productId);
+    const product = await Product.findById({_id:mongoose.Types.ObjectId(productId)});
 
     // 1) Check if product doesn't exist
     if (!product) {
@@ -664,6 +630,7 @@ export const updateProductImages = catchAsync(
  * @returns { Object<type|message|statusCode> }
  */
 export const deleteProduct = catchAsync(async (productId, sellerId) => {
+
   const product = await Product.findById(productId);
 
   // 1) Check if product doesn't exist
