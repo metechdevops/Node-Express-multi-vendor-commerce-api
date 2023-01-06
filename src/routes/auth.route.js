@@ -23,6 +23,7 @@ const {
   sendVerificationEmail,
   changePassword,
   updateCustomerProfile,
+  getSellerProfile,
   updateSellerProfile
 } = authController;
 
@@ -47,6 +48,10 @@ router.post('/verify-email', verifyEmail);
 router.use(protect);
 
 router.post('/send-verification-email', sendVerificationEmail);
+
+router.get('/seller/profile',restrictedTo(USER_ROLE.SELLER), getSellerProfile);
+
+router.get('/customer/profile',restrictedTo(USER_ROLE.USER), getSellerProfile);
 
 router.post('/customer/update-profile',restrictedTo(USER_ROLE.USER), updateCustomerProfile);
 

@@ -8,7 +8,8 @@ import {
   verifyEmail,
   changePassword,
   updateCustomerProfile,
-  updateSellerProfile
+  updateSellerProfile,
+  getProfile
 } from './auth.service';
 
 import {
@@ -106,7 +107,8 @@ const authService = {
   verifyEmail,
   changePassword,
   updateCustomerProfile,
-  updateSellerProfile
+  updateSellerProfile,
+  getProfile
 };
 
 const reviewService = {

@@ -387,6 +387,26 @@ async ({body,user}) => {
 );
 
 /**
+ * @desc    Get Profile Service
+ * @return  { Object<type|statusCode|message> }
+ */
+export const getProfile = catchAsync(
+  async ({user}) => {
+      
+      // 1) Get user data.
+      const profileData = await User.findById(user.id);
+  
+      // 2) If everything is OK, send data
+      return {
+        type: 'Success',
+        statusCode: 200,
+        message: 'successfullyProfileUpdated',
+        data:profileData
+      };
+    }
+  );
+
+/**
  * @desc    Update Customer Profile Service
  * @return  { Object<type|statusCode|message> }
  */

@@ -261,9 +261,6 @@ export const signUp = {
 };
 
 export const signIn = {
-  security: {
-    jwt: []
-  },
   tags: ['Auth'],
   description: 'This route allow you to login into the api',
   opeationId: 'signIn',
@@ -1017,5 +1014,89 @@ export const updateSellerProfile = {
     200: SellerProfileResponse200,
     400: SellerProfileResponse400,
     409: SellerProfileResponse409
+  }
+};
+
+export const getSellerProfile = {
+  tags: ['Auth'],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
+  description: "This route allow you to get marchent profile data",
+  opeationId: 'getSellerProfile',
+  parameters: [
+    {
+      in: 'header',
+      name: 'Accept-Language',
+      type: 'string',
+      example: 'en_MX'
+    }
+  ],
+  responses: {
+    200: SellerProfileResponse200,
+    404: {
+      description: 'Error: 404',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              type: {
+                type: 'string',
+                example: 'Error'
+              },
+              message: {
+                type: 'string',
+                example: 'No User found.'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const getCustomerProfile = {
+  tags: ['Auth'],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
+  description: "This route allow you to get customer profile data",
+  opeationId: 'getCustomerProfile',
+  parameters: [
+    {
+      in: 'header',
+      name: 'Accept-Language',
+      type: 'string',
+      example: 'en_MX'
+    }
+  ],
+  responses: {
+    200: customerProfileResponse200,
+    404: {
+      description: 'Error: 404',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              type: {
+                type: 'string',
+                example: 'Error'
+              },
+              message: {
+                type: 'string',
+                example: 'No User found.'
+              }
+            }
+          }
+        }
+      }
+    }
   }
 };

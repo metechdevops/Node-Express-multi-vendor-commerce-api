@@ -323,6 +323,34 @@ export const updateSellerProfile = catchAsync(async (req, res) => {
 });
 
 /**
+ * @desc      Get User PW/Srofile Controller
+ * @param     { Object } req - Request object
+ * @param     { Object } res - Response object
+ * @returns   { JSON } - A JSON object representing the type and message
+ */
+export const getSellerProfile = catchAsync(async (req, res) => {
+
+  // 1) Calling reset password service
+  const { type, message, statusCode,errors,data } = await authService.getProfile(req);
+
+  // 2) Check if something went wrong
+  if (type === 'Error') {
+    return res.status(statusCode).json({
+      type,
+      message: req.polyglot.t(message),
+      errors:errors
+    });
+  }
+
+  // 3) If everything is OK, send data
+  return res.status(statusCode).json({
+    type,
+    message: req.polyglot.t(message),
+    data
+  });
+});
+
+/**
  * @desc      Send Verification Email Controller
  * @param     { Object } req - Request object
  * @param     { Object } res - Response object

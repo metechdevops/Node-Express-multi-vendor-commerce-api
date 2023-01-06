@@ -10,7 +10,10 @@ import {
   verifyEmail,
   sendVerificationEmail,
   updateCustomerProfile,
-  updateSellerProfile
+  updateSellerProfile,
+  getCustomerProfile,
+  getSellerProfile
+
 } from './auth.swagger';
 
 import {
@@ -32,8 +35,8 @@ import {
   top5Cheap,
   productStats,
   updateProductDetails,
-  updateProductMainImage,
-  updateProductImages,
+  // updateProductMainImage,
+  // updateProductImages,
   deleteProduct,
   addProductColor,
   addProductSize,
@@ -164,6 +167,12 @@ const docs = {
     },
     '/auth/seller/update-profile': {
       post: updateSellerProfile
+    },
+    '/auth/customer/profile': {
+      get: getCustomerProfile
+    },
+    '/auth/seller/profile': {
+      get: getSellerProfile
     },
     '/media/profile/web': {
       post: uploadMediaImages

@@ -74,11 +74,6 @@ export const sellerValidationSchema = {
                   },
                   taxationInformation: {
                     type: 'object',
-                    required: [
-                        "BIRNumber",
-                        "taxNumber",
-                        "VATNumber"
-                    ],
                     properties: taxationDetail
                   },
                   socialLinks: {

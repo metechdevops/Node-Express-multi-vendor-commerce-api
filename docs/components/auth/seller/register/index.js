@@ -56,7 +56,6 @@ const SellerSignUpRequestBody = {
             required:[
               'businessDetail',
               'bankDetail',
-              'taxationInformation',
               'branding'
             ],
             properties: {
@@ -86,11 +85,6 @@ const SellerSignUpRequestBody = {
               },
               taxationInformation: {
                 type: 'object',
-                required:[
-                  'BIRNumber',
-                  'taxNumber',
-                  'VATNumber'
-                ],
                 properties: taxationDetail
               },
               socialLinks: {

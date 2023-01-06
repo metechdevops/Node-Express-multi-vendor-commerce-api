@@ -94,11 +94,6 @@ const SellerSignUpRequestBody = {
               },
               taxationInformation: {
                 type: 'object',
-                required:[
-                  'BIRNumber',
-                  'taxNumber',
-                  'VATNumber'
-                ],
                 properties: taxationDetail
               },
               socialLinks: {
