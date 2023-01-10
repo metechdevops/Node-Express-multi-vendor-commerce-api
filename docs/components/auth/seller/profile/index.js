@@ -70,6 +70,14 @@ const SellerProfileRequestBody = {
               bankStatments: {
                 type: 'array',
                 items: documentSchema
+              },
+              VATDocuments: {
+                type: 'array',
+                items: documentSchema
+              },
+              incomeTAX: {
+                type: 'array',
+                items: documentSchema
               }
             }
           }

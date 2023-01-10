@@ -7,6 +7,36 @@ import {Branding} from "./register/branding"
 
 const {USER_ROLE} = require('../../../constants/constants')
 
+const documentSchema = {  
+  type:"object",
+  properties:{
+    link: {
+      type: 'string',
+      format: 'url',
+    },
+    s3Id: {
+      type: 'string',
+    },
+  }   
+}
+
+const requiredDocumentSchema = {  
+  type:"object",
+  required:['link','s3Id'],
+  properties:{
+    link: {
+      type: 'string',
+      format: 'url',
+      errorMessage: "Document link feild is required"
+    },
+    s3Id: {
+      type: 'string',
+      "errorMessage": "Document S3 ID feild is required"
+    },
+  }   
+}
+
+
 export const sellerValidationSchema = {
     "type": "object",
     "required": [
@@ -46,6 +76,15 @@ export const sellerValidationSchema = {
         },
         sellerAttributes: {
             type: "object",
+            required:[
+              'businessDetail',
+              'bankDetail',
+              'taxationInformation',
+              'branding',
+              'registrationCertificates',
+              'addressOfProof',
+              'bankStatments'
+            ],
             properties: {
                 secondaryContactDetail : {
                     type: 'object',
@@ -83,6 +122,33 @@ export const sellerValidationSchema = {
                   branding: {
                     type: 'object',
                     properties: Branding
+                  },
+                  registrationCertificates: {
+                    type: 'array',
+                    minItems: 1,
+                    items: requiredDocumentSchema
+                  },
+                  addressOfProof: {
+                    type: 'array',
+                    minItems: 1,
+                    items: requiredDocumentSchema
+                  },
+                  birCertificates: {
+                    type: 'array',
+                    items: documentSchema
+                  },
+                  bankStatments: {
+                    type: 'array',
+                    minItems: 1,
+                    items: requiredDocumentSchema
+                  },
+                  VATDocuments: {
+                    type: 'array',
+                    items: documentSchema
+                  },
+                  incomeTAX: {
+                    type: 'array',
+                    items: documentSchema
                   }
                 }
             }

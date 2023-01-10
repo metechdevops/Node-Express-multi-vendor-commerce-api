@@ -7,6 +7,38 @@ import {Branding} from "./branding"
 
 import { USER_ROLE } from "../../../../constants/constants"
 
+const documentSchema = {  
+  type:"object",
+  properties:{
+    link: {
+      type: 'string',
+      format: 'url',
+      example:"https://www.africau.edu/images/default/sample.pdf"
+    },
+    s3Id: {
+      type: 'string',
+      example:"4b41a3475132bd861b30a878e30aa56a"
+    },
+  }   
+}
+
+const requiredDocumentSchema = {  
+  type:"object",
+  required:['link','s3Id'],
+  properties:{
+    link: {
+      type: 'string',
+      format: 'url',
+      example:"https://www.africau.edu/images/default/sample.pdf"
+    },
+    s3Id: {
+      type: 'string',
+      example:"4b41a3475132bd861b30a878e30aa56a"
+    },
+  }   
+}
+
+
 const SellerSignUpRequestBody = {
   required: true,
   content: {
@@ -65,7 +97,10 @@ const SellerSignUpRequestBody = {
               'businessDetail',
               'bankDetail',
               'taxationInformation',
-              'branding'
+              'branding',
+              'registrationCertificates',
+              'addressOfProof',
+              'bankStatments'
             ],
             properties: {
               secondaryContactDetail : {
@@ -107,6 +142,30 @@ const SellerSignUpRequestBody = {
                   'bannerImage'
                 ],
                 properties: Branding
+              },
+              registrationCertificates: {
+                type: 'array',
+                items: requiredDocumentSchema
+              },
+              addressOfProof: {
+                type: 'array',
+                items: requiredDocumentSchema
+              },
+              birCertificates: {
+                type: 'array',
+                items: documentSchema
+              },
+              bankStatments: {
+                type: 'array',
+                items: requiredDocumentSchema
+              },
+              VATDocuments: {
+                type: 'array',
+                items: documentSchema
+              },
+              incomeTAX: {
+                type: 'array',
+                items: documentSchema
               }
             }
           }

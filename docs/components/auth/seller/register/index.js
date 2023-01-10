@@ -60,7 +60,6 @@ const SellerSignUpRequestBody = {
               'branding',
               'registrationCertificates',
               'addressOfProof',
-              'birCertificates',
               'bankStatments'
 
             ],
@@ -118,6 +117,14 @@ const SellerSignUpRequestBody = {
                 items: documentSchema
               },
               bankStatments: {
+                type: 'array',
+                items: documentSchema
+              },
+              VATDocuments: {
+                type: 'array',
+                items: documentSchema
+              },
+              incomeTAX: {
                 type: 'array',
                 items: documentSchema
               }

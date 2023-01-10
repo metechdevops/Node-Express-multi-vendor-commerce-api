@@ -39,6 +39,7 @@ export const Branding = {
     },
     bannerImage: {
       type:"array",
+      minItems: 1,
       items: imageSchema
     },
 }

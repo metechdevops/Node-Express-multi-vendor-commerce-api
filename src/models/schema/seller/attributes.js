@@ -129,5 +129,7 @@ module.exports = mongoose.Schema({
     addressOfProof: [stringSchema],
     birCertificates: [stringSchema],
     bankStatments: [stringSchema],
+    VATDocuments: [stringSchema],
+    incomeTAX: [stringSchema],
   },
 );
