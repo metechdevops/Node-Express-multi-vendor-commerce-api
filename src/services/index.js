@@ -95,6 +95,7 @@ import {
 
 import {
   createMedia,
+  createDocumentMedia
 } from './media.service';
 
 const authService = {
@@ -120,7 +121,8 @@ const reviewService = {
 };
 
 const mediaService = {
-  createMedia
+  createMedia,
+  createDocumentMedia
 };
 
 const userService = {

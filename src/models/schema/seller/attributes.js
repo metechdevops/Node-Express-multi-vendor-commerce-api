@@ -1,7 +1,17 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
 import phoneSchema from '../common/phone.schema';
+import imageSchema from '../common/product.image.schema';
 
+
+const stringSchema = {
+    link: {
+        type: String,
+    },
+    s3Id: {
+        type: String,
+    }
+}
 module.exports = mongoose.Schema({
     secondaryContactDetail:{
         firstName: {
@@ -42,37 +52,7 @@ module.exports = mongoose.Schema({
             },
             registeredAddress: {
                 type: String,
-            },
-            // primaryPhone: {
-            //     type: String,
-            // },
-            // primaryEmail: {
-            //     type: String,
-            //     required: [false, 'Please provide an email'],
-            //     unique: false,
-            //     trim: true,
-            //     lowercase: true,
-            //     validate(value) {
-            //         if (!validator.isEmail(value)) {
-            //         throw new Error('Invalid email');
-            //         }
-            //     }
-            // },
-            // secondaryPhone: {
-            //     type: String,
-            // },
-            // secondaryEmail: {
-            //     type: String,
-            //     required: [false, 'Please provide an email'],
-            //     unique: false,
-            //     trim: true,
-            //     lowercase: true,
-            //     validate(value) {
-            //         if (!validator.isEmail(value)) {
-            //         throw new Error('Invalid email');
-            //         }
-            //     }
-            // }
+            }
         }
     },
     bankDetail: {
@@ -142,28 +122,12 @@ module.exports = mongoose.Schema({
         },
     },
     branding:{
-        logo: {
-            original: {
-                type: String
-            },
-            web: {
-                type: String,
-            },
-            mobile: {
-                type: String
-            },
-        },
-        bannerImage: {
-            original: {
-                type: String
-            },
-            web: {
-                type: String
-            },
-            mobile: {
-                type: String
-            },
-        }
+        logo: imageSchema,
+        bannerImage: [imageSchema]
     },
+    registrationCertificates: [stringSchema],
+    addressOfProof: [stringSchema],
+    birCertificates: [stringSchema],
+    bankStatments: [stringSchema],
   },
 );

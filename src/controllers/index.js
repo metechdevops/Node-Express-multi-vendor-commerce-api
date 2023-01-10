@@ -92,6 +92,7 @@ import {
 
 import {
   createMedia,
+  createDocumentMedia
 } from './media.controller';
 
 const authController = {
@@ -187,7 +188,8 @@ const favoriteController = {
 };
 
 const mediaController = {
-  createMedia
+  createMedia,
+  createDocumentMedia
 };
 
 export {

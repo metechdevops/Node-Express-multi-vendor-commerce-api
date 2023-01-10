@@ -3,7 +3,12 @@ import _ from "lodash";
 
 // Utils
 import catchAsync from '../utils/catchAsync';
-import {imageUploads,fileFilter} from '../utils/media';
+import {
+  imageUploads,
+  documentUpload,
+  fileFilter,
+  documentFilter,
+} from '../utils/media';
 
 
 /**
@@ -15,13 +20,15 @@ import {imageUploads,fileFilter} from '../utils/media';
 export const createMedia = catchAsync(async (req) => {
   
     const {params,files, user} = req;
+
+
     const fileValidationError = await fileFilter(req,files)
 
     // 4) Check file Validate method
     if (fileValidationError) {
       return {
         type: 'Error',
-        message: 'invalidImageFormate',
+        message: 'invalidDocumentFormat',
         statusCode: 400
       };  
     }
@@ -38,6 +45,53 @@ export const createMedia = catchAsync(async (req) => {
       statusCode: 200,
       medias
     };
+
+});
+
+/**
+ * @desc    Create New Order
+ * @param   { Object } body - Body object data
+ * @param   { Object } user - An object contains logged in user data
+ * @returns { Object<type|message|statusCode|order> }
+ */
+export const createDocumentMedia = catchAsync(async (req) => {
+  
+  const {params,files} = req;
+  const fileValidationError = await documentFilter(req,files)
+
+
+  // 1) Check required document length.
+  if(files.length < 1){
+
+    return {
+      type: 'Error',
+      message: 'noAttachmentFound',
+      statusCode: 400,
+      errors: {}
+    };
+  }
+
+  // 4) Check file Validate method
+  if (fileValidationError) {
+    return {
+      type: 'Error',
+      message: 'invalidDocumentFormat',
+      statusCode: 400
+    };  
+  }
+
+  // 1) Extract data from parameters
+  const {directory} = params;
+  const medias = await documentUpload(files,directory)
+
+
+  // 5) If everything is OK, send data
+  return {
+    type: 'Success',
+    message: 'successfulMediaUploaded',
+    statusCode: 200,
+    medias
+  };
 
 });
 

@@ -76,8 +76,7 @@ module.exports = {
       SUPPORTED_IMAGES.concat(SUPPORTED_DOCUMENTS)
     ),
   handleMultipleImagesUpload: handleMultipleFilesUpload,
-  handleMultipleDocsUpload: (name) =>
-    handleMultipleFilesUpload(name, 30 * mb(), SUPPORTED_DOCUMENTS),
+  handleMultipleDocsUpload : (name) => handleMultipleFilesUpload (name, 30 * mb(), SUPPORTED_DOCUMENTS),
   handleImagesAndDocsUpload: (names) => {
     let namesObjectsArray = [];
     forEach(names, (name) => {

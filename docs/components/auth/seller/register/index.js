@@ -4,6 +4,7 @@ import {bankDetail} from "./bank-detail"
 import {taxationDetail} from "./taxation-detail"
 import {socialLinks} from "./social-links"
 import {Branding} from "./branding"
+import {documentSchema} from "./documents"
 import {profileImage} from "./profile-image"
 import { USER_ROLE } from "../../../../../src/constants/constants"
 import {phoneSchema} from "../../../common/phone.schema"
@@ -56,7 +57,12 @@ const SellerSignUpRequestBody = {
             required:[
               'businessDetail',
               'bankDetail',
-              'branding'
+              'branding',
+              'registrationCertificates',
+              'addressOfProof',
+              'birCertificates',
+              'bankStatments'
+
             ],
             properties: {
               secondaryContactDetail : {
@@ -70,7 +76,7 @@ const SellerSignUpRequestBody = {
                   'registeredName',
                   'registrationNumber',
                   'registrationDate',
-                  'billingDetails',
+                  'billingDetails'
                 ],
                 properties: businessDetails
               },
@@ -98,6 +104,22 @@ const SellerSignUpRequestBody = {
                   'bannerImage'
                 ],
                 properties: Branding
+              },
+              registrationCertificates: {
+                type: 'array',
+                items: documentSchema
+              },
+              addressOfProof: {
+                type: 'array',
+                items: documentSchema
+              },
+              birCertificates: {
+                type: 'array',
+                items: documentSchema
+              },
+              bankStatments: {
+                type: 'array',
+                items: documentSchema
               }
             }
           }
@@ -186,6 +208,22 @@ const SellerSignUpResponse200 = {
                   branding: {
                     type: 'object',
                     properties: Branding
+                  },
+                  registrationCertificates: {
+                    type: 'array',
+                    items: documentSchema
+                  },
+                  addressOfProof: {
+                    type: 'array',
+                    items: documentSchema
+                  },
+                  birCertificates: {
+                    type: 'array',
+                    items: documentSchema
+                  },
+                  bankStatments: {
+                    type: 'array',
+                    items: documentSchema
                   }
                 }
               }

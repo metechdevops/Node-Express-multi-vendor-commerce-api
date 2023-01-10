@@ -25,6 +25,28 @@ import AppError from './appError';
     return prepareResponseData(images, thumbnailsForWeb, thumbnailsForMobile);
 };
 
+/**
+ * @desc    Upload Document
+ * @param   { Array } files - Document Media files data
+ * @param   { String } directory - An client contains [customer, vendor, product, profile, driver, collection]
+ * @param   { String } client - An client contains [web,mobile]
+ * @returns { Object<type|message|statusCode|medias> }
+ */
+
+export const documentUpload = async (files, directory) => {
+
+    const mediaDirectory = directory.toUpperCase();
+    const [documents] = await uploadDocuments(files, mediaDirectory);
+    return prepareDocResponse(documents);
+};
+
+const uploadDocuments = (files, directory) => {
+    const storageProvider = getStorageProvider();
+    return Promise.all([
+        storageProvider.saveFiles(files,directory)
+    ]);
+}
+
 const uploadImages = (files, directory, thumbnailDataForWeb, thumbnailDataForMobile) => {
     const storageProvider = getStorageProvider();
     return Promise.all([
@@ -65,10 +87,34 @@ const prepareResponseData = (images, thumbnailsForWeb, thumbnailsForMobile) => {
     return response;
 }
 
+const prepareDocResponse = (documents) => {
+    const response = [];
+    documents.forEach(element => {
+        response.push({
+            link: element.Location,
+            s3Id: String(element.ETag)
+        });
+    }); 
+
+    return response;
+}
+
 export const fileFilter = (req, files, cb) => {
     let isInValid = false 
     files.map((file) => {
         if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|WEBP|webp)$/)) {
+            req.fileValidationError = 'Only image files are allowed!';
+            isInValid = true;
+        }
+    })
+
+    return isInValid;
+};
+
+export const documentFilter = (req, files, cb) => {
+    let isInValid = false
+    files.map((file) => {
+        if (!file.originalname.match(/\.(pdf|txt|doc|docx|csv|PDF|TXT|DOC|DOCX|CSV)$/)) {
             req.fileValidationError = 'Only image files are allowed!';
             isInValid = true;
         }

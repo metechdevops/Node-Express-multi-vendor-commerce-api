@@ -6,9 +6,16 @@ import { mediaController } from '../controllers/index';
 
 // Middlewares
 // import protect from '../middlewares/protect';
-import {handleMultipleImagesUpload} from '../middlewares/multipart/multipart-middleware';
+import {
+    handleMultipleImagesUpload,
+    handleMultipleDocsUpload
+} 
+from '../middlewares/multipart/multipart-middleware';
 
-const { createMedia } = mediaController;
+const { 
+    createMedia,
+    createDocumentMedia 
+} = mediaController;
 
 // Router Initialization
 const router = express.Router();
@@ -18,5 +25,6 @@ const router = express.Router();
 
 // Create Media Route
 router.post('/:directory/:client', handleMultipleImagesUpload('images'), createMedia);
+router.post('/upload/:directory/document', handleMultipleDocsUpload('documents'), createDocumentMedia);
 
 export default router;

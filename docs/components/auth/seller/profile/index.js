@@ -5,6 +5,7 @@ import {taxationDetail} from "././../register/taxation-detail"
 import {socialLinks} from "././../register/social-links"
 import {Branding} from "././../register/branding"
 import {profileImage} from "././../register/profile-image"
+import {documentSchema} from "./../register/documents"
 import { USER_ROLE } from "../../../../../src/constants/constants"
 import {phoneSchema} from "../../../common/phone.schema"
 
@@ -53,6 +54,22 @@ const SellerProfileRequestBody = {
               branding: {
                 type: 'object',
                 properties: Branding
+              },
+              registrationCertificates: {
+                type: 'array',
+                items: documentSchema
+              },
+              addressOfProof: {
+                type: 'array',
+                items: documentSchema
+              },
+              birCertificates: {
+                type: 'array',
+                items: documentSchema
+              },
+              bankStatments: {
+                type: 'array',
+                items: documentSchema
               }
             }
           }
