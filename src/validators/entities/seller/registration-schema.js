@@ -104,10 +104,8 @@ export const sellerValidationSchema = {
                     type: 'object',
                     required: [
                         "bankName",
-                        "branchName",
-                        "branchCode",
                         "accountNumber",
-                        "IBANNumber"
+                        "accountTitle"
                     ],
                     properties: bankDetail
                   },
