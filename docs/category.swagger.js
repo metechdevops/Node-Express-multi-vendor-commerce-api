@@ -22,7 +22,7 @@ export const getAllCategories = {
       in: 'query',
       name: 'select',
       type: 'string',
-      example: 'name, image',
+      example: 'name, description',
       description: 'Select only fields you want.'
     },
     {
@@ -45,7 +45,7 @@ export const getAllCategories = {
       in: 'query',
       name: 'page',
       type: 'string',
-      example: '2',
+      example: '1',
       description:
         'When number of categories is greater than 10 categories, it divides into pages each page contain 10 categories.'
     }

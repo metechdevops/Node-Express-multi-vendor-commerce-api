@@ -30,8 +30,6 @@ export const CreateSchema = {
         "price",
         "quantity",
         "stores",
-        "sold",
-        "isOutOfStock",
         "colors",
         "sizes"
     ],
@@ -81,15 +79,6 @@ export const CreateSchema = {
       quantity: {
         type: 'integer',
         errorMessage: "Product quantity field is required"
-      },
-      sold: {
-        type: 'integer',
-        errorMessage: "Product sold out field is required"
-      },
-      isOutOfStock: {
-        type: 'boolean',
-        enum:[true,false],
-        errorMessage: "Product out of stock field is required"
       },
       mainImage: imageSchema,
       images: {

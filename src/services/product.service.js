@@ -115,10 +115,10 @@ export const createProduct = catchAsync(async (body, files, seller) => {
   delete body.colors
   delete body.sizes
 
-  body.price = Number(price)
-  body.priceDiscount = Number(priceDiscount)
-  body.quantity = Number(quantity)
-  body.sold = Number(sold)
+  body.price = Number(price) || 0
+  body.priceDiscount = Number(priceDiscount) || 0
+  body.quantity = Number(quantity) || 0
+  body.sold = Number(sold) || 0
   body.seller = seller
 
 

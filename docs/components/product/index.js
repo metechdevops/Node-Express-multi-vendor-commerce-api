@@ -17,8 +17,6 @@ const addProductRequestBody = {
             "price",
             "quantity",
             "stores",
-            "sold",
-            "isOutOfStock",
             "sizes",
             "tags",
             "colors",
@@ -68,14 +66,6 @@ const addProductRequestBody = {
             quantity: {
               type: 'integer',
               example: 20
-            },
-            sold: {
-              type: 'integer',
-              example: 5
-            },
-            isOutOfStock: {
-              type: 'boolean',
-              example: false
             },
             mainImage: ImageSchema,
             images: {
@@ -157,17 +147,9 @@ const addProduct201 = {
                   type: 'integer',
                   example: 49
                 },
-                sold: {
-                  type: 'integer',
-                  example: 10
-                },
                 attributes: {
                   type: 'array',
                   items: ProductAttributesSchema
-                },
-                isOutOfStock: {
-                  type: 'boolean',
-                  example: false
                 },
                 ratingsAverage: {
                   type: 'integer',

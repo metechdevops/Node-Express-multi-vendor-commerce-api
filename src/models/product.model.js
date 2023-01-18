@@ -31,7 +31,7 @@ const productSchema = mongoose.Schema(
       type: String
     },
     tags:[String],
-    attributes: productAttributes,
+    attributes: [productAttributes],
     category: {
       type: mongoose.Schema.ObjectId,
       ref: 'Category'
