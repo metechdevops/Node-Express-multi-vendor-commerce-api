@@ -1,6 +1,7 @@
 import User from './user.model';
 import Product from './product.model';
 import Category from './category.model';
+import Store from './schema/store.model';
 import Review from './review.model';
 import Cart from './cart.model';
 import Order from './order.model';
@@ -14,6 +15,7 @@ export {
   User,
   Product,
   Category,
+  Store,
   Review,
   Cart,
   Order,

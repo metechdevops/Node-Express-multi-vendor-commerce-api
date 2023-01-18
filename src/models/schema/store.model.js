@@ -2,7 +2,7 @@
 import mongoose from 'mongoose';
 
 // Plugins
-import toJSON from './plugins/index';
+import toJSON from './../plugins/index';
 
 const storeSchema = mongoose.Schema(
   {
@@ -16,15 +16,24 @@ const storeSchema = mongoose.Schema(
     },
     name: {
       type: String,
-      required: [true, 'A store must have a name']
     },
     city: {
       type: String,
-      required: [true, 'A store must have a city']
+    },
+    state: {
+      type: String,
+    },
+    zipCode: {
+      type: String,
+    },
+    latitude: {
+      type: String,
+    },
+    longitude: {
+      type: String,
     },
     address: {
       type: String,
-      required: [true, 'A store must have a address']
     }
   },
   {

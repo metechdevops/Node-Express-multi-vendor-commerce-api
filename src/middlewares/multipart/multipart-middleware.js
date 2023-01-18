@@ -33,7 +33,7 @@ const handleSingleFileUpload = (
 
 const handleMultipleFilesUpload = (
   name,
-  fileSize = 30 * mb(),
+  fileSize = 5 * mb(),
   supportedExtensions = SUPPORTED_IMAGES
 ) => {
   return (req, resp, next) => {

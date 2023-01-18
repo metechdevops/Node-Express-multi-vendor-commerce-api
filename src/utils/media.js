@@ -114,7 +114,7 @@ export const fileFilter = (req, files, cb) => {
 export const documentFilter = (req, files, cb) => {
     let isInValid = false
     files.map((file) => {
-        if (!file.originalname.match(/\.(pdf|txt|doc|docx|csv|PDF|TXT|DOC|DOCX|CSV)$/)) {
+        if (!file.originalname.match(/\.(pdf|txt|doc|docx|csv|PDF|TXT|DOC|DOCX|CSV|jpg|JPG|jpeg|JPEG|png|PNG|WEBP|webp)$/)) {
             req.fileValidationError = 'Only image files are allowed!';
             isInValid = true;
         }

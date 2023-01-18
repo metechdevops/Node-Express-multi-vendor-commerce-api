@@ -46,6 +46,15 @@ import {
 } from './category.service';
 
 import {
+  createStore,
+  queryStores,
+  queryStore,
+  updateStoreDetails,
+  updateStoreImage,
+  deleteStoreById
+} from './store.service';
+
+import {
   queryProducts,
   queryProductById,
   createProduct,
@@ -149,6 +158,24 @@ const categoryService = {
   deleteCategoryById
 };
 
+const storeService = {
+  createStore,
+  queryStores,
+  queryStore,
+  updateStoreDetails,
+  updateStoreImage,
+  deleteStoreById
+};
+
+// const storeService = {
+//   createStore,
+//   queryCategories,
+//   queryStore,
+//   updateStoreDetails,
+//   updateStoreImage,
+//   deleteStoreById
+// };
+
 const productService = {
   queryProducts,
   queryProductById,
@@ -202,6 +229,7 @@ export {
   userService,
   // sellerService,
   categoryService,
+  storeService,
   productService,
   reviewService,
   cartService,

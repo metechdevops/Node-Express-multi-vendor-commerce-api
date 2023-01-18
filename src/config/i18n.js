@@ -30,6 +30,7 @@ export const messages = {
     noCartFound: 'No cart found.',
     noProductInCartWithID: 'No product found with this ID in the cart.',
     noCategories: 'No categories found.',
+    noStores: 'No stores found.',
     noCategoryFound: 'No category found with this ID.',
     categoryImageRequired: 'Image is required, please upload an image!',
     noOrders: 'No orders found',
@@ -88,6 +89,14 @@ export const messages = {
     successfulCategoryDetails: 'Category details updated successfully.',
     successfulCategoryImage: 'Category image updated successfully.',
     successfulCategoryDelete: 'Category deleted successfully.',
+    
+    successfulStoreCreate: 'Store created successfully.',
+    successfulStoresFound: 'Found stores successfully.',
+    successfulStoreFound: 'Store found successfully.',
+    successfulStoreDetails: 'Store details updated successfully.',
+    successfulStoreImage: 'Store image updated successfully.',
+    successfulStoreDelete: 'Store deleted successfully.',
+
     successfulOrderCreate: 'Order created successfully.',
     successfulMediaUploaded: 'Media uploaded successfully.',
     successfulOrdersFound: 'Orders found successfully.',

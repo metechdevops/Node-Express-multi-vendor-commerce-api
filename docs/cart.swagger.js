@@ -2,6 +2,11 @@ export const getCart = {
   tags: ['Cart'],
   description: 'This route allow logged in user/seller/admin to get his cart',
   opeationId: 'getCart',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
@@ -126,6 +131,11 @@ export const addItemsToCart = {
   description:
     'This route allow logged in user/seller/admin to add items to his cart',
   opeationId: 'addItemsToCart',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
@@ -298,6 +308,11 @@ export const increaseProductQuantityByOne = {
   description:
     'This route allow logged in user/seller/admin to increase product quantity by one',
   opeationId: 'increaseProductQuantityByOne',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
@@ -454,6 +469,11 @@ export const reduceProductQuantityByOne = {
   description:
     'This route allow logged in user/seller/admin to reduce product quantity by one',
   opeationId: 'reduceProductQuantityByOne',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
@@ -606,12 +626,17 @@ export const deleteProductFromCart = {
   description:
     'This route allow logged in user/seller/admin to delete product from cart',
   opeationId: 'deleteProductFromCart',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     },
     {
       in: 'path',
@@ -692,12 +717,17 @@ export const deleteCart = {
   tags: ['Cart'],
   description: 'This route allow logged in user/seller/admin to delete cart',
   opeationId: 'deleteCart',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     }
   ],
   responses: {

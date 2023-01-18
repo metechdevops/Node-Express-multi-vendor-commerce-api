@@ -50,6 +50,15 @@ import {
 } from './category.controller';
 
 import {
+  getAllStores,
+  getStore,
+  addStore,
+  updateStoreDetails,
+  updateStoreImage,
+  deleteStore
+} from './store.controller';
+
+import {
   getAllReviews,
   getReview,
   addReview,
@@ -130,6 +139,15 @@ const categoryController = {
   deleteCategory
 };
 
+const storeController = {
+  getAllStores,
+  getStore,
+  addStore,
+  updateStoreDetails,
+  updateStoreImage,
+  deleteStore
+};
+
 const productController = {
   getAllProducts,
   getProduct,
@@ -197,6 +215,7 @@ export {
   userController,
   productController,
   categoryController,
+  storeController,
   reviewController,
   cartController,
   orderController,

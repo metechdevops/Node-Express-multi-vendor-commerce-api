@@ -56,6 +56,10 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false
     },
+    isVerifiedSeller: {
+      type: Boolean,
+      default: false
+    },
     passwordChangedAt: Date,
     address: {
       type: String

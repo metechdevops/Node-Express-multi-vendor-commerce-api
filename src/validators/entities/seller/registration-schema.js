@@ -94,7 +94,6 @@ export const sellerValidationSchema = {
                     type: 'object',
                     required: [
                         "category",
-                        "registeredName",
                         "registrationNumber",
                         "billingDetails"
                     ],

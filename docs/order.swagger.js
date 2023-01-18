@@ -2,6 +2,11 @@ export const getAllOrders = {
   tags: ['Order'],
   description: 'This route allow logged in user/seller/admin get his orders',
   opeationId: 'getAllOrders',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
@@ -201,6 +206,11 @@ export const getOrder = {
   description:
     "This route allow logged in user/seller/admin get specific order using it's ID",
   opeationId: 'getOrder',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
@@ -383,6 +393,11 @@ export const createNewOrder = {
   tags: ['Order'],
   description: 'This route allow logged in user/seller/admin create new order',
   opeationId: 'createNewOrder',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
@@ -597,6 +612,11 @@ export const orderStatus = {
   tags: ['Order'],
   description: 'This route allow logged in seller update order status',
   opeationId: 'orderStatus',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',
@@ -711,6 +731,11 @@ export const cancelOrder = {
   description:
     "This route allow logged in user/seller/admin cancel specific order using it's ID",
   opeationId: 'cancelOrder',
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   parameters: [
     {
       in: 'header',

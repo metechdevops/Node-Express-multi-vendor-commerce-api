@@ -29,6 +29,14 @@ import {
 } from './category.swagger';
 
 import {
+  getAllStores,
+  getStore,
+  addStore,
+  updateStoreDetails,
+  deleteStore
+} from './store.swagger';
+
+import {
   getAllProducts,
   getProduct,
   addProduct,
@@ -61,15 +69,15 @@ import {
   deleteReview
 } from './review.swagger';
 
-import {
-  getAllUsers,
-  getUser,
-  addUser,
-  updateUserDetails,
-  updateUserProfileImage,
-  deleteUser,
-  deleteMyAccount
-} from './user.swagger';
+// import {
+//   getAllUsers,
+//   getUser,
+//   addUser,
+//   updateUserDetails,
+//   updateUserProfileImage,
+//   deleteUser,
+//   deleteMyAccount
+// } from './user.swagger';
 
 import {
   createNewOrder,
@@ -86,14 +94,14 @@ import {
   getFavoriteList
 } from './favorite.swagger';
 
-import {
-  verifyDiscountCode,
-  getDiscount,
-  getAllDiscountCodes,
-  generateDiscountCode,
-  deleteDiscountCode,
-  cancelDiscountCode
-} from './discount.swagger';
+// import {
+//   verifyDiscountCode,
+//   getDiscount,
+//   getAllDiscountCodes,
+//   generateDiscountCode,
+//   deleteDiscountCode,
+//   cancelDiscountCode
+// } from './discount.swagger';
 
 const docs = {
   openapi: '3.0.3',
@@ -203,6 +211,15 @@ const docs = {
       patch: updateCategoryDetails,
       delete: deleteCategory
     },
+    '/store': {
+      get: getAllStores,
+      post: addStore
+    },
+    '/store/{storeId}': {
+      get: getStore,
+      patch: updateStoreDetails,
+      delete: deleteStore
+    },
     '/product': {
       get: getAllProducts,
       post: addProduct
@@ -262,29 +279,29 @@ const docs = {
     // '/discount/{discountId}': {
     //   delete: deleteDiscountCode
     // },
-    // '/cart': {
-    //   get: getCart,
-    //   post: addItemsToCart,
-    //   delete: deleteCart
-    // },
-    // '/cart/increase-one': {
-    //   patch: increaseProductQuantityByOne
-    // },
-    // '/cart/reduce-one': {
-    //   patch: reduceProductQuantityByOne
-    // },
-    // '/cart/:productId': {
-    //   delete: deleteProductFromCart
-    // },
-    // '/order': {
-    //   get: getAllOrders,
-    //   post: createNewOrder
-    // },
-    // '/order/{orderId}': {
-    //   get: getOrder,
-    //   patch: orderStatus,
-    //   delete: cancelOrder
-    // },
+    '/cart': {
+      get: getCart,
+      post: addItemsToCart,
+      delete: deleteCart
+    },
+    '/cart/increase-one': {
+      patch: increaseProductQuantityByOne
+    },
+    '/cart/reduce-one': {
+      patch: reduceProductQuantityByOne
+    },
+    '/cart/:productId': {
+      delete: deleteProductFromCart
+    },
+    '/order': {
+      get: getAllOrders,
+      post: createNewOrder
+    },
+    '/order/{orderId}': {
+      get: getOrder,
+      patch: orderStatus,
+      delete: cancelOrder
+    },
     '/product/{productId}/reviews': {
       get: getAllProductReviews,
       post: addReview
