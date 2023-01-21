@@ -55,6 +55,10 @@ import {
 } from './store.service';
 
 import {
+  queryLookupData
+} from './lookup.data.service';
+
+import {
   queryProducts,
   queryProductById,
   createProduct,
@@ -167,6 +171,10 @@ const storeService = {
   deleteStoreById
 };
 
+const lookupDataService = {
+  queryLookupData
+};
+
 // const storeService = {
 //   createStore,
 //   queryCategories,
@@ -230,6 +238,7 @@ export {
   // sellerService,
   categoryService,
   storeService,
+  lookupDataService,
   productService,
   reviewService,
   cartService,

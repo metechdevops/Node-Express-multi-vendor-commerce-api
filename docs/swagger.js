@@ -37,6 +37,10 @@ import {
 } from './store.swagger';
 
 import {
+  getAllLookupData
+} from './lookup.data.swagger';
+
+import {
   getAllProducts,
   getProduct,
   addProduct,
@@ -202,6 +206,9 @@ const docs = {
     // '/user/me': {
     //   delete: deleteMyAccount
     // },
+    '/lookup-data': {
+      get: getAllLookupData
+    },
     '/category': {
       get: getAllCategories,
       post: addCategory

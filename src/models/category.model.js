@@ -9,9 +9,12 @@ const categorySchema = mongoose.Schema(
       required: true,
       unique: true
     },
+    parentId: {
+      type: String
+    },
     description: {
       type: String,
-      required: true
+      required: false
     },
     image: imageSchema
   },

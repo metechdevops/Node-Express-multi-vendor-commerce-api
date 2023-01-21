@@ -92,6 +92,7 @@ export const messages = {
     
     successfulStoreCreate: 'Store created successfully.',
     successfulStoresFound: 'Found stores successfully.',
+    successfulLookupDataFound: 'Found Lookup Data successfully.',
     successfulStoreFound: 'Store found successfully.',
     successfulStoreDetails: 'Store details updated successfully.',
     successfulStoreImage: 'Store image updated successfully.',

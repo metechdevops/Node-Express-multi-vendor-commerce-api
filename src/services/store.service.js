@@ -1,3 +1,6 @@
+// Packages 
+const mongoose = require('mongoose');
+
 // Utils
 import catchAsync from '../utils/catchAsync';
 import APIFeatures from '../utils/apiFeatures';
@@ -193,10 +196,11 @@ export const updateStoreImage = catchAsync(async (id, image) => {
  * @returns { Object<type|message|statusCode> }
  */
 export const deleteStoreById = catchAsync(async (id) => {
-  const category = await Store.findById(id);
 
-  // 1) Check if category doesn't exist
-  if (!category) {
+  const store = await Store.findById(mongoose.Types.ObjectId(id));
+
+  // 1) Check if store doesn't exist
+  if (!store) {
     return {
       type: 'Error',
       message: 'noStoreFound',
@@ -204,11 +208,8 @@ export const deleteStoreById = catchAsync(async (id) => {
     };
   }
 
-  // 2) Destroy category image
-  destroyFile(category.imageId);
-
-  // 3) Delete category
-  await Store.findByIdAndDelete(id);
+  // 3) Delete store
+  await Store.findByIdAndDelete(mongoose.Types.ObjectId(id));
 
   // 4) If everything is OK, send date
   return {

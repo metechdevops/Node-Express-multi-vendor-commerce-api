@@ -13,6 +13,10 @@ const CategoryRequestBody = {
             type: 'string',
             required: true
           },
+          parentId: {
+            type: 'string',
+            required: false
+          },
           description: {
             type: 'string',
             required: true
@@ -45,6 +49,10 @@ const CategoryResponse201 = {
               name: {
                 type: 'string',
                 example: 'Laptop'
+              },
+              parentId: {
+                type: 'string',
+                example: "63cbab2be185e4cfb587c804"
               },
               description: {
                 type: 'string',

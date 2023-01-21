@@ -59,6 +59,10 @@ import {
 } from './store.controller';
 
 import {
+  getAllLookupData
+} from './lookup.data.controller';
+
+import {
   getAllReviews,
   getReview,
   addReview,
@@ -148,6 +152,12 @@ const storeController = {
   deleteStore
 };
 
+const lookupDataController = {
+  getAllLookupData
+};
+
+
+
 const productController = {
   getAllProducts,
   getProduct,
@@ -216,6 +226,7 @@ export {
   productController,
   categoryController,
   storeController,
+  lookupDataController,
   reviewController,
   cartController,
   orderController,
