@@ -37,7 +37,7 @@ const addProductRequestBody = {
               },
             category: {
               type: 'string',
-              example:"Category 1"
+              example:"611d08a62fc210a30ecfb75b"
             },
             unitType: {
                 type: 'string',
@@ -94,6 +94,90 @@ const addProductRequestBody = {
         }
       }
     }
+}
+
+const updateProductBody = {
+  description: 'Update product request body.',
+  content: {
+    'application/json': {
+      schema: {
+        type: 'object',
+        required: [
+          "name",
+          "description",
+          "category",
+          "unitType",
+          "unitValue",
+          "price",
+          "quantity",
+          "stores",
+          "tags",
+          "priceDiscount"
+        ],
+        properties: {
+          name: {
+            type: 'string',
+            example:"Test product"
+          },
+          description: {
+            type: 'string',
+            example:"This is test product description"
+          },
+          shortDescription: {
+              type: 'string',
+              example:"This is test product short description"
+            },
+          category: {
+            type: 'string',
+            example:"611d08a62fc210a30ecfb75b"
+          },
+          unitType: {
+              type: 'string',
+              example:"cm"
+          },
+          unitValue: {
+              type: 'string',
+              example:"10"
+          },
+          price: {
+            type: 'integer',
+            example: 200
+          },
+          priceDiscount: {
+            type: 'integer',
+            example: 10
+          },
+          quantity: {
+            type: 'integer',
+            example: 20
+          },
+          mainImage: ImageSchema,
+          images: {
+            type: 'array',
+            items: ImageSchema
+          },
+          attributes: {
+            type: 'array',
+            items: ProductAttributesSchema
+          },
+          tags: {
+              type: 'array',
+              items: {
+                  type: "string",
+                  example:"tag1, tag2, tag3"
+              }
+          },
+          stores: {
+              type: 'array',
+              items: {
+                  type: "string",
+                  example: "611f6385628e64b6ff96393c"
+              }
+          }
+        }
+      }
+    }
+  }
 }
 
 const addProduct201 = {
@@ -378,6 +462,7 @@ const addProduct400 = {
 
 module.exports = {
   addProductRequestBody,
+  updateProductBody,
   productObjectSchema,
   addProduct201,
   addProduct400

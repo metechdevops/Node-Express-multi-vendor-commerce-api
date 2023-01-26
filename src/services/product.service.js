@@ -219,13 +219,13 @@ export const updateProductDetails = catchAsync(
     }
 
     // 3) Check if user try to update colors or sizes fields
-    if (body.colors || body.sizes) {
-      return {
-        type: 'Error',
-        message: 'notColorOrSizesRoute',
-        statusCode: 401
-      };
-    }
+    // if (body.colors || body.sizes) {
+    //   return {
+    //     type: 'Error',
+    //     message: 'notColorOrSizesRoute',
+    //     statusCode: 401
+    //   };
+    // }
 
     // 3) Update product by it's ID
     const result = await Product.findByIdAndUpdate(productId, body, {

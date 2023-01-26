@@ -52,13 +52,13 @@ const productSchema = mongoose.Schema(
     },
     priceDiscount: {
       type: Number,
-      validate: {
-        validator: function (value) {
-          // this only points to current doc on NEW documnet creation
-          return value < this.price;
-        },
-        message: 'Discount price ({VALUE}) should be below regular price'
-      }
+      // validate: {
+      //   validator: function (value) {
+      //     // this only points to current doc on NEW documnet creation
+      //     return value < this.price;
+      //   },
+      //   message: 'Discount price ({VALUE}) should be below regular price'
+      // }
     },
     colors: [
       {

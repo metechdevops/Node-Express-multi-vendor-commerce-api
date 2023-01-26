@@ -2,6 +2,7 @@ import { ImageSchema } from './components/common';
 
 const {
   addProductRequestBody,
+  updateProductBody,
   productObjectSchema,
   addProduct201,
   addProduct400,
@@ -646,42 +647,7 @@ export const updateProductDetails = {
       description: 'Product ID'
     }
   ],
-  requestBody: {
-    required: true,
-    content: {
-      'application/json': {
-        schema: {
-          type: 'object',
-          properties: {
-            name: {
-              type: 'string'
-            },
-            description: {
-              type: 'string'
-            },
-            category: {
-              type: 'string'
-            },
-            price: {
-              type: 'integer'
-            },
-            priceDiscount: {
-              type: 'integer'
-            },
-            quantity: {
-              type: 'integer'
-            },
-            sold: {
-              type: 'integer'
-            },
-            isOutOfStock: {
-              type: 'boolean'
-            }
-          }
-        }
-      }
-    }
-  },
+  requestBody: updateProductBody,
   responses: {
     200: {
       description: 'Updated product details',
