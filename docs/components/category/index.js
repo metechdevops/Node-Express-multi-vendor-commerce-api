@@ -17,6 +17,10 @@ const CategoryRequestBody = {
             type: 'string',
             required: false
           },
+          isFeatured: {
+            type: 'boolean',
+            required: false
+          },
           description: {
             type: 'string',
             required: true
@@ -53,6 +57,10 @@ const CategoryResponse201 = {
               parentId: {
                 type: 'string',
                 example: "63cbab2be185e4cfb587c804"
+              },
+              isFeatured: {
+                type: 'boolean',
+                example: false
               },
               description: {
                 type: 'string',

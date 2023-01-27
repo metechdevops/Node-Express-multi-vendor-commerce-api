@@ -90,6 +90,10 @@ const productSchema = mongoose.Schema(
       type: Boolean,
       default: false
     },
+    isFeatured: {
+      type: Boolean,
+      default: false
+    },
     ratingsAverage: {
       type: Number,
       default: 4.5,

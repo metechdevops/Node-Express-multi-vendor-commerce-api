@@ -27,7 +27,7 @@ export const getAllProducts = {
       in: 'query',
       name: 'filter',
       type: 'string',
-      example: 'flawless',
+      example: '',
       description:
         'This will filter all products and select only products that contain the word you insert and search in all product fields about this word'
     },
@@ -35,7 +35,7 @@ export const getAllProducts = {
       in: 'query',
       name: 'select',
       type: 'string',
-      example: 'name, image',
+      example: '',
       description: 'Select only fields you want.'
     },
     {
@@ -58,7 +58,7 @@ export const getAllProducts = {
       in: 'query',
       name: 'page',
       type: 'string',
-      example: '2',
+      example: '1',
       description:
         'When number of products is greater than 10 products, it divides into pages each page contain 10 products.'
     }

@@ -10,10 +10,10 @@ const storeSchema = mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: 'User'
     },
-    product: {
+    product: [{
       type: mongoose.Schema.ObjectId,
       ref: 'Product'
-    },
+    }],
     name: {
       type: String,
     },

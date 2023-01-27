@@ -4,6 +4,11 @@ const imageSchema = require('./schema/common/image.schema')
 
 const categorySchema = mongoose.Schema(
   {
+    product: 
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Product'
+    },
     name: {
       type: String,
       required: true,
@@ -15,6 +20,10 @@ const categorySchema = mongoose.Schema(
     description: {
       type: String,
       required: false
+    },
+    isFeatured: {
+      type: Boolean,
+      default: false
     },
     image: imageSchema
   },

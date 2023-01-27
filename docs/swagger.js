@@ -98,14 +98,14 @@ import {
   getFavoriteList
 } from './favorite.swagger';
 
-// import {
-//   verifyDiscountCode,
-//   getDiscount,
-//   getAllDiscountCodes,
-//   generateDiscountCode,
-//   deleteDiscountCode,
-//   cancelDiscountCode
-// } from './discount.swagger';
+import {
+  verifyDiscountCode,
+  getDiscount,
+  getAllDiscountCodes,
+  generateDiscountCode,
+  deleteDiscountCode,
+  cancelDiscountCode
+} from './discount.swagger';
 
 const docs = {
   openapi: '3.0.3',
@@ -268,24 +268,24 @@ const docs = {
     '/favorite/check/{productId}': {
       get: checkProductInFavoriteList
     },
-    // '/discount': {
-    //   get: getAllDiscountCodes
-    // },
-    // '/discount/verify': {
-    //   post: verifyDiscountCode
-    // },
-    // '/discount/cancel': {
-    //   delete: cancelDiscountCode
-    // },
-    // '/discount/find': {
-    //   get: getDiscount
-    // },
-    // '/discount/generate': {
-    //   post: generateDiscountCode
-    // },
-    // '/discount/{discountId}': {
-    //   delete: deleteDiscountCode
-    // },
+    '/discount': {
+      get: getAllDiscountCodes
+    },
+    '/discount/verify': {
+      post: verifyDiscountCode
+    },
+    '/discount/cancel': {
+      delete: cancelDiscountCode
+    },
+    '/discount/find': {
+      get: getDiscount
+    },
+    '/discount/generate': {
+      post: generateDiscountCode
+    },
+    '/discount/{discountId}': {
+      delete: deleteDiscountCode
+    },
     '/cart': {
       get: getCart,
       post: addItemsToCart,

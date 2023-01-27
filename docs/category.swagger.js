@@ -84,6 +84,10 @@ export const getAllCategories = {
                       example:
                         'This category contains all products related to makeup.'
                     },
+                    isFeatured: {
+                      type: 'boolean',
+                      example: false
+                    },
                     image: ImageSchema,
                     createdAt: {
                       type: 'string',
@@ -175,6 +179,10 @@ export const getCategory = {
                       type: 'string',
                       example:
                         'This category contains all products related to makeup.'
+                    },
+                    isFeatured: {
+                      type: 'boolean',
+                      example: false
                     },
                     image: ImageSchema,
                     createdAt: {

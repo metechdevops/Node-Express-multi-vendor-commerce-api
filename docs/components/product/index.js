@@ -55,6 +55,10 @@ const addProductRequestBody = {
               type: 'integer',
               example: 10
             },
+            isFeatured: {
+              type: 'boolean',
+              example: false
+            },
             colors: {
               type: 'string',
               example: 'Red, Green, Blue'
@@ -146,6 +150,10 @@ const updateProductBody = {
           priceDiscount: {
             type: 'integer',
             example: 10
+          },
+          isFeatured: {
+            type: 'boolean',
+            example: false
           },
           quantity: {
             type: 'integer',
@@ -261,6 +269,10 @@ const addProduct201 = {
                   type: 'integer',
                   example: 15
                 },
+                isFeatured: {
+                  type: 'boolean',
+                  example: false
+                },
                 unitType: {
                     type: 'string',
                     required: false,
@@ -343,46 +355,50 @@ const productObjectSchema = {
             }
         },
         price: {
-        type: 'integer',
-        example: 3100
+          type: 'integer',
+          example: 3100
         },
         quantity: {
-        type: 'integer',
-        example: 49
+          type: 'integer',
+          example: 49
         },
         sold: {
-        type: 'integer',
-        example: 10
+          type: 'integer',
+          example: 10
         },
         isOutOfStock: {
-        type: 'boolean',
-        example: false
+          type: 'boolean',
+          example: false
         },
         ratingsAverage: {
-        type: 'integer',
-        example: 4.5
+          type: 'integer',
+          example: 4.5
         },
         ratingsQuantity: {
-        type: 'integer',
-        example: 0
+          type: 'integer',
+          example: 0
         },
         description: {
-        type: 'string',
-        example:
-            '1- Brand: Lenovo\n2- Dimensions: 319.5 x 216.7 x 15.3-16.5 mm\n3- Weight: 1.44 kg \n4- Operating system: Windows10 Home\n5- Hard Disk Capacity: 1 TB \n6- Hard Disk Interface: SSD\n7- Memory capacity: 16GB\n8- 11th Generation Intel Core i7 Processor\n9- Processor Number:  i7-1185G7 \n10- Number of Cores: 4\n11- Max Turbo Frequency: 4.8GHz\n12- 14 inches UHD (3840x2160) IPS 500nits\n13- Touchscreen:10-point Multi-touch\n14- Camera: 720P\n15- Graphic Card: Integrated Intel Iris Xe Graphics\n'
+          type: 'string',
+          example:
+              '1- Brand: Lenovo\n2- Dimensions: 319.5 x 216.7 x 15.3-16.5 mm\n3- Weight: 1.44 kg \n4- Operating system: Windows10 Home\n5- Hard Disk Capacity: 1 TB \n6- Hard Disk Interface: SSD\n7- Memory capacity: 16GB\n8- 11th Generation Intel Core i7 Processor\n9- Processor Number:  i7-1185G7 \n10- Number of Cores: 4\n11- Max Turbo Frequency: 4.8GHz\n12- 14 inches UHD (3840x2160) IPS 500nits\n13- Touchscreen:10-point Multi-touch\n14- Camera: 720P\n15- Graphic Card: Integrated Intel Iris Xe Graphics\n'
         },
         name: {
-        type: 'string',
-        example:
-            'Lenovo Yoga 9 14ITL5 Laptop - Intel Core i7-1185G7, 14 Inch UHD, 1TB SSD, 16 GB RAM, Integrated Intel Iris Xe Graphics, Windows - Shadow Black'
+          type: 'string',
+          example:
+              'Lenovo Yoga 9 14ITL5 Laptop - Intel Core i7-1185G7, 14 Inch UHD, 1TB SSD, 16 GB RAM, Integrated Intel Iris Xe Graphics, Windows - Shadow Black'
         },
         category: {
-        type: 'string',
-        example: '611ed87e7ae59e944d27920a'
+          type: 'string',
+          example: '611ed87e7ae59e944d27920a'
         },
         priceDiscount: {
-        type: 'integer',
-        example: 15
+          type: 'integer',
+          example: 15
+        },
+        isFeatured: {
+          type: 'boolean',
+          example: false
         },
         unitType: {
             type: 'string',
@@ -399,38 +415,38 @@ const productObjectSchema = {
           items: ProductAttributesSchema
         },
         priceAfterDiscount: {
-        type: 'integer',
-        example: 2635
+          type: 'integer',
+          example: 2635
         },
         colors: {
-        type: 'array',
-        items: {
+          type: 'array',
+          items: {
             type: 'string',
             example: '6145a457d495858ff0d6e8a2'
-        }
+          }
         },
         sizes: {
-        type: 'array',
-        items: {
-            type: 'string',
-            example: '6145a458d495858ff0d6e8a5'
+          type: 'array',
+          items: {
+              type: 'string',
+              example: '6145a458d495858ff0d6e8a5'
         }
         },
         seller: {
-        type: 'string',
-        example: '611f62e28fa5d0a76cefbc96'
+          type: 'string',
+          example: '611f62e28fa5d0a76cefbc96'
         },
         createdAt: {
-        type: 'string',
-        example: '2021-08-20T08:10:45.242Z'
+          type: 'string',
+          example: '2021-08-20T08:10:45.242Z'
         },
         updatedAt: {
-        type: 'string',
-        example: '2021-08-20T08:10:45.242Z'
+          type: 'string',
+          example: '2021-08-20T08:10:45.242Z'
         },
         slug: {
-        type: 'string',
-        example:
+          type: 'string',
+          example:
             'lenovo-yoga-9-14itl5-laptop-intel-core-i7-1185g7-14-inch-uhd-1tb-ssd-16-gb-ram-integrated-intel-iris-xe-graphics-windows-shadow-black'
         }
     }
