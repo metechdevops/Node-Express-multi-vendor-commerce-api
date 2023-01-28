@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const _ = require('lodash');
 
 // Utils
 import catchAsync from '../utils/catchAsync';
@@ -90,7 +91,8 @@ export const createProduct = catchAsync(async (body, files, seller) => {
     price,
     priceDiscount,
     quantity,
-    sold
+    sold,
+    productId
   } = body;
 
 
@@ -111,9 +113,11 @@ export const createProduct = catchAsync(async (body, files, seller) => {
 
   const colors = body.colors
   const sizes = body.sizes
+  const product_ID = body.productId
 
   delete body.colors
   delete body.sizes
+  delete body.productId
 
   body.price = Number(price) || 0
   body.priceDiscount = Number(priceDiscount) || 0
@@ -127,7 +131,21 @@ export const createProduct = catchAsync(async (body, files, seller) => {
   }
 
   // 4) Create product
-  let product = await Product.create(body);
+  let product = {} 
+  
+  if(product_ID){
+    product = await Product.findById(productId);
+    if (!product) {
+      return {
+        type: 'Error',
+        message: 'noProductFound',
+        statusCode: 404
+      };
+    }
+  }
+  else 
+    product = await Product.create(body);
+  
 
   // 5) Convert colors and sizes string into an array
   const colorsArray = colors.split(',').map((color) => color.trim());
@@ -178,15 +196,33 @@ export const createProduct = catchAsync(async (body, files, seller) => {
   product.colors = colorsDocIds;
   product.sizes = sizesDocIds;
 
-  await product.save();
+  
+
+  let response = {}
+  if(product_ID){
+    
+    // 2) Deep copy of two objects
+    const newObject = _.merge(product.toObject(), body);
+    // write update to database
+    await Product.updateOne({_id:mongoose.Types.ObjectId(product_ID)}, {$set: {...newObject}})
+    response = newObject
+
+  }else {
+    response = await product.save();
+  }
+
+
+  const message  = product_ID ? 'successfulProductDetails': 'successfulProductCreate';
+  const statusCode = product_ID ? 200: 201;  
 
   // 8) If everything is OK, send data
   return {
     type: 'Success',
-    message: 'successfulProductCreate',
-    statusCode: 201,
-    product
+    message: message,
+    statusCode: statusCode,
+    product: response
   };
+
 });
 
 /**

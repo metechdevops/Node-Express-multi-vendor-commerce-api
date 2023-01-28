@@ -23,16 +23,23 @@ const addProductRequestBody = {
             "priceDiscount"
           ],
           properties: {
+            productId : {
+              type: 'string',
+              example:"611d08a62fc210a30ecfb75b"
+            },
             name: {
               type: 'string',
+              maxLength: 120,
               example:"Test product"
             },
             description: {
               type: 'string',
+              maxLength: 500,
               example:"This is test product description"
             },
             shortDescription: {
                 type: 'string',
+                maxLength: 250,
                 example:"This is test product short description"
               },
             category: {

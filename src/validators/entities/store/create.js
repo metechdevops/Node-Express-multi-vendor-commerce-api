@@ -7,15 +7,15 @@ export const CreateSchema = {
         name: {
             "type": "string",
             "minLength": 1,
-            "maxLength": 70,
+            "maxLength": 90,
             "errorMessage": "First name feild is required"
         },
-        description: {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 500,
-            "errorMessage": "Description feild is required"
-        },
+        // description: {
+        //     "type": "string",
+        //     "minLength": 1,
+        //     "maxLength": 500,
+        //     "errorMessage": "Description feild is required"
+        // },
         image: {
             type: 'object',
             nullable: true,

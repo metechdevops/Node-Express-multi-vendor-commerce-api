@@ -36,6 +36,8 @@ export const CreateSchema = {
     properties: {
       name: {
         type: 'string',
+        minLength: 1,
+        maxLength: 120,
         errorMessage : "Product name feild is required"
       },
       description: {

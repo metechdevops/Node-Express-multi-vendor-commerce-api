@@ -10,7 +10,8 @@ const StoreRequestBody = {
         properties: {
           name: {
             type: 'string',
-            example: 'Lahore Store'
+            example: 'Lahore Store',
+            maxLength:"90"
           },
           city: {
             type: 'string',
