@@ -19,8 +19,7 @@ const addProductRequestBody = {
             "stores",
             "sizes",
             "tags",
-            "colors",
-            "priceDiscount"
+            "colors"
           ],
           properties: {
             productId : {
@@ -122,8 +121,7 @@ const updateProductBody = {
           "price",
           "quantity",
           "stores",
-          "tags",
-          "priceDiscount"
+          "tags"
         ],
         properties: {
           name: {
