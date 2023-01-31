@@ -12,7 +12,7 @@ import {CreateSchema} from '../validators/entities/product/create';
 import validator from '../validators/field-validator';
 
 // Model
-import { Product, Color, Size } from '../models/index';
+import { Product, Color, Size, Category, User } from '../models/index';
 
 /**
  * @desc    Query products
@@ -123,7 +123,19 @@ export const createProduct = catchAsync(async (body, files, seller) => {
   body.priceDiscount = Number(priceDiscount) || 0
   body.quantity = Number(quantity) || 0
   body.sold = Number(sold) || 0
-  body.seller = seller
+
+  // Get Category Info
+  const category  = await Category.findById(body.category);
+  if(category){
+    body.category = {'id':category._id,name:category.name}
+  }
+  
+  // Get Product Seller Info
+  const sellerInfo  = await User.findById(seller)
+  if(sellerInfo){
+    body.seller = {'id':sellerInfo._id,name:`${sellerInfo.firstName} ${sellerInfo.lastName}`}
+  }
+  // body.seller = seller
 
 
   if (priceDiscount !== 0) {

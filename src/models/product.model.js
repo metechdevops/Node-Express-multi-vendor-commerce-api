@@ -33,12 +33,20 @@ const productSchema = mongoose.Schema(
     tags:[String],
     attributes: [productAttributes],
     category: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Category'
+      id: {
+        type: String
+      },
+      name : {
+        type: String
+      } 
     },
     seller: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'User'
+      id: {
+        type: String
+      },
+      name : {
+        type: String
+      } 
     },
     price: {
       type: Number,

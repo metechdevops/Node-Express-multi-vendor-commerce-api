@@ -267,8 +267,17 @@ const addProduct201 = {
                     'Lenovo Yoga 9 14ITL5 Laptop - Intel Core i7-1185G7, 14 Inch UHD, 1TB SSD, 16 GB RAM, Integrated Intel Iris Xe Graphics, Windows - Shadow Black'
                 },
                 category: {
-                  type: 'string',
-                  example: '611ed87e7ae59e944d27920a'
+                  type: 'object',
+                  properties : {
+                    id : {
+                      type: 'string',
+                      example:"611d08a62fc210a30ecfb75b"
+                    },
+                    name : {
+                      type: 'string',
+                      example:"Test Category"
+                    }
+                  }
                 },
                 priceDiscount: {
                   type: 'integer',
@@ -307,8 +316,17 @@ const addProduct201 = {
                   }
                 },
                 seller: {
-                  type: 'string',
-                  example: '611f62e28fa5d0a76cefbc96'
+                  type: 'object',
+                  properties : {
+                    id : {
+                      type: 'string',
+                      example:"611d08a62fc210a30ecfb75b"
+                    },
+                    name : {
+                      type: 'string',
+                      example:"Test Category"
+                    }
+                  }
                 },
                 createdAt: {
                   type: 'string',
@@ -394,8 +412,17 @@ const productObjectSchema = {
               'Lenovo Yoga 9 14ITL5 Laptop - Intel Core i7-1185G7, 14 Inch UHD, 1TB SSD, 16 GB RAM, Integrated Intel Iris Xe Graphics, Windows - Shadow Black'
         },
         category: {
-          type: 'string',
-          example: '611ed87e7ae59e944d27920a'
+          type: 'object',
+          properties : {
+            id : {
+              type: 'string',
+              example:"611d08a62fc210a30ecfb75b"
+            },
+            name : {
+              type: 'string',
+              example:"Test Category"
+            }
+          }
         },
         priceDiscount: {
           type: 'integer',
@@ -438,8 +465,17 @@ const productObjectSchema = {
         }
         },
         seller: {
-          type: 'string',
-          example: '611f62e28fa5d0a76cefbc96'
+          type: 'object',
+          properties : {
+            id : {
+              type: 'string',
+              example:"611d08a62fc210a30ecfb75b"
+            },
+            name : {
+              type: 'string',
+              example:"Test Category"
+            }
+          }
         },
         createdAt: {
           type: 'string',
