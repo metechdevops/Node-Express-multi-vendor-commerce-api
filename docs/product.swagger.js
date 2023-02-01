@@ -33,6 +33,38 @@ export const getAllProducts = {
     },
     {
       in: 'query',
+      name: 'isFeatured',
+      type: 'boolean',
+      example: 'false',
+      description:
+        'This will filter all featured products set by admin '
+    },
+    {
+      in: 'query',
+      name: 'category',
+      type: 'string',
+      example: '',
+      description:
+        'This will filter all products by admin specific category'
+    },
+    {
+      in: 'query',
+      name: 'seller',
+      type: 'string',
+      example: '',
+      description:
+        'This will filter all products by admin specific seller'
+    },
+    {
+      in: 'query',
+      name: 'isPopular',
+      type: 'boolean',
+      example: 'false',
+      description:
+        'This will filter all top rated popular products'
+    },
+    {
+      in: 'query',
       name: 'select',
       type: 'string',
       example: '',

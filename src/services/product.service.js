@@ -4,7 +4,7 @@ const _ = require('lodash');
 // Utils
 import catchAsync from '../utils/catchAsync';
 import dataUri from '../utils/datauri';
-import APIFeatures from '../utils/apiFeatures';
+import {APIFeatures,productListing} from '../utils/apiFeatures';
 import { uploadFile, destroyFile } from '../utils/cloudinary';
 
 // Validation 
@@ -20,12 +20,13 @@ import { Product, Color, Size, Category, User } from '../models/index';
  * @returns { Object<type|message|statusCode|products> }
  */
 export const queryProducts = catchAsync(async (req) => {
+  
   const populateQuery = [
     { path: 'colors', select: 'color' },
-    { path: 'sizes', select: 'size' }
-  ];
+    { path: 'sizes', select: 'size' },
+  ]; 
 
-  const products = await APIFeatures(req, Product, populateQuery);
+  const products = await productListing(req, Product, populateQuery);
 
   // 1) Check if porducts doesn't exist
   if (!products) {
