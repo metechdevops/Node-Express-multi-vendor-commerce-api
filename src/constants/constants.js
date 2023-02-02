@@ -1,6 +1,6 @@
 module.exports = {
   
-  SUPPORTED_IMAGES: [".jpg", ".png", ".jpeg", ".PNG", ".JPG", ".JPEG"],
+  SUPPORTED_IMAGES: [".jpg", ".png", ".jpeg", ".PNG", ".JPG", ".JPEG",".webp",".WEBP"],
   SUPPORTED_DOCUMENTS: [
     ".pdf",
     ".txt",
@@ -12,6 +12,14 @@ module.exports = {
     ".DOC",
     ".DOCX",
     ".CSV",
+    ".jpg", 
+    ".png", 
+    ".jpeg", 
+    ".PNG", 
+    ".JPG", 
+    ".JPEG",
+    ".webp",
+    ".WEBP"
   ],
   USER_ROLE: {
     ADMIN:"admin",

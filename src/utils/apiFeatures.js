@@ -116,8 +116,9 @@ export const productListing = catchAsync(async (req, model, populate) => {
   if (isFeaturedProduct)
     queryStr['isFeatured'] = isFeaturedProduct
 
-  // Finding resource
+  // Finding resource and Document Count
   query = model.find(queryStr);
+  const totalRecords = await model.countDocuments();
 
   if (!query) {
     throw new AppError('No Data Found', 400);
@@ -129,19 +130,17 @@ export const productListing = catchAsync(async (req, model, populate) => {
     query = query.select(fields);
   }
 
-  // Sort
+  // SortBy
+  const sortByKey = {};
   if (req.query.sort) {
     const sortBy = req.query.sort.split(',');
-    const obj = {};
+    
     const number = Number(sortBy[0]);
 
     sortBy.forEach((field) => {
-      obj[field] = number;
+      sortByKey[field] = number;
     });
-
-    delete obj[sortBy[0]];
-
-    query = query.sort(obj);
+    delete sortByKey[sortBy[0]];
   }
 
   // Pagination
@@ -149,7 +148,7 @@ export const productListing = catchAsync(async (req, model, populate) => {
   const limit = req.query.limit * 1 || 100;
   const skip = (page - 1) * limit;
 
-  query = query.skip(skip).limit(limit);
+  query = query.sort(sortByKey).skip(skip).limit(limit);
 
   if (populate) {
     query = query.populate(populate);
@@ -169,7 +168,14 @@ export const productListing = catchAsync(async (req, model, populate) => {
     return filterByValue(query, filter);
   }
 
-  return query;
+  const pagination = {
+      data: query,
+      currentPage: query.length > 0? page: 0,
+      totoalPage: query.length > 0? parseInt(totalRecords / limit):0,
+      totalDocs: query.length > 0?totalRecords:0
+  }
+
+  return pagination;
 });
 
 export default apiFeatures;

@@ -112,8 +112,26 @@ export const getAllProducts = {
                 example: 'Products Found Successfully.'
               },
               products: {
-                type: 'array',
-                items: productObjectSchema
+                type: 'object',
+                properties: {
+                  data: {
+                    type: 'array',
+                    items: productObjectSchema
+                  },
+                  currentPage:{
+                    type: 'number',
+                    example: 1
+                  },
+                  totalPage:{
+                    type: 'number',
+                    example: 10
+                  },
+                  totalDocs:{
+                    type: 'number',
+                    example: 100
+                  },
+                }
+
               }
             }
           }

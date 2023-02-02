@@ -54,9 +54,9 @@ router.post('/', anyMulter(), addProduct);
 
 router.patch('/:productId/details', updateProductDetails);
 
-router.patch('/:productId/main-image', anyMulter(), updateProductMainImage);
+// router.patch('/:productId/main-image', anyMulter(), updateProductMainImage);
 
-router.patch('/:productId/images', anyMulter(), updateProductImages);
+// router.patch('/:productId/images', anyMulter(), updateProductImages);
 
 router.delete('/:productId', deleteProduct);
 

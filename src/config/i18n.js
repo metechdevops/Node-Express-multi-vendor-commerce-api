@@ -5,7 +5,8 @@ export const messages = {
     profileImageRequired: 'Profile image ss required, please upload an image!',
     fieldsRequired: 'All fields are required.',
     invalidImageFormate: 'Not an image! Please upload only images. e.g[jpg|JPG|jpeg|JPEG|png|PNG|WEBP|webp]',
-    invalidDocumentFormat: 'Not an image! Please upload only images. e.g[jpg|JPG|jpeg|JPEG|png|PNG|WEBP|webp]',
+    invalidFileSize: 'The file size may be too large! Allowed file size is 10MB',
+    invalidDocumentFormate: 'Not a valid document file! Please upload only allowed files. e.g [pdf|txt|doc|docx|csv|PDF|TXT|DOC|DOCX|CSV|jpg|JPG|jpeg|JPEG|png|PNG|WEBP|webp]',
     noAttachmentFound: 'No attachments founded, Please upload your document ',
     passwordLength:
       'Password must be longer than 8 characters and contains letters, numbers, and symbols.',

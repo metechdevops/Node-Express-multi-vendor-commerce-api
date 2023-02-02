@@ -28,12 +28,14 @@ export const queryProducts = catchAsync(async (req) => {
 
   const products = await productListing(req, Product, populateQuery);
 
+
   // 1) Check if porducts doesn't exist
-  if (!products) {
+  if (products.data.length < 1) {
     return {
       type: 'Error',
       message: 'noProductsFound',
-      statusCode: 404
+      statusCode: 404,
+      products
     };
   }
 
@@ -692,7 +694,7 @@ export const deleteProduct = catchAsync(async (productId, sellerId) => {
   }
 
   // 2) Check if user isn't the owner of the product
-  if (sellerId.toString() !== product.seller.toString()) {
+  if ( sellerId.toString() !== product.seller.id.toString()) {
     return {
       type: 'Error',
       message: 'notSeller',

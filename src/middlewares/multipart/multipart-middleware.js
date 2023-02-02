@@ -61,7 +61,7 @@ const handleError = (resp, error) => {
     });
   } else {
     resp.status(400).send({
-      message: "Could not upload file(s), please verify file being uploaded.",
+      message: `Could not upload file(s), please verify file being uploaded. ${error.message}`,
       error,
     });
   }

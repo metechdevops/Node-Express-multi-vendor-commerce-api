@@ -22,13 +22,13 @@ export const createMedia = catchAsync(async (req) => {
     const {params,files, user} = req;
 
 
-    const fileValidationError = await fileFilter(req,files)
+    const {invalidFormate,message} = await fileFilter(req,files)
 
     // 4) Check file Validate method
-    if (fileValidationError) {
+    if (invalidFormate) {
       return {
         type: 'Error',
-        message: 'invalidDocumentFormat',
+        message: message,
         statusCode: 400
       };  
     }
@@ -57,7 +57,8 @@ export const createMedia = catchAsync(async (req) => {
 export const createDocumentMedia = catchAsync(async (req) => {
   
   const {params,files} = req;
-  const fileValidationError = await documentFilter(req,files)
+  const {invalidFormate,message} = await documentFilter(req,files)
+
 
 
   // 1) Check required document length.
@@ -72,10 +73,10 @@ export const createDocumentMedia = catchAsync(async (req) => {
   }
 
   // 4) Check file Validate method
-  if (fileValidationError) {
+  if (invalidFormate) {
     return {
       type: 'Error',
-      message: 'invalidDocumentFormat',
+      message: message,
       statusCode: 400
     };  
   }

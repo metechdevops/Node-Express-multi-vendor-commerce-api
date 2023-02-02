@@ -103,24 +103,41 @@ export const fileFilter = (req, files, cb) => {
     let isInValid = false 
     files.map((file) => {
         if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|WEBP|webp)$/)) {
-            req.fileValidationError = 'Only image files are allowed!';
+            req.fileValidationError = 'invalidImageFormate';
+            isInValid = true;
+        }
+
+        if (file.size > limits.fileSize) {
+            req.fileValidationError = 'invalidFileSize';
             isInValid = true;
         }
     })
 
-    return isInValid;
+    return {
+        invalidFormate:isInValid,
+        message: req.fileValidationError
+    };
 };
 
 export const documentFilter = (req, files, cb) => {
     let isInValid = false
     files.map((file) => {
         if (!file.originalname.match(/\.(pdf|txt|doc|docx|csv|PDF|TXT|DOC|DOCX|CSV|jpg|JPG|jpeg|JPEG|png|PNG|WEBP|webp)$/)) {
-            req.fileValidationError = 'Only image files are allowed!';
+            req.fileValidationError = 'invalidDocumentFormate';
+            isInValid = true;
+        }
+
+        if (file.size < limits.fileSize) {
+            req.fileValidationError = 'invalidFileSize';
             isInValid = true;
         }
     })
 
-    return isInValid;
+    // return isInValid;
+    return {
+        invalidFormate:isInValid,
+        message: req.fileValidationError
+    };
 };
 
 export const limits = {

@@ -31,7 +31,8 @@ export const getAllProducts = catchAsync(async (req, res) => {
   if (type === 'Error') {
     return res.status(statusCode).json({
       type,
-      message: req.polyglot.t(message)
+      message: req.polyglot.t(message),
+      products
     });
   }
 
