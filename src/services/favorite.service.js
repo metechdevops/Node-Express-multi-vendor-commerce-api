@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 // Utils
 import catchAsync from '../utils/catchAsync';
 
@@ -25,10 +27,25 @@ export const addFavoriteProduct = catchAsync(async (userId, productId) => {
   // 2) Get favorite data from database
   let favorite = await Favorite.findOne({ user: userId });
 
+  const favoriteData = {
+    productId:mongoose.Types.ObjectId(productId),
+    productInfo: {
+      seller:product.seller.toObject(),
+      slug:product.slug,
+      name:product.name,
+      mainImage:product.mainImage.toObject()
+    }
+  }
+
+
   // 3) Check if favorite document exists
   if (favorite) {
+    
     // Check if product already exist in favorite list
-    if (favorite.products.includes(productId)) {
+    const checkProduct = favorite.products.find((item)=> {
+      return item.productId.toString() == productId;
+    })
+    if (checkProduct) {
       return {
         type: 'Error',
         statusCode: 400,
@@ -37,7 +54,7 @@ export const addFavoriteProduct = catchAsync(async (userId, productId) => {
     }
 
     // Push the productId into the new favorite products array
-    favorite.products.push(productId);
+    favorite.products.push(favoriteData);
 
     await favorite.save();
 
@@ -51,7 +68,7 @@ export const addFavoriteProduct = catchAsync(async (userId, productId) => {
 
   // 4) Create favorite data
   await Favorite.create({
-    products: [productId],
+    products: [favoriteData],
     user: userId
   });
 

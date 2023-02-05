@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import toJSON from './plugins/index';
+const productImage = require("./schema/common/product.image.schema")
 
 const cartSchema = mongoose.Schema(
   {
@@ -17,6 +18,28 @@ const cartSchema = mongoose.Schema(
           type: mongoose.Types.ObjectId,
           ref: 'Product',
           required: true
+        },
+        productInfo:{
+          seller: {
+            id: {
+              type: String
+            },
+            name : {
+              type: String
+            } 
+          },
+          mainImage: productImage,
+          name:{
+            type: String
+          },
+          price: {
+            type: Number,
+            required: false,
+            default: 0
+          },
+          slug:{
+            type: String
+          }
         },
         selectedColor: {
           type: mongoose.Types.ObjectId,

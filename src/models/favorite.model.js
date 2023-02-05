@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 
 // Plugins
 import toJSON from './plugins/index';
+const productImage = require("./schema/common/product.image.schema")
 
 const favoriteSchema = mongoose.Schema(
   {
@@ -13,9 +14,30 @@ const favoriteSchema = mongoose.Schema(
     },
     products: [
       {
-        type: mongoose.Types.ObjectId,
-        ref: 'Product',
-        required: true
+        productId:{
+          type: mongoose.Types.ObjectId,
+          // type: String,
+          ref: 'Product',
+          required: false,
+          trim: true
+        },
+        productInfo:{
+          seller: {
+            id: {
+              type: String
+            },
+            name : {
+              type: String
+            } 
+          },
+          mainImage: productImage,
+          name:{
+            type: String
+          },
+          slug:{
+            type: String
+          }
+        },
       }
     ]
   },

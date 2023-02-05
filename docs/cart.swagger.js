@@ -1,3 +1,5 @@
+import {ImageSchema} from "./components/common/index"
+
 export const getCart = {
   tags: ['Cart'],
   description: 'This route allow logged in user/seller/admin to get his cart',
@@ -50,6 +52,37 @@ export const getCart = {
                         product: {
                           type: 'string',
                           example: '611f6385628e64b6ff96393c'
+                        },
+                        productInfo: {
+                          type: 'object',
+                          properties: {
+                            seller: {
+                              type: 'object',
+                              properties : {
+                                id : {
+                                  type: 'string',
+                                  example:"611d08a62fc210a30ecfb75b"
+                                },
+                                name : {
+                                  type: 'string',
+                                  example:"Test Category"
+                                }
+                              }
+                            },
+                            mainImage: ImageSchema,
+                            name: {
+                              type: 'string',
+                              example: 'MacBook Air (13-inch, Early 2015) 4gb 128gb'
+                            },
+                            slug: {
+                              type: 'string',
+                              example: 'macbook-air-(13-inch-early-2015)-4gb-128gb'
+                            },
+                            price: {
+                              type: 'string',
+                              example: '200'
+                            }
+                          }
                         },
                         selectedColor: {
                           type: 'object',
@@ -207,6 +240,37 @@ export const addItemsToCart = {
                         product: {
                           type: 'string',
                           example: '611f6385628e64b6ff96393c'
+                        },
+                        productInfo: {
+                          type: 'object',
+                          properties: {
+                            seller: {
+                              type: 'object',
+                              properties : {
+                                id : {
+                                  type: 'string',
+                                  example:"611d08a62fc210a30ecfb75b"
+                                },
+                                name : {
+                                  type: 'string',
+                                  example:"Test Category"
+                                }
+                              }
+                            },
+                            mainImage: ImageSchema,
+                            name: {
+                              type: 'string',
+                              example: 'MacBook Air (13-inch, Early 2015) 4gb 128gb'
+                            },
+                            slug: {
+                              type: 'string',
+                              example: 'macbook-air-(13-inch-early-2015)-4gb-128gb'
+                            },
+                            price: {
+                              type: 'string',
+                              example: '200'
+                            }
+                          }
                         },
                         selectedColor: {
                           type: 'object',
@@ -381,6 +445,37 @@ export const increaseProductQuantityByOne = {
                           type: 'string',
                           example: '611f6385628e64b6ff96393c'
                         },
+                        productInfo: {
+                          type: 'object',
+                          properties: {
+                            seller: {
+                              type: 'object',
+                              properties : {
+                                id : {
+                                  type: 'string',
+                                  example:"611d08a62fc210a30ecfb75b"
+                                },
+                                name : {
+                                  type: 'string',
+                                  example:"Test Category"
+                                }
+                              }
+                            },
+                            mainImage: ImageSchema,
+                            name: {
+                              type: 'string',
+                              example: 'MacBook Air (13-inch, Early 2015) 4gb 128gb'
+                            },
+                            slug: {
+                              type: 'string',
+                              example: 'macbook-air-(13-inch-early-2015)-4gb-128gb'
+                            },
+                            price: {
+                              type: 'string',
+                              example: '200'
+                            }
+                          }
+                        },
                         selectedColor: {
                           type: 'object',
                           properties: {
@@ -541,6 +636,37 @@ export const reduceProductQuantityByOne = {
                         product: {
                           type: 'string',
                           example: '611f6385628e64b6ff96393c'
+                        },
+                        productInfo: {
+                          type: 'object',
+                          properties: {
+                            seller: {
+                              type: 'object',
+                              properties : {
+                                id : {
+                                  type: 'string',
+                                  example:"611d08a62fc210a30ecfb75b"
+                                },
+                                name : {
+                                  type: 'string',
+                                  example:"Test Category"
+                                }
+                              }
+                            },
+                            mainImage: ImageSchema,
+                            name: {
+                              type: 'string',
+                              example: 'MacBook Air (13-inch, Early 2015) 4gb 128gb'
+                            },
+                            slug: {
+                              type: 'string',
+                              example: 'macbook-air-(13-inch-early-2015)-4gb-128gb'
+                            },
+                            price: {
+                              type: 'string',
+                              example: '200'
+                            }
+                          }
                         },
                         selectedColor: {
                           type: 'object',

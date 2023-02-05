@@ -1,3 +1,5 @@
+import {ImageSchema} from "./components/common/index"
+
 export const addFavoriteProduct = {
   tags: ['Favorite'],
   description:
@@ -144,7 +146,40 @@ export const getFavoriteList = {
                   products: {
                     type: 'array',
                     items: {
-                      example: '611f6385628e64b6ff96393c'
+                      type:'object',
+                      properties:{
+                        productId: {
+                          type: 'string',
+                          example: '613a6902c5fcab984501f7ee'
+                        },
+                        productInfo: {
+                          type: 'object',
+                          properties: {
+                            seller: {
+                              type: 'object',
+                              properties : {
+                                id : {
+                                  type: 'string',
+                                  example:"611d08a62fc210a30ecfb75b"
+                                },
+                                name : {
+                                  type: 'string',
+                                  example:"Test Category"
+                                }
+                              }
+                            },
+                            mainImage: ImageSchema,
+                            name: {
+                              type: 'string',
+                              example: 'MacBook Air (13-inch, Early 2015) 4gb 128gb'
+                            },
+                            slug: {
+                              type: 'string',
+                              example: 'macbook-air-(13-inch-early-2015)-4gb-128gb'
+                            }
+                          }
+                        },
+                      }
                     }
                   }
                 }

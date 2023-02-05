@@ -168,10 +168,12 @@ export const productListing = catchAsync(async (req, model, populate) => {
     return filterByValue(query, filter);
   }
 
+  const totalPage = query.length > 0? Math.ceil(totalRecords / limit):0; 
+
   const pagination = {
       data: query,
       currentPage: query.length > 0? page: 0,
-      totoalPage: query.length > 0? parseInt(totalRecords / limit):0,
+      totoalPage: totalPage,
       totalDocs: query.length > 0?totalRecords:0
   }
 

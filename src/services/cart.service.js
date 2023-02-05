@@ -27,7 +27,14 @@ export const addProductToCart = catchAsync(
       };
     }
 
-    const { priceAfterDiscount } = product;
+    const { 
+      priceAfterDiscount, 
+      seller, 
+      mainImage, 
+      name, 
+      price, 
+      slug 
+    } = product;
 
     // 2) Check if cart exist
     if (cart) {
@@ -66,6 +73,8 @@ export const addProductToCart = catchAsync(
 
         cart.totalQuantity += quantity;
         cart.totalPrice += priceAfterDiscount * quantity;
+
+
       } else {
         return {
           type: 'Error',
@@ -95,7 +104,14 @@ export const addProductToCart = catchAsync(
           selectedColor: selectedColor,
           selectedSize: selectedSize,
           totalProductQuantity: quantity,
-          totalProductPrice: priceAfterDiscount * quantity
+          totalProductPrice: priceAfterDiscount * quantity,
+          productInfo:{
+            seller:seller,
+            mainImage:mainImage.toObject(),
+            name,
+            price,
+            slug
+          }
         }
       ],
       totalQuantity: quantity,
