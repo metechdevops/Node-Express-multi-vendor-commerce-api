@@ -138,8 +138,9 @@ export const createProduct = catchAsync(async (body, files, seller) => {
   if(sellerInfo){
     body.seller = {'id':sellerInfo._id,name:`${sellerInfo.firstName} ${sellerInfo.lastName}`}
   }
-  // body.seller = seller
 
+
+  body.priceAfterDiscount = Number(price);
 
   if (priceDiscount !== 0) {
     body.priceAfterDiscount = Number(price) - (Number(price) / 100) * Number(priceDiscount);
