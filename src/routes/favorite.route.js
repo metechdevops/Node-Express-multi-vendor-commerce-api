@@ -23,8 +23,8 @@ router
   .post(protect, addFavoriteProduct)
   .get(protect, getFavoriteList);
 
-router.delete('/:id', protect, deleteProductFromFavorite);
+router.delete('/:productId', protect, deleteProductFromFavorite);
 
-router.get('/check/:id', protect, checkProductInFavoriteList);
+router.get('/check/:productId', protect, checkProductInFavoriteList);
 
 export default router;

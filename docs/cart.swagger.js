@@ -194,11 +194,11 @@ export const addItemsToCart = {
             },
             selectedColor: {
               type: 'string',
-              required: true
+              required: false
             },
             selectedSize: {
               type: 'string',
-              required: true
+              required: false
             }
           }
         }
@@ -396,14 +396,14 @@ export const increaseProductQuantityByOne = {
               type: 'string',
               required: true
             },
-            selectedColor: {
-              type: 'string',
-              required: true
-            },
-            selectedSize: {
-              type: 'string',
-              required: true
-            }
+            // selectedColor: {
+            //   type: 'string',
+            //   required: true
+            // },
+            // selectedSize: {
+            //   type: 'string',
+            //   required: true
+            // }
           }
         }
       }
@@ -588,14 +588,14 @@ export const reduceProductQuantityByOne = {
               type: 'string',
               required: true
             },
-            selectedColor: {
-              type: 'string',
-              required: true
-            },
-            selectedSize: {
-              type: 'string',
-              required: true
-            }
+            // selectedColor: {
+            //   type: 'string',
+            //   required: true
+            // },
+            // selectedSize: {
+            //   type: 'string',
+            //   required: true
+            // }
           }
         }
       }
@@ -766,31 +766,31 @@ export const deleteProductFromCart = {
     },
     {
       in: 'path',
-      name: 'id',
+      name: 'productId',
       type: 'integer',
       description: 'Product ID'
     }
   ],
-  requestBody: {
-    required: true,
-    content: {
-      'application/json': {
-        schema: {
-          type: 'object',
-          properties: {
-            selectedColor: {
-              type: 'string',
-              required: true
-            },
-            selectedSize: {
-              type: 'string',
-              required: true
-            }
-          }
-        }
-      }
-    }
-  },
+  // requestBody: {
+  //   required: true,
+  //   content: {
+  //     'application/json': {
+  //       schema: {
+  //         type: 'object',
+  //         properties: {
+  //           selectedColor: {
+  //             type: 'string',
+  //             required: true
+  //           },
+  //           selectedSize: {
+  //             type: 'string',
+  //             required: true
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // },
   responses: {
     200: {
       description: 'Delete Product From Cart',

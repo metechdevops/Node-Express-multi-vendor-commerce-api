@@ -43,13 +43,13 @@ const cartSchema = mongoose.Schema(
         },
         selectedColor: {
           type: mongoose.Types.ObjectId,
-          ref: 'Color',
-          required: true
+          // ref: 'Color',
+          required: false
         },
         selectedSize: {
           type: mongoose.Types.ObjectId,
-          ref: 'Size',
-          required: true
+          // ref: 'Size',
+          required: false
         },
         totalProductQuantity: {
           type: Number,

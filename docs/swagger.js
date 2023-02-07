@@ -297,7 +297,7 @@ const docs = {
     '/cart/reduce-one': {
       patch: reduceProductQuantityByOne
     },
-    '/cart/:productId': {
+    '/cart/{productId}': {
       delete: deleteProductFromCart
     },
     '/order': {

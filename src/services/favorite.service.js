@@ -135,10 +135,16 @@ export const deleteProductFromFavorite = catchAsync(
     }
 
     // 2) Check if favorite list includes the productId
-    if (favorite.products.includes(productId)) {
+    const checkProduct = favorite.products.find((favoriteProduct) => {
+      return favoriteProduct.productId.toString() == productId;
+    })
+
+    if (checkProduct) {
+
       favorite.products = favorite.products.filter(
-        (item) => item.toString() !== productId.toString()
+        (item) => item.productId.toString() !== productId.toString()
       );
+
     } else {
       return {
         type: 'Error',
@@ -178,7 +184,11 @@ export const checkProductInFavoriteList = catchAsync(
     }
 
     // 2) Check if favorite list includes the productId
-    if (!favorite.products.includes(productId)) {
+    const checkProduct = favorite.products.find((favoriteProduct) => {
+      return favoriteProduct.productId.toString() == productId;
+    })
+
+    if (!checkProduct) {
       return {
         type: 'Error',
         statusCode: 404,

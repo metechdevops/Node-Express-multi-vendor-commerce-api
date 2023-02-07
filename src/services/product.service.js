@@ -140,7 +140,7 @@ export const createProduct = catchAsync(async (body, files, seller) => {
   }
 
 
-  body.priceAfterDiscount = Number(price);
+  body['priceAfterDiscount'] = Number(price);
 
   if (priceDiscount !== 0) {
     body.priceAfterDiscount = Number(price) - (Number(price) / 100) * Number(priceDiscount);

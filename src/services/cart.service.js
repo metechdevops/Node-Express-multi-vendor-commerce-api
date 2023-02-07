@@ -36,6 +36,7 @@ export const addProductToCart = catchAsync(
       slug 
     } = product;
 
+    
     // 2) Check if cart exist
     if (cart) {
       // Find product index in the cart
@@ -46,20 +47,22 @@ export const addProductToCart = catchAsync(
       // Check product index
       if (indexFound !== -1 && quantity <= 0) {
         cart.items.splice(indexFound, 1);
-      } else if (
-        indexFound !== -1 &&
-        cart.items[indexFound].selectedColor.toString() ===
-          selectedColor.toString() &&
-        cart.items[indexFound].selectedSize.toString() ===
-          selectedSize.toString()
+      } 
+      else if (
+        indexFound !== -1 
+        // && cart.items[indexFound].selectedColor.toString() === selectedColor.toString() 
+        // && cart.items[indexFound].selectedSize.toString() === selectedSize.toString()
       ) {
+
         // In case product exist in the cart and have the same color and size.
         cart.items[indexFound].totalProductQuantity += quantity;
         cart.items[indexFound].totalProductPrice +=
           priceAfterDiscount * quantity;
         cart.totalQuantity += quantity;
         cart.totalPrice += priceAfterDiscount * quantity;
-      } else if (quantity > 0) {
+      } 
+      else if (quantity > 0) {
+        
         // In case product doesn't exist & there is other products in the cart
         // then push the new product to the items array in the cart
         // Update totalQuantity & totalPrice
@@ -68,7 +71,14 @@ export const addProductToCart = catchAsync(
           selectedColor: selectedColor,
           selectedSize: selectedSize,
           totalProductQuantity: quantity,
-          totalProductPrice: priceAfterDiscount * quantity
+          totalProductPrice: priceAfterDiscount * quantity,
+          productInfo:{
+            seller:seller,
+            mainImage:mainImage.toObject(),
+            name,
+            price,
+            slug
+          }
         });
 
         cart.totalQuantity += quantity;
@@ -172,33 +182,28 @@ export const reduceByOne = catchAsync(
     // 4) Update cart & product data
     for (const indexFound of indexesFound) {
       if (
-        cart.items[indexFound].totalProductQuantity === 1 &&
-        cart.items[indexFound].selectedColor._id.toString() ===
-          selectedColor.toString() &&
-        cart.items[indexFound].selectedSize._id.toString() ===
-          selectedSize.toString()
+        cart.items[indexFound].totalProductQuantity === 1 
+        // && cart.items[indexFound].selectedColor._id.toString() === selectedColor.toString() 
+        // && cart.items[indexFound].selectedSize._id.toString() === selectedSize.toString()
       ) {
         cart.items.splice(indexFound, 1);
         cart.totalQuantity -= 1;
         cart.totalPrice -= priceAfterDiscount;
-      } else if (
-        cart.items[indexFound].selectedColor._id.toString() ===
-          selectedColor.toString() &&
-        cart.items[indexFound].selectedSize._id.toString() ===
-          selectedSize.toString()
-      ) {
-        const updatedProductTotalQuantity =
-          cart.items[indexFound].totalProductQuantity - 1;
-        const updatedProductTotalPrice =
-          cart.items[indexFound].totalProductPrice - priceAfterDiscount;
+      } else 
+      // if (
+      //   cart.items[indexFound].selectedColor._id.toString() === selectedColor.toString() &&
+      //   cart.items[indexFound].selectedSize._id.toString() === selectedSize.toString()) 
+      {
+        const updatedProductTotalQuantity = cart.items[indexFound].totalProductQuantity - 1;
+        const updatedProductTotalPrice = cart.items[indexFound].totalProductPrice - priceAfterDiscount;
         const updatedCartTotalQuantity = cart.totalQuantity - 1;
         const updatedCartTotalPrice = cart.totalPrice - priceAfterDiscount;
 
-        cart.items[indexFound].totalProductQuantity =
-          updatedProductTotalQuantity;
+        cart.items[indexFound].totalProductQuantity = updatedProductTotalQuantity;
         cart.items[indexFound].totalProductPrice = updatedProductTotalPrice;
         cart.totalQuantity = updatedCartTotalQuantity;
         cart.totalPrice = updatedCartTotalPrice;
+
       }
     }
 
@@ -268,12 +273,12 @@ export const increaseByOne = catchAsync(
 
     // 5) Update cart & product data
     for (const indexFound of indexesFound) {
-      if (
-        cart.items[indexFound].selectedColor._id.toString() ===
-          selectedColor.toString() &&
-        cart.items[indexFound].selectedSize._id.toString() ===
-          selectedSize.toString()
-      ) {
+      // if (
+      //   cart.items[indexFound].selectedColor._id.toString() ===
+      //     selectedColor.toString() &&
+      //   cart.items[indexFound].selectedSize._id.toString() ===
+      //     selectedSize.toString()
+      // ) {
         const updatedProductTotalQuantity =
           cart.items[indexFound].totalProductQuantity + 1;
         const updatedProductTotalPrice =
@@ -290,7 +295,7 @@ export const increaseByOne = catchAsync(
           cart.totalQuantity = updatedCartTotalQuantity;
           cart.totalPrice = updatedCartTotalPrice;
         }
-      }
+      // }
     }
 
     // 6) Save updated data
@@ -396,21 +401,20 @@ export const deleteItem = catchAsync(
     }
 
     const indexesFound = cart.items.reduce((a, e, i) => {
-      if (e.product.toString() === productId.toString()) a.push(i);
+      if (e.product._id.toString() === productId.toString()) a.push(i);
       return a;
     }, []);
 
     for (const indexFound of indexesFound) {
-      if (
-        cart.items[indexFound].selectedColor._id.toString() ===
-          selectedColor.toString() &&
-        cart.items[indexFound].selectedSize._id.toString() ===
-          selectedSize.toString()
-      ) {
-        const totalPrice =
-          cart.totalPrice - cart.items[indexFound].totalProductPrice;
-        const totalQuantity =
-          cart.totalQuantity - cart.items[indexFound].totalProductQuantity;
+      
+      // if (
+      //   cart.items[indexFound].selectedColor._id.toString() ===
+      //     selectedColor.toString() &&
+      //   cart.items[indexFound].selectedSize._id.toString() ===
+      //     selectedSize.toString()
+      // ) {
+        const totalPrice = cart.totalPrice - cart.items[indexFound].totalProductPrice;
+        const totalQuantity = cart.totalQuantity - cart.items[indexFound].totalProductQuantity;
 
         // await cart.children.id(itemId).remove();
 
@@ -422,8 +426,8 @@ export const deleteItem = catchAsync(
             $pull: {
               items: {
                 product: productId,
-                selectedColor: selectedColor,
-                selectedSize: selectedSize
+                // selectedColor: selectedColor,
+                // selectedSize: selectedSize
               }
             },
             totalPrice,
@@ -431,7 +435,7 @@ export const deleteItem = catchAsync(
           },
           { new: true }
         );
-      }
+      // }
     }
 
     // 4) If everything is OK, send data

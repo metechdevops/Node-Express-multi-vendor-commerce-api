@@ -71,7 +71,7 @@ export const addFavoriteProduct = catchAsync(async (req, res) => {
 export const deleteProductFromFavorite = catchAsync(async (req, res) => {
   // 1) Calling deleteProductFromFavorite service
   const { type, message, statusCode } =
-    await favoriteService.deleteProductFromFavorite(req.user.id, req.params.id);
+    await favoriteService.deleteProductFromFavorite(req.user.id, req.params.productId);
 
   // 2) Check if something went wrong
   if (type === 'Error') {
@@ -101,7 +101,7 @@ export const checkProductInFavoriteList = catchAsync(async (req, res) => {
   const { type, message, statusCode } =
     await favoriteService.checkProductInFavoriteList(
       req.user.id,
-      req.params.id
+      req.params.productId
     );
 
   // 2) Check if something went wrong
