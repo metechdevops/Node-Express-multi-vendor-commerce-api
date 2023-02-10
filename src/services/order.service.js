@@ -104,22 +104,22 @@ export const createOrder = catchAsync(async (body, user) => {
   }
 
   // 7) Create stripe card token
-  const token = await stripe.tokens.create({
-    card: {
-      number: cardNumber,
-      exp_month: expMonth,
-      exp_year: expYear,
-      cvc
-    }
-  });
+  // const token = await stripe.tokens.create({
+  //   card: {
+  //     number: cardNumber,
+  //     exp_month: expMonth,
+  //     exp_year: expYear,
+  //     cvc
+  //   }
+  // });
 
   // 8) Create stripe charge
-  const charge = stripe.charges.create({
-    amount: Math.round(cart.totalPrice),
-    currency: 'usd',
-    source: token.id,
-    description: 'Charge For Products'
-  });
+  // const charge = stripe.charges.create({
+  //   amount: Math.round(cart.totalPrice),
+  //   currency: 'usd',
+  //   source: token.id,
+  //   description: 'Charge For Products'
+  // });
 
   // 9) Create order with payment method card
   const order = await Order.create({
@@ -130,7 +130,8 @@ export const createOrder = catchAsync(async (body, user) => {
     paidAt: moment(),
     shippingAddress,
     paymentMethod,
-    paymentStripeId: charge.id,
+    paymentStripeId: "",
+    // paymentStripeId: charge.id,
     phone
   });
 

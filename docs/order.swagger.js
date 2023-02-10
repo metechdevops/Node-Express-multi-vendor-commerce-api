@@ -12,7 +12,7 @@ export const getAllOrders = {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     },
     {
       in: 'query',
@@ -216,7 +216,7 @@ export const getOrder = {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     },
     {
       in: 'path',
@@ -741,7 +741,7 @@ export const cancelOrder = {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     },
     {
       in: 'path',
