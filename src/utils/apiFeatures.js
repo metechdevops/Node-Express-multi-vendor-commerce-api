@@ -82,7 +82,8 @@ const apiFeatures = catchAsync(async (req, model, populate) => {
 export const productListing = catchAsync(async (req, model, populate) => {
   let query;
 
-  const {isFeatured,category,seller} = req.query
+  const {isFeatured,category,seller,filter} = req.query
+  const search = filter;
   const sellerId = seller;
   const categoryId = category;
   const isFeaturedProduct = isFeatured;
@@ -107,6 +108,12 @@ export const productListing = catchAsync(async (req, model, populate) => {
 
   queryStr = JSON.parse(queryStr)
 
+  const regex = new RegExp(["", search, ""].join(""), "i");
+
+  if (search)
+    queryStr['name'] = {$regex : regex}
+
+
   if (sellerId)
     queryStr['seller.id'] = sellerId
 
@@ -118,7 +125,8 @@ export const productListing = catchAsync(async (req, model, populate) => {
 
   // Finding resource and Document Count
   query = model.find(queryStr);
-  const totalRecords = await model.countDocuments();
+  const totalRecords = await model.countDocuments(queryStr);
+
 
   if (!query) {
     throw new AppError('No Data Found', 400);
@@ -156,17 +164,6 @@ export const productListing = catchAsync(async (req, model, populate) => {
 
   // Executing query
   query = await query;
-
-  const filterByValue = (array, value) =>
-    array.filter(
-      (data) =>
-        JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1
-    );
-
-  if (req.query.filter) {
-    const filter = req.query.filter.split(',').join(' ');
-    return filterByValue(query, filter);
-  }
 
   const totalPage = query.length > 0? Math.ceil(totalRecords / limit):0; 
 
