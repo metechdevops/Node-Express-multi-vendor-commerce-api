@@ -418,44 +418,64 @@ export const createNewOrder = {
               properties: {
                 address: {
                   type: 'string',
+                  example: "lahore",
                   required: true
                 },
                 city: {
                   type: 'string',
+                  example: "lahore",
+                  required: true
+                },
+                state: {
+                  type: 'string',
+                  example: "punjab",
                   required: true
                 },
                 country: {
                   type: 'string',
+                  example: "pakistan",
                   required: true
                 },
                 postalCode: {
                   type: 'string',
+                  example: "54000",
                   required: true
                 }
               }
             },
             paymentMethod: {
               type: 'string',
+              example: "card",
               required: true
             },
             phone: {
               type: 'string',
+              example: "+92333333333",
               required: true
             },
             cardNumber: {
               type: 'string',
+              example: "5115010000000001",
+              required: true
+            },
+            cardHolderName: {
+              type: 'string',
+              example: "John Doe",
               required: true
             },
             expMonth: {
               type: 'integer',
+              example: 12,
               required: true
             },
             expYear: {
               type: 'integer',
+              example: 2025,
               required: true
             },
             cvc: {
-              type: 'string',
+              type: 'integer',
+              example: 123,
               required: true
             }
           }
@@ -466,7 +486,7 @@ export const createNewOrder = {
   responses: {
     201: {
       description:
-        'Create new order | paymentMethod: "card" | cardNumber: 4242424242424242 | expMonth: 4 | expYear: 2022 |g cvc: 247',
+        'Create new order | paymentMethod: "card" | cardNumber: 4242424242424242 | cardHolderName: 4242424242424242 | expMonth: 4 | expYear: 2022 |g cvc: 247',
       content: {
         'application/json': {
           schema: {
@@ -598,6 +618,43 @@ export const createNewOrder = {
                     type: 'string',
                     example: '01004468937'
                   }
+                }
+              },
+              paymentPage: {
+                type: 'object',
+                properties: {
+                  TransactionType: {
+                    type: 'number',
+                    example: 1
+                  },
+                  Approved: {
+                    type: 'boolean',
+                    example: false
+                  },
+                  TransactionIdentifier: {
+                    type: 'string',
+                    example: "63e0c4440442712dde689a4a"
+                  },
+                  IsoResponseCode: {
+                    type: 'string',
+                    example: "SP4"
+                  },
+                  ResponseMessage: {
+                    type: 'string',
+                    example: "SPI Preprocessing complete"
+                  },
+                  OrderIdentifier: {
+                    type: 'string',
+                    example: "63f3cffdfbb76cfe84dda0df"
+                  },
+                  RedirectData: {
+                    type: 'string',
+                    example: "<!DOCTYPE html><html><head></head><body><form id='powertranz_spi' name='powertranz_spi' action='https://staging.ptranz.com/api/spi/Conductor' method='POST'><input name='SpiToken' id='SpiToken' type='hidden' value='1umyy1qo69urxcaeagz6de1slqo5ro4n5thsqami954yrgixu-3plyg9wt7wz'><input name='browserLanguage' id='browserLanguage' type='hidden' value=''><input name='browserWidth' id='browserWidth' type='hidden' value=''><input name='browserHeight' id='browserHeight' type='hidden' value=''><input name='browserTimeZone' id='browserTimeZone' type='hidden' value=''><input name='browserJavaEnabled' id='browserJavaEnabled' type='hidden' value=''><input name='browserJavascriptEnabled' id='browserJavascriptEnabled' type='hidden' value=''><input name='browserColorDepth' id='browserColorDepth' type='hidden' value=''></form><script>function GetBrowserInfo(){const n=window&&window.screen?window.screen.width:'',e=window&&window.screen?window.screen.height:'',w=window&&window.screen?window.screen.colorDepth:'',o=window&&window.navigator?window.navigator.userAgent:'',i=!(!window||!window.navigator)&&navigator.javaEnabled();let a='';return window&&window.navigator&&(a=window.navigator.language?window.navigator.language:window.navigator.browserLanguage),{screenWidth:n,screenHeight:e,colorDepth:w,userAgent:o,timeZoneOffset:(new Date).getTimezoneOffset(),language:a,javaEnabled:i,javascriptEnabled:!0}}</script><script>function GetBrowserInfoAndSubmit(){var e=GetBrowserInfo();document.getElementById('browserLanguage').value=e.language,document.getElementById('browserWidth').value=e.screenWidth,document.getElementById('browserHeight').value=e.screenHeight,document.getElementById('browserTimeZone').value=e.timeZoneOffset,document.getElementById('browserJavaEnabled').value=e.javaEnabled,document.getElementById('browserJavascriptEnabled').value=e.javascriptEnabled,document.getElementById('browserColorDepth').value=e.colorDepth,document.forms[0].submit()}GetBrowserInfoAndSubmit();</script></body></html>"
+                  },
+                  SpiToken: {
+                    type: 'string',
+                    example: "1umyy1qo69urxcaeagz6de1slqo5ro4n5thsqami954yrgixu-3plyg9wt7wz"
+                  },
                 }
               }
             }

@@ -3,9 +3,12 @@
 import STRIPE_SDK from 'stripe';
 import moment from 'moment';
 
+
+
 // Utils
 import catchAsync from '../utils/catchAsync';
 import APIFeatures from '../utils/apiFeatures';
+import {processPaymentAuth} from '../utils/paymentProcessor';
 
 // Configs
 import config from '../config/config';
@@ -40,7 +43,8 @@ export const createOrder = catchAsync(async (body, user) => {
       message: 'fieldsRequired',
       statusCode: 400
     };
-  }
+  } 
+
 
   // 3) Get user cart
   const cart = await Cart.findOne({ email: user.email });
@@ -93,8 +97,7 @@ export const createOrder = catchAsync(async (body, user) => {
 
   // 5) If payment method is card then extract card data from body
   const { cardNumber, expMonth, expYear, cvc } = body;
-
-  // 6) Check if user entered card data
+  // // 6) Check if user entered card data
   if (!cardNumber || !expMonth || !expYear || !cvc) {
     return {
       type: 'Error',
@@ -102,6 +105,10 @@ export const createOrder = catchAsync(async (body, user) => {
       statusCode: 400
     };
   }
+
+
+
+
 
   // 7) Create stripe card token
   // const token = await stripe.tokens.create({
@@ -120,6 +127,8 @@ export const createOrder = catchAsync(async (body, user) => {
   //   source: token.id,
   //   description: 'Charge For Products'
   // });
+
+  
 
   // 9) Create order with payment method card
   const order = await Order.create({
@@ -152,12 +161,16 @@ export const createOrder = catchAsync(async (body, user) => {
   user.discountCode = '';
   await user.save();
 
+  // Process PowerTranz Payment in Hosted Page
+  const paymentPage = await processPaymentAuth(user,order,body)
+
   // 13) If everything is OK, send data
   return {
     type: 'Success',
     message: 'successfulOrderCreate',
     statusCode: 201,
-    order
+    order,
+    paymentPage
   };
 });
 
