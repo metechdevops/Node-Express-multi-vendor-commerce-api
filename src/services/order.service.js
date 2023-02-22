@@ -8,7 +8,7 @@ import moment from 'moment';
 // Utils
 import catchAsync from '../utils/catchAsync';
 import APIFeatures from '../utils/apiFeatures';
-import {processPaymentAuth} from '../utils/paymentProcessor';
+import { processPaymentAuth } from '../utils/paymentProcessor';
 
 // Configs
 import config from '../config/config';
@@ -25,6 +25,7 @@ const stripe = STRIPE_SDK(config.stripe.secret_key);
  * @returns { Object<type|message|statusCode|order> }
  */
 export const createOrder = catchAsync(async (body, user) => {
+  
   // 1) Extract data from parameters
   const { shippingAddress, paymentMethod, phone } = body;
   const { address, city, country, postalCode } = shippingAddress;
@@ -43,7 +44,7 @@ export const createOrder = catchAsync(async (body, user) => {
       message: 'fieldsRequired',
       statusCode: 400
     };
-  } 
+  }
 
 
   // 3) Get user cart
@@ -128,7 +129,7 @@ export const createOrder = catchAsync(async (body, user) => {
   //   description: 'Charge For Products'
   // });
 
-  
+
 
   // 9) Create order with payment method card
   const order = await Order.create({
@@ -162,7 +163,7 @@ export const createOrder = catchAsync(async (body, user) => {
   await user.save();
 
   // Process PowerTranz Payment in Hosted Page
-  const paymentPage = await processPaymentAuth(user,order,body)
+  const paymentPage = await processPaymentAuth(user, order, body)
 
   // 13) If everything is OK, send data
   return {

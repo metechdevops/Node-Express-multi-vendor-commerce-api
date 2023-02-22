@@ -23,7 +23,7 @@ export const queryProducts = catchAsync(async (req) => {
   
   const populateQuery = [
     { path: 'colors', select: 'color' },
-    { path: 'sizes', select: 'size' },
+    { path: 'sizes', select: 'size' }
   ]; 
 
   const products = await productListing(req, Product, populateQuery);

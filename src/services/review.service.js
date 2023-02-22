@@ -77,7 +77,12 @@ export const queryReviews = catchAsync(async (req) => {
     };
   }
 
-  let reviews = await APIFeatures(req, Review);
+  const populateQuery = [
+    { path: 'product', select: 'seller.name' },
+    { path: 'user', select: 'profileImage firstName lastName email' }
+  ];
+
+  let reviews = await APIFeatures(req, Review,populateQuery);
 
   // 2) Check if reviews doesn't exist
   if (reviews.length === 0) {
@@ -89,9 +94,9 @@ export const queryReviews = catchAsync(async (req) => {
   }
 
   // 3) Filter review to select only reviews of the product only
-  reviews = reviews.filter(
-    (review) => review.product.toString() === req.params.productId.toString()
-  );
+  // reviews = reviews.filter(
+  //   (review) => review.product.toString() === req.params.productId.toString()
+  // );
 
   // 4) If everything is OK, send data
   return {

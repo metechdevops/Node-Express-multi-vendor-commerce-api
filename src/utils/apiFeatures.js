@@ -25,6 +25,7 @@ const apiFeatures = catchAsync(async (req, model, populate) => {
 
   // Finding resource
   query = model.find(JSON.parse(queryStr));
+  const totalRecords = await model.countDocuments(queryStr);
 
   if (!query) {
     throw new AppError('No Data Found', 400);
@@ -65,18 +66,29 @@ const apiFeatures = catchAsync(async (req, model, populate) => {
   // Executing query
   query = await query;
 
-  const filterByValue = (array, value) =>
-    array.filter(
-      (data) =>
-        JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1
-    );
+  // const filterByValue = (array, value) =>
+  //   array.filter(
+  //     (data) =>
+  //       JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1
+  //   );
 
-  if (req.query.filter) {
-    const filter = req.query.filter.split(',').join(' ');
-    return filterByValue(query, filter);
+  // if (req.query.filter) {
+  //   const filter = req.query.filter.split(',').join(' ');
+  //   return filterByValue(query, filter);
+  // }
+
+  // Set Pagination count 
+  const totalPage = query.length > 0? Math.ceil(totalRecords / limit):0;
+  const pagination = {
+    data: query,
+    currentPage: query.length > 0? page: 0,
+    totoalPage: totalPage,
+    totalDocs: query.length > 0?totalRecords:0
   }
 
-  return query;
+  return pagination;
+
+  // return query;
 });
 
 export const productListing = catchAsync(async (req, model, populate) => {
