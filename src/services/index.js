@@ -55,6 +55,15 @@ import {
 } from './store.service';
 
 import {
+  createAddress,
+  queryAllAddress,
+  getAddress,
+  updateAddressDetails,
+  updateAddressImage,
+  deleteAddressById
+} from './address.service';
+
+import {
   queryLookupData
 } from './lookup.data.service';
 
@@ -171,6 +180,15 @@ const storeService = {
   deleteStoreById
 };
 
+const addressService = {
+  createAddress,
+  queryAllAddress,
+  getAddress,
+  updateAddressDetails,
+  updateAddressImage,
+  deleteAddressById
+};
+
 const lookupDataService = {
   queryLookupData
 };
@@ -238,6 +256,7 @@ export {
   // sellerService,
   categoryService,
   storeService,
+  addressService,
   lookupDataService,
   productService,
   reviewService,

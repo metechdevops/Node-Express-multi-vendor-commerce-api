@@ -6,7 +6,7 @@ const orderSchema = mongoose.Schema(
     products: Array,
     user: {
       type: mongoose.Types.ObjectId,
-      ref: 'users'
+      ref: 'User'
     },
     totalPrice: {
       type: Number,
@@ -58,8 +58,8 @@ const orderSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      default: 'Not Processed',
-      enum: ['Not Processed', 'Processing', 'Shipped', 'Delivered', 'Cancelled']
+      default: 'pending',
+      enum: ['pending', 'processing', 'shipped', 'delivered', 'cancelled']
     }
   },
   { timestamps: true }

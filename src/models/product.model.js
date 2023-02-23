@@ -48,6 +48,10 @@ const productSchema = mongoose.Schema(
         type: String
       } 
     },
+    sellerInfo: {
+      type: mongoose.Types.ObjectId,
+      ref: 'User'
+    },
     price: {
       type: Number,
       required: false,
@@ -106,7 +110,7 @@ const productSchema = mongoose.Schema(
     ratingsAverage: {
       type: Number,
       default: 0,
-      min: [1, 'Rating must be above 1.0'],
+      min: [0, 'Rating must be above 0'],
       max: [5, 'Rating must be below 5.0'],
       set: (val) => Math.round(val * 10) / 10
     },

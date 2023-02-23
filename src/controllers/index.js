@@ -59,6 +59,15 @@ import {
 } from './store.controller';
 
 import {
+  getAllAddress,
+  getAddress,
+  addAddress,
+  updateAddressDetails,
+  updateAddressImage,
+  deleteAddress
+} from './address.controller';
+
+import {
   getAllLookupData
 } from './lookup.data.controller';
 
@@ -152,6 +161,15 @@ const storeController = {
   deleteStore
 };
 
+const addressController = {
+  getAllAddress,
+  getAddress,
+  addAddress,
+  updateAddressDetails,
+  updateAddressImage,
+  deleteAddress
+};
+
 const lookupDataController = {
   getAllLookupData
 };
@@ -226,6 +244,7 @@ export {
   productController,
   categoryController,
   storeController,
+  addressController,
   lookupDataController,
   reviewController,
   cartController,

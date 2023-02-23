@@ -23,7 +23,8 @@ export const queryProducts = catchAsync(async (req) => {
   
   const populateQuery = [
     { path: 'colors', select: 'color' },
-    { path: 'sizes', select: 'size' }
+    { path: 'sizes', select: 'size' },
+    { path: 'sellerInfo', select: 'profileImage lastName firstName email'}
   ]; 
 
   const products = await productListing(req, Product, populateQuery);
@@ -56,7 +57,8 @@ export const queryProducts = catchAsync(async (req) => {
 export const queryProductById = catchAsync(async (productId) => {
   const populateQuery = [
     { path: 'colors', select: 'color' },
-    { path: 'sizes', select: 'size' }
+    { path: 'sizes', select: 'size' },
+    { path: 'sellerInfo', select: 'profileImage firstName lastName email' }
   ];
 
   const product = await Product.findById(productId)
@@ -134,11 +136,11 @@ export const createProduct = catchAsync(async (body, files, seller) => {
   }
   
   // Get Product Seller Info
-  const sellerInfo  = await User.findById(seller)
-  if(sellerInfo){
-    body.seller = {'id':sellerInfo._id,name:`${sellerInfo.firstName} ${sellerInfo.lastName}`}
+  const sellerObject  = await User.findById(seller)
+  if(sellerObject){
+    body.seller = {'id':sellerObject._id,name:`${sellerObject.firstName} ${sellerObject.lastName}`}
   }
-
+  body.sellerInfo = sellerObject._id
 
   body['priceAfterDiscount'] = Number(price);
 

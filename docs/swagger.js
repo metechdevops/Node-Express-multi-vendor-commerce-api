@@ -37,6 +37,14 @@ import {
 } from './store.swagger';
 
 import {
+  getAllAddress,
+  getAddress,
+  addAddress,
+  updateAddressDetails,
+  deleteAddress
+} from './address.swagger';
+
+import {
   getAllLookupData
 } from './lookup.data.swagger';
 
@@ -226,6 +234,15 @@ const docs = {
       get: getStore,
       patch: updateStoreDetails,
       delete: deleteStore
+    },
+    '/address': {
+      get: getAllAddress,
+      post: addAddress
+    },
+    '/address/{addressId}': {
+      get: getAddress,
+      patch: updateAddressDetails,
+      delete: deleteAddress
     },
     '/product': {
       get: getAllProducts,
