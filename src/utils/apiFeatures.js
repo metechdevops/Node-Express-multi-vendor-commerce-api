@@ -66,17 +66,6 @@ const apiFeatures = catchAsync(async (req, model, populate) => {
   // Executing query
   query = await query;
 
-  // const filterByValue = (array, value) =>
-  //   array.filter(
-  //     (data) =>
-  //       JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1
-  //   );
-
-  // if (req.query.filter) {
-  //   const filter = req.query.filter.split(',').join(' ');
-  //   return filterByValue(query, filter);
-  // }
-
   // Set Pagination count 
   const totalPage = query.length > 0? Math.ceil(totalRecords / limit):0;
   const pagination = {

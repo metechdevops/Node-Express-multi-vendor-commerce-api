@@ -269,7 +269,9 @@ export const queryOrders = catchAsync(async (req) => {
   req.query.user = req.user._id;
 
   const populateQuery = [
-    { path: 'user', select: 'profileImage lastName firstName email'}
+    { path: 'user', select: 'profileImage lastName firstName email'},
+    { path: 'products.selectedColor',model:'Color',select:'color'},
+    { path: 'products.selectedSize',model:'Size',select:'size'}
   ];
 
   // 1) Get all orders
