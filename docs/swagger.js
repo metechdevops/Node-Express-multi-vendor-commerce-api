@@ -321,7 +321,7 @@ const docs = {
       get: getAllOrders,
       post: createNewOrder
     },
-    '/order/{orderId}': {
+    '/order/{id}': {
       get: getOrder,
       patch: orderStatus,
       delete: cancelOrder

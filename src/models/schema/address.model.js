@@ -1,8 +1,10 @@
 // Packages
 import mongoose from 'mongoose';
 
+
 // Plugins
 import toJSON from '../plugins/index';
+import phoneSchema from '../schema/common/phone.schema';
 
 const addressSchema = mongoose.Schema(
   {
@@ -10,6 +12,23 @@ const addressSchema = mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: 'User'
     },
+    firstName: {
+      type: String,
+    },
+    lastName: {
+      type: String,
+    },
+    email: {
+      type: String,
+      trim: true,
+      lowercase: true,
+      validate(value) {
+        if (!validator.isEmail(value)) {
+          throw new Error('Invalid email');
+        }
+      }
+    },
+    phone: phoneSchema,
     city: {
       type: String,
     },

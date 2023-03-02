@@ -1,3 +1,5 @@
+import { AddressObject } from "./components/address";
+
 export const getAllOrders = {
   tags: ['Order'],
   description: 'This route allow logged in user/seller/admin get his orders',
@@ -161,27 +163,7 @@ export const getAllOrders = {
                       type: 'string',
                       example: '2021-08-24T16:11:47.502Z'
                     },
-                    shippingAddress: {
-                      type: 'object',
-                      properties: {
-                        address: {
-                          type: 'string',
-                          example: 'Toukh - Egypt'
-                        },
-                        city: {
-                          type: 'string',
-                          example: 'Toukh'
-                        },
-                        country: {
-                          type: 'string',
-                          example: 'Egypt'
-                        },
-                        postalCode: {
-                          type: 'string',
-                          example: '11311'
-                        }
-                      }
-                    },
+                    shippingAddress: AddressObject,
                     paymentMethod: {
                       type: 'string',
                       example: 'card'
@@ -189,6 +171,22 @@ export const getAllOrders = {
                     phone: {
                       type: 'string',
                       example: '01004468937'
+                    },
+                    orderTracking: {
+                      type: 'array',
+                      items: {
+                          type: 'object',
+                          properties: {
+                            status: {
+                              type: 'string',
+                              example: 'pending'
+                            },
+                            trackingDate: {
+                              type: 'string',
+                              example: '2023-03-02T20:15:42.386+00:00'
+                            }
+                          }
+                      }
                     }
                   }
                 }
@@ -330,27 +328,7 @@ export const getOrder = {
                     type: 'string',
                     example: '2021-08-24T16:11:47.502Z'
                   },
-                  shippingAddress: {
-                    type: 'object',
-                    properties: {
-                      address: {
-                        type: 'string',
-                        example: 'Toukh - Egypt'
-                      },
-                      city: {
-                        type: 'string',
-                        example: 'Toukh'
-                      },
-                      country: {
-                        type: 'string',
-                        example: 'Egypt'
-                      },
-                      postalCode: {
-                        type: 'string',
-                        example: '11311'
-                      }
-                    }
-                  },
+                  shippingAddress: AddressObject,
                   paymentMethod: {
                     type: 'string',
                     example: 'card'
@@ -358,6 +336,22 @@ export const getOrder = {
                   phone: {
                     type: 'string',
                     example: '01004468937'
+                  },
+                  orderTracking: {
+                    type: 'array',
+                    items: {
+                        type: 'object',
+                        properties: {
+                          status: {
+                            type: 'string',
+                            example: 'pending'
+                          },
+                          trackingDate: {
+                            type: 'string',
+                            example: '2023-03-02T20:15:42.386+00:00'
+                          }
+                        }
+                    }
                   }
                 }
               }
@@ -413,36 +407,7 @@ export const createNewOrder = {
         schema: {
           type: 'object',
           properties: {
-            shippingAddress: {
-              type: 'object',
-              properties: {
-                address: {
-                  type: 'string',
-                  example: "lahore",
-                  required: true
-                },
-                city: {
-                  type: 'string',
-                  example: "lahore",
-                  required: true
-                },
-                state: {
-                  type: 'string',
-                  example: "punjab",
-                  required: true
-                },
-                country: {
-                  type: 'string',
-                  example: "pakistan",
-                  required: true
-                },
-                postalCode: {
-                  type: 'string',
-                  example: "54000",
-                  required: true
-                }
-              }
-            },
+            shippingAddress: AddressObject,
             paymentMethod: {
               type: 'string',
               example: "card",
@@ -589,27 +554,7 @@ export const createNewOrder = {
                     type: 'string',
                     example: '2021-08-24T16:11:47.502Z'
                   },
-                  shippingAddress: {
-                    type: 'object',
-                    properties: {
-                      address: {
-                        type: 'string',
-                        example: 'Toukh - Egypt'
-                      },
-                      city: {
-                        type: 'string',
-                        example: 'Toukh'
-                      },
-                      country: {
-                        type: 'string',
-                        example: 'Egypt'
-                      },
-                      postalCode: {
-                        type: 'string',
-                        example: '11311'
-                      }
-                    }
-                  },
+                  shippingAddress: AddressObject,
                   paymentMethod: {
                     type: 'string',
                     example: 'card'
@@ -617,6 +562,22 @@ export const createNewOrder = {
                   phone: {
                     type: 'string',
                     example: '01004468937'
+                  },
+                  orderTracking: {
+                    type: 'array',
+                    items: {
+                        type: 'object',
+                        properties: {
+                          status: {
+                            type: 'string',
+                            example: 'pending'
+                          },
+                          trackingDate: {
+                            type: 'string',
+                            example: '2023-03-02T20:15:42.386+00:00'
+                          }
+                        }
+                    }
                   }
                 }
               },
@@ -699,7 +660,7 @@ export const orderStatus = {
               type: 'string',
               required: true,
               example:
-                'Not Processed | Processing | Shipped | Delivered | Cancelled'
+                'pending | processing | shipped | delivered | cancelled'
             }
           }
         }

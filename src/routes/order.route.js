@@ -26,6 +26,7 @@ router.route('/').get(getAllOrders).post(createOrder);
 router.route('/:id').get(getOrder).delete(cancelOrder);
 
 // Update Order Status
-router.patch('/:id', restrictedTo('admin'), orderStatus);
+router.patch('/:id', orderStatus);
+// router.patch('/:id', restrictedTo('admin'), orderStatus);
 
 export default router;

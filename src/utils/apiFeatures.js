@@ -25,7 +25,7 @@ const apiFeatures = catchAsync(async (req, model, populate) => {
 
   // Finding resource
   query = model.find(JSON.parse(queryStr));
-  const totalRecords = await model.countDocuments(queryStr);
+  const totalRecords = await model.countDocuments(JSON.parse(queryStr));
 
   if (!query) {
     throw new AppError('No Data Found', 400);

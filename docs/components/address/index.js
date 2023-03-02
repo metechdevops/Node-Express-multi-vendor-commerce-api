@@ -1,6 +1,31 @@
 const AddressObject = {
   type: 'object',
   properties: {
+    firstName: {
+      type: 'string',
+      example: 'Jam'
+    },
+    lastName: {
+      type: 'string',
+      example: 'Ahmed'
+    },
+    email: {
+      type: 'string',
+      example: 'jam@gmail.com'
+    },
+    phone: {
+      type: 'object',
+      properties: {
+        code: {
+          type: 'string',
+          example: '+92'
+        },
+        number: {
+          type: 'string',
+          example: '3034323454'
+        },
+      }
+    },
     city: {
       type: 'string',
       example: 'lahore'

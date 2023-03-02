@@ -68,7 +68,8 @@ import {
 } from './address.controller';
 
 import {
-  getAllLookupData
+  getAllLookupData,
+  checkoutPayment
 } from './lookup.data.controller';
 
 import {
@@ -171,7 +172,8 @@ const addressController = {
 };
 
 const lookupDataController = {
-  getAllLookupData
+  getAllLookupData,
+  checkoutPayment
 };
 
 

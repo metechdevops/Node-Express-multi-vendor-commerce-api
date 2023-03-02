@@ -26,5 +26,19 @@ module.exports = {
     USER:"user",
     SELLER:"seller",
   },
+  ORDER_STATUS: {
+    PENDING:"pending",
+    PROCESSING:"processing",
+    SHIPPED:"shipped",
+    DELIVERED:"delivered",
+    CANCELED:"cancelled",
+  },
+  ORDER_STATUS_ENUM : [
+    'pending',
+    'processing',
+    'shipped',
+    'delivered',
+    'cancelled'
+  ],
   S3_TEMPLATE_PATH : "https://e-cart-dev.s3.eu-west-1.amazonaws.com/email-templates/"
 };

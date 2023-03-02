@@ -5,13 +5,15 @@ import express from 'express';
 import { lookupDataController } from '../controllers/index';
 
 const {
-  getAllLookupData
+  getAllLookupData,
+  checkoutPayment,
 } = lookupDataController;
 
 // Router Initialization
 const router = express.Router();
 
 // Get All Categories Route
+router.post('/checkout', checkoutPayment);
 router.get('/', getAllLookupData);
 
 

@@ -85,18 +85,13 @@ export const queryReviews = catchAsync(async (req) => {
   let reviews = await APIFeatures(req, Review,populateQuery);
 
   // 2) Check if reviews doesn't exist
-  if (reviews.length === 0) {
+  if (reviews.data.length === 0) {
     return {
       type: 'Error',
       message: 'noReviewsFound',
       statusCode: 404
     };
   }
-
-  // 3) Filter review to select only reviews of the product only
-  // reviews = reviews.filter(
-  //   (review) => review.product.toString() === req.params.productId.toString()
-  // );
 
   // 4) If everything is OK, send data
   return {

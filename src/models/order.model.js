@@ -1,5 +1,11 @@
 import mongoose from 'mongoose';
+import { 
+  ORDER_STATUS,
+  ORDER_STATUS_ENUM 
+} from '../constants/constants';
 import toJSON from './plugins/index';
+
+import phoneSchema from './schema/common/phone.schema';
 
 const orderSchema = mongoose.Schema(
   {
@@ -30,6 +36,19 @@ const orderSchema = mongoose.Schema(
       type: Date
     },
     shippingAddress: {
+      firstName: {type: String},
+      lastName: {type: String},
+      email: {
+        type: String,
+        trim: true,
+        lowercase: true,
+        validate(value) {
+          if (!validator.isEmail(value)) {
+            throw new Error('Invalid email');
+          }
+        }
+      },
+      phone: phoneSchema,
       address: { type: String, required: true },
       city: { type: String, required: true },
       postalCode: { type: String, required: true },
@@ -58,9 +77,22 @@ const orderSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      default: 'pending',
-      enum: ['pending', 'processing', 'shipped', 'delivered', 'cancelled']
-    }
+      default: ORDER_STATUS.PENDING,
+      enum: ORDER_STATUS_ENUM
+    },
+    orderTracking: [
+      { 
+        status:{
+          type: String,
+          default: ORDER_STATUS.PENDING,
+          enum: ORDER_STATUS_ENUM
+        },
+        trackingDate: {
+          type: Date,
+          default: Date.now,
+        }
+      }
+    ]
   },
   { timestamps: true }
 );

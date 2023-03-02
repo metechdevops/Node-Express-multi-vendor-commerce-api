@@ -15,6 +15,7 @@ import config from '../config/config';
 
 // Models
 import { Order, Cart, Product } from '../models/index';
+import { ORDER_STATUS_ENUM } from '../constants/constants';
 
 const stripe = STRIPE_SDK(config.stripe.secret_key);
 
@@ -192,15 +193,7 @@ export const orderStatus = catchAsync(async (status, id) => {
   }
 
   // 2) Check if status doesn't meet the enum
-  if (
-    ![
-      'Not Processed',
-      'Processing',
-      'Shipped',
-      'Delivered',
-      'Cancelled'
-    ].includes(status)
-  ) {
+  if (!ORDER_STATUS_ENUM.includes(status)) {
     return {
       type: 'Error',
       message: 'notInStatusEnum',
@@ -250,9 +243,25 @@ export const orderStatus = catchAsync(async (status, id) => {
   // 5) Save order new status
   order.status = status;
 
+  const trackingStatus = [...order.orderTracking]
+  // 6) Update order tracking history
+  if(order.orderTracking.length == 0){
+    trackingStatus.push({
+      status
+    });
+  }else {
+    order.orderTracking.map((item) => {
+      if(item.status != status)
+        trackingStatus.push({status}); 
+    })
+  }
+  order.orderTracking = trackingStatus;
+  
+
+
   await order.save();
 
-  // 6) If everything is OK, send data
+  // 7) If everything is OK, send data
   return {
     type: 'Success',
     message: 'successfulStatusUpdate',

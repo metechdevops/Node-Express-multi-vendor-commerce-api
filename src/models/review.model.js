@@ -24,12 +24,21 @@ const reviewSchema = mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: 'User',
       required: [true, 'Review must belong to a user']
-    }
+    },
+    reviewDate: {
+      type: Date,
+      default: Date.now,
+    },
+    updatedAt: {
+      type: Date,
+      get: (date) => date,
+    },
   },
   {
     timestamps: true,
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true }
+    toJSON: { virtuals: true,getters: true,upsert: true  },
+    toObject: { virtuals: true },
+    
   }
 );
 
