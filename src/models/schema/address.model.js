@@ -1,6 +1,6 @@
 // Packages
 import mongoose from 'mongoose';
-
+import validator from 'validator';
 
 // Plugins
 import toJSON from '../plugins/index';

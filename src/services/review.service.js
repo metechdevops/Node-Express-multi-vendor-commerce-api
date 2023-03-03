@@ -82,6 +82,9 @@ export const queryReviews = catchAsync(async (req) => {
     { path: 'user', select: 'profileImage firstName lastName email' }
   ];
 
+  // Filter by product
+  req.query.product = product._id;
+
   let reviews = await APIFeatures(req, Review,populateQuery);
 
   // 2) Check if reviews doesn't exist
