@@ -81,15 +81,15 @@ import {
   deleteReview
 } from './review.swagger';
 
-// import {
-//   getAllUsers,
-//   getUser,
-//   addUser,
-//   updateUserDetails,
-//   updateUserProfileImage,
-//   deleteUser,
-//   deleteMyAccount
-// } from './user.swagger';
+import {
+  getAllUsers,
+  getUser,
+  addUser,
+  updateUserDetails,
+  updateUserProfileImage,
+  deleteUser,
+  deleteMyAccount
+} from './user.swagger';
 
 import {
   createNewOrder,
@@ -197,14 +197,14 @@ const docs = {
     '/media/profile/web': {
       post: uploadMediaImages
     },
-    // '/user': {
-    //   get: getAllUsers,
-    //   post: addUser
-    // },
-    // '/user/{userId}': {
-    //   get: getUser,
-    //   delete: deleteUser
-    // },
+    '/user': {
+      get: getAllUsers,
+      post: addUser
+    },
+    '/user/{id}': {
+      get: getUser,
+      delete: deleteUser
+    },
     // '/user/update-details': {
     //   patch: updateUserDetails
     // },

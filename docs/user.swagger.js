@@ -168,7 +168,7 @@ export const getUser = {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     },
     {
       in: 'path',
@@ -474,7 +474,7 @@ export const updateUserDetails = {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     }
   ],
   requestBody: {
@@ -712,7 +712,7 @@ export const deleteUser = {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     },
     {
       in: 'path',
