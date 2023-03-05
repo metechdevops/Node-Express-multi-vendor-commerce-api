@@ -55,6 +55,10 @@ const AddressObject = {
       example:
         "Kareem Block Market, Karim Block Allama Iqbal Town, Lahore, Pakistan"
     },
+    isDefault: {
+      type: 'boolean',
+      example: false
+    },
   }
 }
 

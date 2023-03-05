@@ -26,6 +26,13 @@ export const getAllAddress = {
     },
     {
       in: 'query',
+      name: 'isDefault',
+      type: 'boolean',
+      example: false,
+      description: 'Get default address.'
+    },
+    {
+      in: 'query',
       name: 'limit',
       type: 'string',
       example: '5',

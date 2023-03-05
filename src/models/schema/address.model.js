@@ -1,4 +1,5 @@
 // Packages
+import { boolean } from 'joi';
 import mongoose from 'mongoose';
 import validator from 'validator';
 
@@ -35,6 +36,9 @@ const addressSchema = mongoose.Schema(
     state: {
       type: String,
     },
+    country: {
+      type: String,
+    },
     zipCode: {
       type: String,
     },
@@ -46,6 +50,10 @@ const addressSchema = mongoose.Schema(
     },
     address: {
       type: String,
+    },
+    isDefault: {
+      type: Boolean,
+      default: false
     }
   },
   {
