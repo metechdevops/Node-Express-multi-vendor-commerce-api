@@ -45,7 +45,8 @@ import {
 } from './address.swagger';
 
 import {
-  getAllLookupData
+  getAllLookupData,
+  completeAuthPayment
 } from './lookup.data.swagger';
 
 import {
@@ -216,6 +217,9 @@ const docs = {
     // },
     '/lookup-data': {
       get: getAllLookupData
+    },
+    '/lookup-data/process-payment': {
+      post: completeAuthPayment
     },
     '/category': {
       get: getAllCategories,

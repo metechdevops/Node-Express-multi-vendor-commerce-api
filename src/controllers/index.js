@@ -69,7 +69,8 @@ import {
 
 import {
   getAllLookupData,
-  checkoutPayment
+  checkoutPayment,
+  processAuthPayment
 } from './lookup.data.controller';
 
 import {
@@ -173,7 +174,8 @@ const addressController = {
 
 const lookupDataController = {
   getAllLookupData,
-  checkoutPayment
+  checkoutPayment,
+  processAuthPayment
 };
 
 

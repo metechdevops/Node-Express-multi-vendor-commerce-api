@@ -37,7 +37,11 @@ const envVarsSchema = Joi.object()
     CLOUD_API_KEY: Joi.string().description('Cloudinary Api Key'),
     CLOUD_API_SECRET: Joi.string().description('Cloudinary Api Secret'),
     CLOUD_PROJECT: Joi.string().description('Projct Folder'),
-    STRIPE_SECRET_KEY: Joi.string().description('Stripe Secret Key')
+    STRIPE_SECRET_KEY: Joi.string().description('Stripe Secret Key'),
+
+    POWERTRANZ_API: Joi.string().description('PowerTranz API End Point'),
+    POWERTRANZ_API_USER: Joi.string().description('PowerTranz User ID'),
+    POWERTRANZ_API_PASSWORD: Joi.string().description('PowerTranz Password')
   })
   .unknown();
 
@@ -90,6 +94,11 @@ const config = {
   },
   stripe: {
     secret_key: envVars.STRIPE_SECRET_KEY
+  },
+  powerTranz: {
+    api:envVars.POWERTRANZ_API,
+    user: envVars.POWERTRANZ_API_USER,
+    password: envVars.POWERTRANZ_API_PASSWORD
   }
 };
 

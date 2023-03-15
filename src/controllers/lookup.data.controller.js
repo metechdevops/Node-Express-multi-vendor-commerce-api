@@ -1,5 +1,10 @@
 // Utils
 import catchAsync from '../utils/catchAsync';
+import axios from  'axios';
+import { completePaymentAuth } from '../utils/paymentProcessor';
+import config from '../config/config';
+
+axios.defaults.baseURL = config.powerTranz.api;
 
 // Services
 import { lookupDataService } from '../services/index';
@@ -44,31 +49,54 @@ export const getAllLookupData = catchAsync(async (req, res) => {
 });
 
 export const checkoutPayment = catchAsync(async (req, res) => {
-  let { page, sort, limit, select } = req.query;
+  
+  let { body } = req;
+  const paymentData = JSON.parse(body.Response)
 
-  // // 1) Setting default params
-  // if (!page) page = 1;
-  // if (!sort) sort = '';
-  // if (!limit) limit = 10;
-  // if (!select) select = '';
+  // 1) Get spiToken transaction payment
+  const spiToken = paymentData.SpiToken 
 
-  // // 2) Get all categories
-  // const { type, message, statusCode, data } =
-  //   await lookupDataService.queryLookupData(req);
+  // 2) Complete auth payment and confirmation
+  const { type, message, statusCode, data } = await completePaymentAuth({spiToken});
 
-  // // 3) Check if there is an error
-  // if (type === 'Error') {
-  //   return res.status(statusCode).json({
-  //     type,
-  //     message: req.polyglot.t(message)
-  //   });
-  // }
+  // 3) Check if there is an error
+  if (type === 'Error') {
+    return res.status(statusCode).json({
+      type,
+      message: message,
+      data
+    });
+  }
 
   // 4) If everything is OK, send data
   return res.status(statusCode).json({
-    // type,
-    // message: req.polyglot.t(message),
-    data:res.body.Response,
+    type,
+    message: req.polyglot.t(message),
+    payload:data?.data
+  });
+});
+
+export const processAuthPayment = catchAsync(async (req, res) => {
+  
+  let { spiToken } = req.body;
+
+  // 1) Complete PowerTranz Auth Payment
+  const { type, message, statusCode, payload } =
+  await completePaymentAuth({spiToken});
+
+  // 3) Check if there is an error
+  if (type === 'Error') {
+    return res.status(statusCode).json({
+      type,
+      message
+    });
+  }
+
+  // 2) If everything is OK, send data
+  return res.status(statusCode).json({
+    type,
+    message: message,
+    payload,
 
   });
 });

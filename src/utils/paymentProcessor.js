@@ -1,38 +1,40 @@
 import config from '../config/config';
 import axios from  'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 // Setting The powerTranz API Configurations
 const APIHeader = {
   headers:{
-    "PowerTranz-PowerTranzId": "88802476",
-    "PowerTranz-PowerTranzPassword": "eD3ysMEduy1uac6yYBBJxpFiuUJ2mVAA3bFTWRjDyzaGfcBBW6PcOP0",
+    "PowerTranz-PowerTranzId": config.powerTranz.user,
+    "PowerTranz-PowerTranzPassword": config.powerTranz.password,
     "Content-Type": "application/json"
   }
 };
 
+axios.defaults.baseURL = config.powerTranz.api;
+
 export const processPaymentAuth = async (user,order,body) => {
     
-  const {totalPrice,phone,shippingAddress} = order
-  const { cardNumber, expMonth, expYear, cvc } = body;
-
-  const userID = user._id.toString()
+  const {totalPrice,shippingAddress} = order
+  const {city,state,address,firstName,lastName,email} = shippingAddress
 
   const HHPData = {
-    "TransactionIdentifier": "89876ff5-a44a-4e1f-bf71-8f224823c439",
-    "TotalAmount": 10, 
-    "CurrencyCode": "978", 
+    "TransactionIdentifier": uuidv4(),
+    "TotalAmount": totalPrice, 
+    "CurrencyCode": 780, 
     "ThreeDSecure": false, 
     "Source": {},
-    "OrderIdentifier": "INT-245d0301-5170-406c-abb7-750aadce9173-Orc3570", 
+    "OrderIdentifier": order._id,//uuidv4(), 
     "BillingAddress": {
-        "FirstName": "John",
-        "LastName": "Smith",
-        "Line1": "1200 Whitewall Blvd.", "Line2": "Unit 15",
-        "City": "Boston",
-        "State": "NY",
+        "FirstName": firstName,
+        "LastName": lastName,
+        "Line1": address, 
+        "Line2": "Unit 15",
+        "City": city,
+        "State": state,
         "PostalCode": "200341",
         "CountryCode": "840",
-        "EmailAddress": "john.smith@gmail.com", 
+        "EmailAddress": email, 
         "PhoneNumber": "211-345-6790"
     },
     "AddressMatch": false,
@@ -41,20 +43,62 @@ export const processPaymentAuth = async (user,order,body) => {
                 "ChallengeWindowSize": 4, 
                 "ChallengeIndicator": "01"
         },
-        "MerchantResponseUrl": "https://99e0-2400-adc5-442-9d00-ec36-6003-498d-8743.in.ngrok.io/",
+        "MerchantResponseUrl": "https://8c50-2400-adc5-442-9d00-b8c0-fc04-731a-80bc.in.ngrok.io/api/lookup-data/checkout",
         "HostedPage": {
-            "PageSet": "GFRHPP", 
-            "PageName": "HPPBilling1"
+            "PageSet": "TestingPage", 
+            "PageName": "PayNow"
         } 
     }
+  }
+
+  try {
+    
+    // PowerTranz Payment Auth with iFrame Data
+    const PowerTranzResponse = await axios.post('spi/auth',HHPData,APIHeader)
+
+
+    return PowerTranzResponse?.data;    
+
+
+  } catch (error) {
+    return error
+  }
+
+
+
 }
 
-    // PowerTranz Call
-    const PowerTranzResponse = await axios.post('https://staging.ptranz.com/api/spi/Auth',HHPData,APIHeader)
-    console.log(PowerTranzResponse);
+export const completePaymentAuth = async ({spiToken}) => {
+  
+    // Set Header
+    const config = {
+      method: 'post',
+      url: 'spi/Payment',
+      headers: { 
+        'accept':"text/plain'",
+        'Content-Type': 'application/json-patch+json',
+      },
+      data : `"${spiToken}"`
+    };
 
-    return PowerTranzResponse?.data;
+    try {
+      const response = await axios(config)
+      
+      return {
+        type: 'Success',
+        statusCode: 200,
+        message: response.data.ResponseMessage,
+        payload:response.data
+      };
 
+    } catch (error) {
+      
+      return {
+        type: 'Error',
+        message: error.message,
+        statusCode: 400
+      };
+    }
 }
   
   

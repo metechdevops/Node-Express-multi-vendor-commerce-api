@@ -8,7 +8,7 @@ import moment from 'moment';
 // Utils
 import catchAsync from '../utils/catchAsync';
 import APIFeatures from '../utils/apiFeatures';
-import { processPaymentAuth } from '../utils/paymentProcessor';
+import { processPaymentAuth,completePaymentAuth } from '../utils/paymentProcessor';
 
 // Configs
 import config from '../config/config';
@@ -165,6 +165,7 @@ export const createOrder = catchAsync(async (body, user) => {
 
   // Process PowerTranz Payment in Hosted Page
   const paymentPage = await processPaymentAuth(user, order, body)
+
 
   // 13) If everything is OK, send data
   return {
