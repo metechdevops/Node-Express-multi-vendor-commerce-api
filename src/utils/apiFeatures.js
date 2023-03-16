@@ -83,10 +83,11 @@ const apiFeatures = catchAsync(async (req, model, populate) => {
 export const productListing = catchAsync(async (req, model, populate) => {
   let query;
 
-  const {isFeatured,category,seller,filter} = req.query
+  const {isFeatured,category,priceRange,seller,filter} = req.query
   const search = filter;
   const sellerId = seller;
   const categoryId = category;
+  const priceRanges = priceRange
   const isFeaturedProduct = isFeatured;
 
   // Copy req.query
@@ -123,6 +124,12 @@ export const productListing = catchAsync(async (req, model, populate) => {
 
   if (isFeaturedProduct)
     queryStr['isFeatured'] = isFeaturedProduct
+
+  if (priceRanges){
+    const prices = priceRanges.split(',');
+    queryStr['price'] = {$gt:prices[0], $lt:prices[1]}
+  }
+    
 
   // Finding resource and Document Count
   query = model.find(queryStr);

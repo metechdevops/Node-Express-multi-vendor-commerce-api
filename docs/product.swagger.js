@@ -57,11 +57,11 @@ export const getAllProducts = {
     },
     {
       in: 'query',
-      name: 'isPopular',
-      type: 'boolean',
-      example: 'false',
+      name: 'priceRange',
+      type: 'string',
+      example: '0,10',
       description:
-        'This will filter all top rated popular products'
+        'Filter products by price range'
     },
     {
       in: 'query',

@@ -54,12 +54,14 @@ export const createAddress = catchAsync(async (body,user) => {
  * @param   { Object } req - Request object
  * @returns { Object<type|message|statusCode|address> }
  */
-export const queryAllAddress = catchAsync(async (req) => {
+export const queryAllAddress = catchAsync(async (req,user) => {
+  
+
   // 1) Get all address
   const address = await APIFeatures(req, Address);
 
   // 2) Check if there are no address
-  if (address.length === 0) {
+  if (address.data.length === 0) {
     return {
       type: 'Error',
       message: 'noAddresss',

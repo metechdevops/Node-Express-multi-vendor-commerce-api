@@ -33,6 +33,13 @@ export const getAllAddress = {
     },
     {
       in: 'query',
+      name: 'user',
+      type: 'string',
+      example: "63e0c4440442712dde689a4a",
+      description: 'Get All addresses by specific user.'
+    },
+    {
+      in: 'query',
       name: 'limit',
       type: 'string',
       example: '5',

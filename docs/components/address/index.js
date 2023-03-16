@@ -36,7 +36,7 @@ const AddressObject = {
     },
     zipCode: {
       type: 'string',
-      example: 'lahore'
+      example: '5400'
     },
     latitude: {
       type: 'string',

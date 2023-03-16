@@ -33,6 +33,13 @@ export const getAllOrders = {
     },
     {
       in: 'query',
+      name: 'user',
+      type: 'string',
+      example: '',
+      description: 'Filters order by seller id.'
+    },
+    {
+      in: 'query',
       name: 'limit',
       type: 'string',
       example: '5',

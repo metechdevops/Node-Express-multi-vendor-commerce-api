@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import validator from 'validator';
+
 import { 
   ORDER_STATUS,
   ORDER_STATUS_ENUM 
@@ -51,7 +53,7 @@ const orderSchema = mongoose.Schema(
       phone: phoneSchema,
       address: { type: String, required: true },
       city: { type: String, required: true },
-      postalCode: { type: String, required: true },
+      zipCode: { type: String, required: true },
       country: { type: String, required: true }
     },
     paymentMethod: {

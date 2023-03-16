@@ -3,8 +3,6 @@
 import STRIPE_SDK from 'stripe';
 import moment from 'moment';
 
-
-
 // Utils
 import catchAsync from '../utils/catchAsync';
 import APIFeatures from '../utils/apiFeatures';
@@ -12,6 +10,10 @@ import { processPaymentAuth,completePaymentAuth } from '../utils/paymentProcesso
 
 // Configs
 import config from '../config/config';
+
+// Constants 
+import {ORDER_STATUS} from '../constants/constants';
+
 
 // Models
 import { Order, Cart, Product } from '../models/index';
@@ -29,13 +31,13 @@ export const createOrder = catchAsync(async (body, user) => {
   
   // 1) Extract data from parameters
   const { shippingAddress, paymentMethod, phone } = body;
-  const { address, city, country, postalCode } = shippingAddress;
+  const { address, city, country, zipCode } = shippingAddress;
 
   // 2) Check if user entered all fields
   if (
     !address ||
     !city ||
-    !postalCode ||
+    !zipCode ||
     !country ||
     !paymentMethod ||
     !phone
@@ -60,17 +62,27 @@ export const createOrder = catchAsync(async (body, user) => {
     };
   }
 
+
   // 4) Check payment method
   if (paymentMethod === 'cash') {
-    // 1) If payment method is cash the create new order for the cash method
-    const order = await Order.create({
+
+    const PosOrderData = {
       products: cart.items,
       user: user._id,
       totalPrice: cart.totalPrice,
       shippingAddress,
       paymentMethod,
       phone
-    });
+    }
+  
+    // Set default pending status in order tracking hoistory.
+    PosOrderData.orderTracking = [{ 
+      status:ORDER_STATUS.PENDING,
+      trackingDate: new Date()
+    }]
+
+    // 1) If payment method is cash the create new order for the cash method
+    const order = await Order.create(PosOrderData);
 
     // 2) Update product sold and quantity fields
     for (const item of cart.items) {
@@ -108,10 +120,6 @@ export const createOrder = catchAsync(async (body, user) => {
     };
   }
 
-
-
-
-
   // 7) Create stripe card token
   // const token = await stripe.tokens.create({
   //   card: {
@@ -131,9 +139,7 @@ export const createOrder = catchAsync(async (body, user) => {
   // });
 
 
-
-  // 9) Create order with payment method card
-  const order = await Order.create({
+  const orderData = {
     products: cart.items,
     user: user._id,
     totalPrice: cart.totalPrice,
@@ -142,9 +148,18 @@ export const createOrder = catchAsync(async (body, user) => {
     shippingAddress,
     paymentMethod,
     paymentStripeId: "",
-    // paymentStripeId: charge.id,
     phone
-  });
+  }
+
+  // Set default pending status in order tracking hoistory.
+  orderData.orderTracking = [{ 
+    status:ORDER_STATUS.PENDING,
+    trackingDate: new Date()
+  }]
+
+
+  // 9) Create order with payment method card
+  const order = await Order.create(orderData);
 
   // 10) Update product sold and quantity fields
   for (const item of cart.items) {
@@ -276,6 +291,7 @@ export const orderStatus = catchAsync(async (status, id) => {
  * @returns { Object<type|message|statusCode|orders> }
  */
 export const queryOrders = catchAsync(async (req) => {
+  
   req.query.user = req.user._id;
 
   const populateQuery = [

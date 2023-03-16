@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import toJSON from './plugins/index';
-const imageSchema = require('./schema/common/image.schema')
+const imageSchema = require('./schema/common/category.image.schema.js')
 
 const categorySchema = mongoose.Schema(
   {
