@@ -281,12 +281,12 @@ export const signIn = {
           properties: {
             email: {
               type: 'string',
-              example:"ecart-user-1@mailinator.com",
+              example:"ecart-user@mailinator.com",
               required: true
             },
             password: {
               type: 'string',
-              example:'user1111',
+              example:'user1234',
               required: true
             }
           }

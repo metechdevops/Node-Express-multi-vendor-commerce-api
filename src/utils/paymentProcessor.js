@@ -43,7 +43,7 @@ export const processPaymentAuth = async (user,order,body) => {
                 "ChallengeWindowSize": 4, 
                 "ChallengeIndicator": "01"
         },
-        "MerchantResponseUrl": "https://8c50-2400-adc5-442-9d00-b8c0-fc04-731a-80bc.in.ngrok.io/api/lookup-data/checkout",
+        "MerchantResponseUrl": body.callBack,
         "HostedPage": {
             "PageSet": "TestingPage", 
             "PageName": "PayNow"

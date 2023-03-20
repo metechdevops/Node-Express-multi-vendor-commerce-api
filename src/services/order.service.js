@@ -110,15 +110,15 @@ export const createOrder = catchAsync(async (body, user) => {
   }
 
   // 5) If payment method is card then extract card data from body
-  const { cardNumber, expMonth, expYear, cvc } = body;
+  // const { cardNumber, expMonth, expYear, cvc } = body;
   // // 6) Check if user entered card data
-  if (!cardNumber || !expMonth || !expYear || !cvc) {
-    return {
-      type: 'Error',
-      message: 'fieldsRequired',
-      statusCode: 400
-    };
-  }
+  // if (!cardNumber || !expMonth || !expYear || !cvc) {
+  //   return {
+  //     type: 'Error',
+  //     message: 'fieldsRequired',
+  //     statusCode: 400
+  //   };
+  // }
 
   // 7) Create stripe card token
   // const token = await stripe.tokens.create({

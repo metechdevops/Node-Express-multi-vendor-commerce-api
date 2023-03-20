@@ -1,3 +1,5 @@
+// Packages 
+const _ = require('lodash');
 const mongoose = require('mongoose');
 
 // Configs
@@ -10,7 +12,7 @@ import {registrationSchema} from '../validators/entities/customer/registration-s
 import {customerProfileSchema} from '../validators/entities/customer/customer-profile-schema';
 import {sellerValidationSchema} from '../validators/entities/seller/registration-schema';
 
-const _ = require('lodash');
+
 
 
 // Utils

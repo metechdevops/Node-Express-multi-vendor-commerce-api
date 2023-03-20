@@ -83,7 +83,7 @@ export const queryReviews = catchAsync(async (req) => {
   ];
 
   // Filter by product
-  req.query.product = product._id;
+  req.query.product = product._id.toString();
 
   let reviews = await APIFeatures(req, Review,populateQuery);
 

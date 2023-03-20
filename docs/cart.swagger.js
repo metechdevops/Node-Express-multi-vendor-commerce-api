@@ -186,18 +186,22 @@ export const addItemsToCart = {
           properties: {
             productId: {
               type: 'string',
+              example:"63f3cbd9426e815c5384991f",
               required: true
             },
             quantity: {
               type: 'integer',
+              example:1,
               required: true
             },
             selectedColor: {
               type: 'string',
+              example:"63f3cbd9426e815c53849927",
               required: false
             },
             selectedSize: {
               type: 'string',
+              example:"63f3cbd9426e815c53849930",
               required: false
             }
           }
