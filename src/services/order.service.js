@@ -292,7 +292,13 @@ export const orderStatus = catchAsync(async (status, id) => {
  */
 export const queryOrders = catchAsync(async (req) => {
   
-  req.query.user = req.user._id;
+  const {user} = req
+
+  if(user.role == 'seller')
+  req.query.products = { "$elemMatch" : {'productInfo.seller.id':  user._id.toString() }};
+  else 
+    req.query.user = req.user._id.toString();
+  
 
   const populateQuery = [
     { path: 'user', select: 'profileImage lastName firstName email'},

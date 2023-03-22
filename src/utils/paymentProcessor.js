@@ -51,20 +51,49 @@ export const processPaymentAuth = async (user,order,body) => {
     }
   }
 
+  // const cardData = {
+  //   "TransacctionIdentifier": uuidv4(),
+  //   "TotalAmount": 7.99,
+  //   "CurrencyCode": 780,
+  //   "ThreeDSecure": true,
+  //   "Source": {
+  //       "CardPan": "4012000000020071",
+  //       "CardCvv": "123",
+  //       "CardExpiration": "2512",
+  //       "CardholderName": "John Doe"
+  //   },
+  //   "OrderIdentifier": order._id,
+  //   "BillingAddress": {
+  //       "FirstName": "John",
+  //       "LastName": "Smith",
+  //       "Line1": "1200 Whitewall Blvd.",
+  //       "Line2": "Unit 15",
+  //       "City": "Boston",
+  //       "State": "NY",
+  //       "PostalCode": "200341",
+  //       "CountryCode": "840",
+  //       "EmailAddress": "john.smith@gmail.com",
+  //       "PhoneNumber": "211-345-6790"
+  //   },
+  //   "AddressMatch": false,
+  //   "ExtendedData": {
+  //       "ThreeDSecure": {
+  //           "ChallengeWindowSize": 4,
+  //           "ChallengeIndicator": "01"
+  //       },
+  //       "MerchantResponseUrl":  "https://ef60-2400-adc5-442-9d00-891-d7a0-3c48-34cd.in.ngrok.io/api/lookup-data/process-payment"
+  //   }
+  // }
+
   try {
     
     // PowerTranz Payment Auth with iFrame Data
     const PowerTranzResponse = await axios.post('spi/auth',HHPData,APIHeader)
-
-
     return PowerTranzResponse?.data;    
-
 
   } catch (error) {
     return error
   }
-
-
 
 }
 
