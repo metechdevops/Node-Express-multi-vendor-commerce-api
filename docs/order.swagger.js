@@ -425,26 +425,31 @@ export const createNewOrder = {
               example: "+92333333333",
               required: true
             },
-            // cardNumber: {
-            //   type: 'string',
-            //   example: "5115010000000001",
-            //   required: true
-            // },
-            // cardHolderName: {
-            //   type: 'string',
-            //   example: "John Doe",
-            //   required: true
-            // },
-            // expMonth: {
-            //   type: 'integer',
-            //   example: 12,
-            //   required: true
-            // },
-            // expYear: {
-            //   type: 'integer',
-            //   example: 2025,
-            //   required: true
-            // },
+            cardNumber: {
+              type: 'string',
+              example: "4012000000020071",
+              required: true
+            },
+            cardHolderName: {
+              type: 'string',
+              example: "John Doe",
+              required: true
+            },
+            expMonth: {
+              type: 'integer',
+              example: 12,
+              required: true
+            },
+            expYear: {
+              type: 'integer',
+              example: 24,
+              required: true
+            },
+            cvc: {
+              type: 'integer',
+              example: 123,
+              required: true
+            },
             callBack: {
               type: 'string',
               example: "https://brilliant-choux-5f0d16.netlify.app/payment/authentication",

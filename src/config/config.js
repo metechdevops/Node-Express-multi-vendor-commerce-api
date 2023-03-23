@@ -41,7 +41,8 @@ const envVarsSchema = Joi.object()
 
     POWERTRANZ_API: Joi.string().description('PowerTranz API End Point'),
     POWERTRANZ_API_USER: Joi.string().description('PowerTranz User ID'),
-    POWERTRANZ_API_PASSWORD: Joi.string().description('PowerTranz Password')
+    POWERTRANZ_API_PASSWORD: Joi.string().description('PowerTranz Password'),
+    POWERTRANZ_API_CALLBACK: Joi.string().description('PowerTranz CallBack URL')
   })
   .unknown();
 
@@ -98,7 +99,8 @@ const config = {
   powerTranz: {
     api:envVars.POWERTRANZ_API,
     user: envVars.POWERTRANZ_API_USER,
-    password: envVars.POWERTRANZ_API_PASSWORD
+    password: envVars.POWERTRANZ_API_PASSWORD,
+    callback: envVars.POWERTRANZ_API_CALLBACK
   }
 };
 

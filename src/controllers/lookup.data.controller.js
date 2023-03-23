@@ -78,11 +78,11 @@ export const checkoutPayment = catchAsync(async (req, res) => {
 
 export const processAuthPayment = catchAsync(async (req, res) => {
   
-  let { spiToken } = req.body;
+  let { SpiToken } = req.body;
 
   // 1) Complete PowerTranz Auth Payment
   const { type, message, statusCode, payload } =
-  await completePaymentAuth({spiToken});
+  await completePaymentAuth({spiToken:SpiToken});
 
   // 3) Check if there is an error
   if (type === 'Error') {

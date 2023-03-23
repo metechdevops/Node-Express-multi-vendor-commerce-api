@@ -13,82 +13,83 @@ const APIHeader = {
 
 axios.defaults.baseURL = config.powerTranz.api;
 
-export const processPaymentAuth = async (user,order,body) => {
+export const processPaymentAuth = async (user,cart,body) => {
     
-  const {totalPrice,shippingAddress} = order
+  const {totalPrice} = cart
+  const { cardNumber,cardHolderName, expMonth, expYear, cvc,shippingAddress } = body;
   const {city,state,address,firstName,lastName,email} = shippingAddress
 
-  const HHPData = {
-    "TransactionIdentifier": uuidv4(),
-    "TotalAmount": totalPrice, 
-    "CurrencyCode": 780, 
-    "ThreeDSecure": false, 
-    "Source": {},
-    "OrderIdentifier": order._id,//uuidv4(), 
-    "BillingAddress": {
-        "FirstName": firstName,
-        "LastName": lastName,
-        "Line1": address, 
-        "Line2": "Unit 15",
-        "City": city,
-        "State": state,
-        "PostalCode": "200341",
-        "CountryCode": "840",
-        "EmailAddress": email, 
-        "PhoneNumber": "211-345-6790"
-    },
-    "AddressMatch": false,
-    "ExtendedData": {
-        "ThreeDSecure": { 
-                "ChallengeWindowSize": 4, 
-                "ChallengeIndicator": "01"
-        },
-        "MerchantResponseUrl": body.callBack,
-        "HostedPage": {
-            "PageSet": "TestingPage", 
-            "PageName": "PayNow"
-        } 
-    }
-  }
-
-  // const cardData = {
-  //   "TransacctionIdentifier": uuidv4(),
-  //   "TotalAmount": 7.99,
-  //   "CurrencyCode": 780,
-  //   "ThreeDSecure": true,
-  //   "Source": {
-  //       "CardPan": "4012000000020071",
-  //       "CardCvv": "123",
-  //       "CardExpiration": "2512",
-  //       "CardholderName": "John Doe"
-  //   },
-  //   "OrderIdentifier": order._id,
+  // const HHPData = {
+  //   "TransactionIdentifier": uuidv4(),
+  //   "TotalAmount": totalPrice, 
+  //   "CurrencyCode": 780, 
+  //   "ThreeDSecure": false, 
+  //   "Source": {},
+  //   "OrderIdentifier": order._id,//uuidv4(), 
   //   "BillingAddress": {
-  //       "FirstName": "John",
-  //       "LastName": "Smith",
-  //       "Line1": "1200 Whitewall Blvd.",
+  //       "FirstName": firstName,
+  //       "LastName": lastName,
+  //       "Line1": address, 
   //       "Line2": "Unit 15",
-  //       "City": "Boston",
-  //       "State": "NY",
+  //       "City": city,
+  //       "State": state,
   //       "PostalCode": "200341",
   //       "CountryCode": "840",
-  //       "EmailAddress": "john.smith@gmail.com",
+  //       "EmailAddress": email, 
   //       "PhoneNumber": "211-345-6790"
   //   },
   //   "AddressMatch": false,
   //   "ExtendedData": {
-  //       "ThreeDSecure": {
-  //           "ChallengeWindowSize": 4,
-  //           "ChallengeIndicator": "01"
+  //       "ThreeDSecure": { 
+  //               "ChallengeWindowSize": 4, 
+  //               "ChallengeIndicator": "01"
   //       },
-  //       "MerchantResponseUrl":  "https://ef60-2400-adc5-442-9d00-891-d7a0-3c48-34cd.in.ngrok.io/api/lookup-data/process-payment"
+  //       "MerchantResponseUrl": "https://4624-2400-adc5-442-9d00-609b-3b98-baa2-2e43.in.ngrok.io/api/lookup-data/process-payment",
+  //       "HostedPage": {
+  //           "PageSet": "TestingPage", 
+  //           "PageName": "PayNow"
+  //       } 
   //   }
   // }
+
+  const cardData = {
+    "TransacctionIdentifier": uuidv4(),
+    "TotalAmount": totalPrice,
+    "CurrencyCode": 780,
+    "ThreeDSecure": true,
+    "Source": {
+      "CardPan": cardNumber,
+      "CardCvv": cvc,
+      "CardExpiration": `${expYear}${expMonth}`,
+      "CardholderName": cardHolderName
+    },
+    "OrderIdentifier": uuidv4(),
+    "BillingAddress": {
+      "FirstName": firstName,
+      "LastName": lastName,
+      "Line1": address, 
+      "Line2": "Unit 15",
+      "City": city,
+      "State": state,
+      "PostalCode": "200341",
+      "CountryCode": "840",
+      "EmailAddress": email, 
+      "PhoneNumber": "211-345-6790"
+    },
+    "AddressMatch": false,
+    "ExtendedData": {
+        "ThreeDSecure": {
+            "ChallengeWindowSize": 4,
+            "ChallengeIndicator": "01"
+        },
+        "MerchantResponseUrl":  `${config.powerTranz.callback}/api/lookup-data/process-payment`
+    }
+}
 
   try {
     
     // PowerTranz Payment Auth with iFrame Data
-    const PowerTranzResponse = await axios.post('spi/auth',HHPData,APIHeader)
+    const PowerTranzResponse = await axios.post('spi/auth',cardData,APIHeader)
     return PowerTranzResponse?.data;    
 
   } catch (error) {
