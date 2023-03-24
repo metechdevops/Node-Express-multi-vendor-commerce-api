@@ -63,6 +63,21 @@ export const createOrder = catchAsync(async (body, user) => {
     };
   }
 
+  // 10) Validate product quantity
+  for (const item of cart.items) {
+    const id = item.product;
+    const { totalProductQuantity } = item;
+    const product = await Product.findById(id);
+
+    // Check if order quantity greater than the available stock
+    if (totalProductQuantity >  product.quantity || product.isOutOfStock) {
+      return {
+        type: 'Error',
+        message: 'fieldsRequired',
+        statusCode: 400
+      };
+    }
+  }
 
   // 4) Check payment method
   if (paymentMethod === 'cash') {
@@ -181,9 +196,14 @@ export const createOrder = catchAsync(async (body, user) => {
     const id = item.product;
     const { totalProductQuantity } = item;
     const product = await Product.findById(id);
+
     const sold = product.sold + totalProductQuantity;
     const quantity = product.quantity - totalProductQuantity;
-    await Product.findByIdAndUpdate(id, { sold, quantity });
+
+    // Set isOutOfStock true if sold and quantity are equale
+    const isOutOfStock = quantity < 1 ?  true:false
+
+    await Product.findByIdAndUpdate(id, { sold, quantity, isOutOfStock });
   }
 
   // 11) Delete cart
