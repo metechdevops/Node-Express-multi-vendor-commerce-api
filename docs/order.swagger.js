@@ -40,6 +40,13 @@ export const getAllOrders = {
     },
     {
       in: 'query',
+      name: 'status',
+      type: 'string',
+      example: '',
+      description: 'Filters order by status.'
+    },
+    {
+      in: 'query',
       name: 'limit',
       type: 'string',
       example: '5',
