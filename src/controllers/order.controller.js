@@ -14,7 +14,7 @@ import { orderService } from '../services/index';
  */
 export const createOrder = catchAsync(async (req, res) => {
   // 1) Create new order
-  const { type, message, statusCode, order,paymentPage } = await orderService.createOrder(
+  const { type, message, statusCode, order,paymentResponse } = await orderService.createOrder(
     req.body,
     req.user
   );
@@ -32,7 +32,7 @@ export const createOrder = catchAsync(async (req, res) => {
     type,
     message: req.polyglot.t(message),
     order,
-    paymentPage
+    paymentResponse
   });
 });
 
