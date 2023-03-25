@@ -600,7 +600,7 @@ export const createNewOrder = {
                   }
                 }
               },
-              paymentResponse: {
+              paymentResponse : {
                 type: 'object',
                 properties: {
                   TransactionType: {

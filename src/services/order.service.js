@@ -73,7 +73,7 @@ export const createOrder = catchAsync(async (body, user) => {
     if (totalProductQuantity >  product.quantity || product.isOutOfStock) {
       return {
         type: 'Error',
-        message: 'fieldsRequired',
+        message: 'isOutOfStock',
         statusCode: 400
       };
     }
@@ -145,7 +145,7 @@ export const createOrder = catchAsync(async (body, user) => {
   if (!_.isEmpty(Errors) && Errors.length > 0) {
     return {
       type: 'Error',
-      message: paymentPage.Errors[0].Message,
+      message: paymentResponse.Errors[0].Message,
       statusCode: 400
     };
   }
