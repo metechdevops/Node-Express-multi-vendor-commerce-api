@@ -127,7 +127,7 @@ export const documentFilter = (req, files, cb) => {
             isInValid = true;
         }
 
-        if (file.size < limits.fileSize) {
+        if (file.size > limits.fileSize) {
             req.fileValidationError = 'invalidFileSize';
             isInValid = true;
         }
