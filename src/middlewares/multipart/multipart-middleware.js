@@ -57,7 +57,8 @@ const handleError = (resp, error) => {
   if (error instanceof multer.MulterError) {
     resp.status(500).send({
       message:
-        "Some error occurred while uploading file(s), please consult your system administrator.",
+        "Some error occurred while uploading file(s), please consult your system administrator. File Size Limit is 10MB",
+      error: error.message  
     });
   } else {
     resp.status(400).send({
