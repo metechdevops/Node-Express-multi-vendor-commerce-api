@@ -49,7 +49,7 @@ app.use(bodyParser.json())
 
 // Set Body parser, reading data from body into req.body
 // app.use(express.json({ limit: '10kb' }));
-app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Get the user's locale, and set a default in case there's none
 app.use(
