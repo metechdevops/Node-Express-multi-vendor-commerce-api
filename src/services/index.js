@@ -1,6 +1,7 @@
 import {
   signin,
   sellerSignup,
+  driverSignup,
   customerSignup,
   logout,
   refreshAuth,
@@ -9,6 +10,7 @@ import {
   changePassword,
   updateCustomerProfile,
   updateSellerProfile,
+  updateDriverProfile,
   getProfile
 } from './auth.service';
 
@@ -123,6 +125,7 @@ import {
 const authService = {
   signin,
   sellerSignup,
+  driverSignup,
   customerSignup,
   logout,
   refreshAuth,
@@ -131,6 +134,7 @@ const authService = {
   changePassword,
   updateCustomerProfile,
   updateSellerProfile,
+  updateDriverProfile,
   getProfile
 };
 
@@ -253,7 +257,6 @@ const favoriteService = {
 export {
   authService,
   userService,
-  // sellerService,
   categoryService,
   storeService,
   addressService,

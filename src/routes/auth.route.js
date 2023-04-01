@@ -14,6 +14,7 @@ import restrictedTo from '../middlewares/restrictedTo';
 const {
   signin,
   sellerSignup,
+  driverSignup,
   customerSignup,
   logout,
   refreshTokens,
@@ -24,6 +25,7 @@ const {
   changePassword,
   updateCustomerProfile,
   getSellerProfile,
+  getDriverProfile,
   updateSellerProfile
 } = authController;
 
@@ -34,6 +36,8 @@ router.post('/login', signin);
 router.post('/register', customerSignup);
 
 router.post('/seller/register', sellerSignup);
+
+router.post('/driver/register', driverSignup);
 
 router.post('/logout', logout);
 
@@ -51,11 +55,15 @@ router.post('/send-verification-email', sendVerificationEmail);
 
 router.get('/seller/profile',restrictedTo(USER_ROLE.SELLER), getSellerProfile);
 
+router.get('/driver/profile',restrictedTo(USER_ROLE.DRIVER), getDriverProfile);
+
 router.get('/customer/profile',restrictedTo(USER_ROLE.USER), getSellerProfile);
 
 router.post('/customer/update-profile',restrictedTo(USER_ROLE.USER), updateCustomerProfile);
 
 router.post('/seller/update-profile',restrictedTo(USER_ROLE.SELLER), updateSellerProfile);
+
+router.post('/driver/update-profile',restrictedTo(USER_ROLE.DRIVER), updateSellerProfile);
 
 router.patch('/change-password', changePassword);
 

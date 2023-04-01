@@ -1,6 +1,7 @@
 import {
   signin,
   sellerSignup,
+  driverSignup,
   customerSignup,
   logout,
   refreshTokens,
@@ -10,8 +11,10 @@ import {
   sendVerificationEmail,
   changePassword,
   getSellerProfile,
+  getDriverProfile,
   updateCustomerProfile,
-  updateSellerProfile
+  updateSellerProfile,
+  updateDriverProfile
 } from './auth.controller';
 
 import {
@@ -122,6 +125,7 @@ import {
 const authController = {
   signin,
   sellerSignup,
+  driverSignup,
   customerSignup,
   logout,
   refreshTokens,
@@ -131,8 +135,10 @@ const authController = {
   sendVerificationEmail,
   changePassword,
   getSellerProfile,
+  getDriverProfile,
   updateCustomerProfile,
-  updateSellerProfile
+  updateSellerProfile,
+  updateDriverProfile
 };
 
 const userController = {

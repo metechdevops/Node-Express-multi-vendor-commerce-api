@@ -9,6 +9,13 @@ import {
   SellerSignUpResponse409
 } from './components/auth/seller/register';
 
+import {
+  DriverSignUpRequestBody,
+  DriverSignUpResponse200,
+  DriverSignUpResponse400,
+  DriverSignUpResponse409
+} from './components/auth/driver/register';
+
 const {
   customerProfileRequestBody,
   customerProfileResponse200,
@@ -22,12 +29,16 @@ const {
   SellerProfileResponse409
 } = require ('./components/auth/seller/profile')
 
+const {
+  DriverProfileRequestBody,
+  DriverProfileResponse200,
+  DriverProfileResponse400,
+  DriverProfileResponse409
+} = require ('./components/auth/driver/profile')
+
 export const sellerSignUp = {
-  security: {
-    jwt: []
-  },
   tags: ['Auth'],
-  description: 'This route allow you to sign up as seller into the api',
+  description: 'This route allow you to sign up as driver into the api',
   opeationId: 'sellerSignUp',
   parameters: [
     {
@@ -45,10 +56,27 @@ export const sellerSignUp = {
   }
 };
 
+export const driverSignUp = {
+  tags: ['Auth'],
+  description: 'This route allow you to sign up as driver into the api',
+  opeationId: 'driverSignUp',
+  parameters: [
+    {
+      in: 'header',
+      name: 'Accept-Language',
+      type: 'string',
+      example: 'en_MX'
+    }
+  ],
+  requestBody: DriverSignUpRequestBody,
+  responses: {
+    201: DriverSignUpResponse200,
+    400: DriverSignUpResponse400,
+    409: DriverSignUpResponse409
+  }
+};
+
 export const signUp = {
-  security: {
-    jwt: []
-  },
   tags: ['Auth'],
   description: 'This route allow you to sign up into the api',
   opeationId: 'signUp',
@@ -1017,6 +1045,31 @@ export const updateSellerProfile = {
   }
 };
 
+export const updateDriverProfile = {
+  tags: ['Auth'],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
+  description: 'This route allow you update seller profile',
+  opeationId: 'updateDriverProfile',
+  parameters: [
+    {
+      in: 'header',
+      name: 'Accept-Language',
+      type: 'string',
+      example: 'en_MX'
+    }
+  ],
+  requestBody: DriverProfileRequestBody,
+  responses: {
+    200: DriverProfileResponse200,
+    400: DriverProfileResponse400,
+    409: DriverProfileResponse409
+  }
+};
+
 export const getSellerProfile = {
   tags: ['Auth'],
   security: [
@@ -1050,6 +1103,48 @@ export const getSellerProfile = {
               message: {
                 type: 'string',
                 example: 'No User found.'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const getDriverProfile = {
+  tags: ['Auth'],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
+  description: "This route allow you to get driver profile data",
+  opeationId: 'getDriverProfile',
+  parameters: [
+    {
+      in: 'header',
+      name: 'Accept-Language',
+      type: 'string',
+      example: 'en_MX'
+    }
+  ],
+  responses: {
+    200: DriverProfileResponse200,
+    404: {
+      description: 'Error: 404',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              type: {
+                type: 'string',
+                example: 'Error'
+              },
+              message: {
+                type: 'string',
+                example: 'No Driver found.'
               }
             }
           }

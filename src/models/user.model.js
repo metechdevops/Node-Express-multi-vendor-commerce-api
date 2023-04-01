@@ -5,6 +5,7 @@ import { hash, verify } from 'argon2';
 import toJSON from './plugins/index';
 import {USER_ROLE} from '../constants/constants';
 import sellerAttributes from './schema/seller/attributes';
+import driverAttributes from './schema/driver/attributes';
 import phoneSchema from './schema/common/phone.schema';
 
 const userSchema = mongoose.Schema(
@@ -48,7 +49,8 @@ const userSchema = mongoose.Schema(
       enum: [
         USER_ROLE.USER,
         USER_ROLE.ADMIN,
-        USER_ROLE.SELLER
+        USER_ROLE.SELLER,
+        USER_ROLE.DRIVER
       ],
       default: USER_ROLE.USER
     },
@@ -57,6 +59,10 @@ const userSchema = mongoose.Schema(
       default: false
     },
     isVerifiedSeller: {
+      type: Boolean,
+      default: false
+    },
+    isVerifiedDriver: {
       type: Boolean,
       default: false
     },
@@ -69,6 +75,7 @@ const userSchema = mongoose.Schema(
     },
     phone: phoneSchema,
     sellerAttributes: sellerAttributes,
+    driverAttributes: driverAttributes,
     profileImage: {
       original: {
         type: String

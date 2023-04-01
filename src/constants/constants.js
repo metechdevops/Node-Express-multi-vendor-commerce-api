@@ -25,6 +25,7 @@ module.exports = {
     ADMIN:"admin",
     USER:"user",
     SELLER:"seller",
+    DRIVER:"driver"
   },
   ORDER_STATUS: {
     PENDING:"pending",

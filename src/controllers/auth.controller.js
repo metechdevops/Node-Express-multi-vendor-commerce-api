@@ -86,6 +86,44 @@ export const sellerSignup = catchAsync(async (req,res) => {
 });
 
 /**
+ * @desc      Seller Sign Up Controller
+ * @param     { Object } req - Request object
+ * @param     { Object } res - Response object
+ * @property  { Object } req.body - Body data
+ * @returns   { JSON } - A JSON object representing the type, message, user data, and tokens
+ */
+export const driverSignup = catchAsync(async (req,res) => {
+  // 1) Calling sign up service
+  const { type, message, statusCode, user, tokens,errors } = await authService.driverSignup(req.body);
+
+
+  // 2) Check if validation
+  if (type === 'Error') {
+    return res.status(statusCode).json({
+      type,
+      message: req.polyglot.t(message),
+      errors
+    });
+  }
+    // 2) Check if something went wrong
+  if (type === 'Error') {
+    return res.status(statusCode).json({
+      type,
+      message: req.polyglot.t(message)
+    });
+  }
+
+  // 3) If everything is OK, send data
+  return res.status(statusCode).json({
+    type,
+    message: req.polyglot.t(message),
+    user,
+    tokens
+  });
+
+});
+
+/**
  * @desc      Sign In Controller
  * @param     { Object } req - Request object
  * @param     { Object } res - Response object
@@ -323,12 +361,68 @@ export const updateSellerProfile = catchAsync(async (req, res) => {
 });
 
 /**
+ * @desc      Update Seller Profile Controller
+ * @param     { Object } req - Request object
+ * @param     { Object } res - Response object
+ * @returns   { JSON } - A JSON object representing the type and message
+ */
+export const updateDriverProfile = catchAsync(async (req, res) => {
+
+  // 1) Calling reset password service
+  const { type, message, statusCode,errors,driver } = await authService.updateDriverProfile(req);
+
+  // 2) Check if something went wrong
+  if (type === 'Error') {
+    return res.status(statusCode).json({
+      type,
+      message: req.polyglot.t(message),
+      errors:errors
+    });
+  }
+
+  // 3) If everything is OK, send data
+  return res.status(statusCode).json({
+    type,
+    message: req.polyglot.t(message),
+    data:driver
+  });
+});
+
+/**
  * @desc      Get User PW/Srofile Controller
  * @param     { Object } req - Request object
  * @param     { Object } res - Response object
  * @returns   { JSON } - A JSON object representing the type and message
  */
 export const getSellerProfile = catchAsync(async (req, res) => {
+
+  // 1) Calling reset password service
+  const { type, message, statusCode,errors,data } = await authService.getProfile(req);
+
+  // 2) Check if something went wrong
+  if (type === 'Error') {
+    return res.status(statusCode).json({
+      type,
+      message: req.polyglot.t(message),
+      errors:errors
+    });
+  }
+
+  // 3) If everything is OK, send data
+  return res.status(statusCode).json({
+    type,
+    message: req.polyglot.t(message),
+    data
+  });
+});
+
+/**
+ * @desc      Get User PW/Srofile Controller
+ * @param     { Object } req - Request object
+ * @param     { Object } res - Response object
+ * @returns   { JSON } - A JSON object representing the type and message
+ */
+export const getDriverProfile = catchAsync(async (req, res) => {
 
   // 1) Calling reset password service
   const { type, message, statusCode,errors,data } = await authService.getProfile(req);

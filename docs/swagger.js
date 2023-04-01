@@ -1,6 +1,7 @@
 import {
   signUp,
   sellerSignUp,
+  driverSignUp,
   signIn,
   logout,
   generateTokens,
@@ -11,7 +12,9 @@ import {
   sendVerificationEmail,
   updateCustomerProfile,
   updateSellerProfile,
+  updateDriverProfile,
   getCustomerProfile,
+  getDriverProfile,
   getSellerProfile
 
 } from './auth.swagger';
@@ -56,8 +59,6 @@ import {
   top5Cheap,
   productStats,
   updateProductDetails,
-  // updateProductMainImage,
-  // updateProductImages,
   deleteProduct,
   addProductColor,
   addProductSize,
@@ -162,6 +163,9 @@ const docs = {
     '/auth/seller/register': {
       post: sellerSignUp
     },
+    '/auth/driver/register': {
+      post: driverSignUp
+    },
     '/auth/logout': {
       post: logout
     },
@@ -189,11 +193,17 @@ const docs = {
     '/auth/seller/update-profile': {
       post: updateSellerProfile
     },
+    '/auth/driver/update-profile': {
+      post: updateDriverProfile
+    },
     '/auth/customer/profile': {
       get: getCustomerProfile
     },
     '/auth/seller/profile': {
       get: getSellerProfile
+    },
+    '/auth/driver/profile': {
+      get: getDriverProfile
     },
     '/media/profile/web': {
       post: uploadMediaImages

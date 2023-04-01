@@ -11,6 +11,7 @@ import validator from '../validators/field-validator';
 import {registrationSchema} from '../validators/entities/customer/registration-schema';
 import {customerProfileSchema} from '../validators/entities/customer/customer-profile-schema';
 import {sellerValidationSchema} from '../validators/entities/seller/registration-schema';
+import {driverValidationSchema} from '../validators/entities/driver/registration-schema';
 
 
 
@@ -111,6 +112,70 @@ export const sellerSignup = catchAsync(async (body) => {
 
   // 1) Validate required fields
   let fieldErrors = validator.validate(body,sellerValidationSchema);
+  
+  // 2) Check if body request data is valid.
+  if(fieldErrors){
+
+    fieldErrors = fieldErrors.map((item) => item.message)
+    return {
+      type: 'Error',
+      message: 'fieldsRequired',
+      statusCode: 400,
+      errors: fieldErrors
+    };
+  }
+
+  // 3) Check if the email already taken
+  const isEmailTaken = await User.isEmailTaken(email);
+
+  // 4) Check if the email already taken
+  if (isEmailTaken) {
+    return {
+      type: 'Error',
+      message: 'emailTaken',
+      statusCode: 409
+    };
+  }
+
+  // 5) Create new user account
+  const user = await User.create(body);
+
+  // 6) Generate tokens (access token & refresh token)
+  const tokens = await generateAuthTokens(user);
+
+  // 7) Generate Verification Email Token
+  const verifyEmailToken = await generateVerifyEmailToken(user);
+
+  // 8) Sending Verification Email
+  await sendVerificationEmail(user.email, verifyEmailToken);
+
+  // 9) Remove the password from the output
+  user.password = undefined;
+
+  // 10) If everything is OK, send user data
+  return {
+    type: 'Success',
+    statusCode: 201,
+    message: 'successfulSignUp',
+    user,
+    tokens
+  };
+  
+});
+
+/**
+ * @desc    Sign Up Service
+ * @param   { Object } body - Body object data
+ * @param   { Object } profileImage - User profile image
+ * @return  { Object<type|statusCode|message|user|tokens> }
+ */
+export const driverSignup = catchAsync(async (body) => {
+  
+
+  const {email } = body;
+
+  // 1) Validate required fields
+  let fieldErrors = validator.validate(body,driverValidationSchema);
   
   // 2) Check if body request data is valid.
   if(fieldErrors){
@@ -429,6 +494,31 @@ export const updateSellerProfile = catchAsync(
         statusCode: 200,
         message: 'successfullyProfileUpdated',
         seller:newObject
+      };
+    }
+  );
+
+  /**
+ * @desc    Update Customer Profile Service
+ * @return  { Object<type|statusCode|message> }
+ */
+export const updateDriverProfile = catchAsync(
+  async ({body,user}) => {
+  
+      // 1) Get user data.
+      let driver = await User.findById(user.id);
+      
+      // 2) Deep copy of two objects
+      const newObject = _.merge(driver.toObject(), body);
+      // write update to database
+      await User.updateOne({_id:mongoose.Types.ObjectId(user._id)}, {$set: {...newObject}})
+  
+      // 3) If everything is OK, send data
+      return {
+        type: 'Success',
+        statusCode: 200,
+        message: 'successfullyProfileUpdated',
+        driver:newObject
       };
     }
   );
