@@ -107,6 +107,7 @@ export const messages = {
     successfulOrderCancel: 'Order cancelled successfully.',
     successfulFavoriteAdd: 'Product added to favorite list successfully.',
     successfulFavoriteGet: 'Favorite list successfully retrieved.',
+
     successfulProductsFound: 'Products found successfully.',
     successfulProductFound: 'Product found successfully.',
     successfulProductCreate: 'Product created successfully.',
@@ -114,6 +115,15 @@ export const messages = {
     successfulProductMainImage: 'Product main image updated successfully.',
     successfulProductSubImages: 'Product sub images updated successfully.',
     successfulProductDelete: 'Product deleted successfully.',
+    
+    successfulServicesFound: 'Services found successfully.',
+    successfulServiceFound: 'Service found successfully.',
+    successfulServiceCreate: 'Service created successfully.',
+    successfulServiceDetails: 'Service detials updated successfully.',
+    successfulServiceMainImage: 'Service main image updated successfully.',
+    successfulServiceSubImages: 'Service sub images updated successfully.',
+    successfulServiceDelete: 'Service deleted successfully.',
+
     successfulReviewCreate: 'Review created successfully.',
     successfulReviewsFound: 'Reviews found successfully.',
     successfulReviewFound: 'Review found successfully.',

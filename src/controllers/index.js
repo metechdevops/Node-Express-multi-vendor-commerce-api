@@ -34,6 +34,16 @@ import {
 } from './product.controller';
 
 import {
+  getAllServices,
+  getService,
+  addService,
+  updateServiceDetails,
+  deleteService,
+  top5CheapServices,
+  serviceStats
+} from './service.controller';
+
+import {
   createUser,
   getUsers,
   getUser,
@@ -202,6 +212,16 @@ const productController = {
   productStats
 };
 
+const serviceController = {
+  getAllServices,
+  getService,
+  addService,
+  updateServiceDetails,
+  deleteService,
+  top5CheapServices,
+  serviceStats
+};
+
 const reviewController = {
   getAllReviews,
   getReview,
@@ -252,6 +272,7 @@ export {
   authController,
   userController,
   productController,
+  serviceController,
   categoryController,
   storeController,
   addressController,

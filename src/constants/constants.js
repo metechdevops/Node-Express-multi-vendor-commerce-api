@@ -41,5 +41,19 @@ module.exports = {
     'delivered',
     'cancelled'
   ],
+  DURATION_TYPE: {
+    HOUR:"hourly",
+    DAY:"daily",
+    MONTH:"monthly",
+    WEEK:"weekly",
+    ONE_TIME:"oneTime",
+  },
+  DURATION_TYPE_ENUM : [
+    'hourly',
+    'daily',
+    'weekly',
+    'monthly',
+    'oneTime'
+  ],
   S3_TEMPLATE_PATH : "https://e-cart-dev.s3.eu-west-1.amazonaws.com/email-templates/"
 };

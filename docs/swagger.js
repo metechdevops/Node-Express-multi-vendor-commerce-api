@@ -67,6 +67,16 @@ import {
 } from './product.swagger';
 
 import {
+  getAllServices,
+  getService,
+  addService,
+  top5CheapServices,
+  serviceStats,
+  updateServiceDetails,
+  deleteService
+} from './service.swagger';
+
+import {
   getCart,
   addItemsToCart,
   increaseProductQuantityByOne,
@@ -258,6 +268,25 @@ const docs = {
       patch: updateAddressDetails,
       delete: deleteAddress
     },
+
+    '/service': {
+      get: getAllServices,
+      post: addService
+    },
+    '/service/{serviceId}': {
+      get: getService,
+      delete: deleteService
+    },
+    '/service/top-5-cheap': {
+      get: top5CheapServices
+    },
+    '/service/service-stats': {
+      get: serviceStats
+    },
+    '/service/{serviceId}/details': {
+      patch: updateServiceDetails
+    },
+
     '/product': {
       get: getAllProducts,
       post: addProduct
@@ -275,12 +304,6 @@ const docs = {
     '/product/{productId}/details': {
       patch: updateProductDetails
     },
-    // '/product/{productId}/main-image': {
-    //   patch: updateProductMainImage
-    // },
-    // '/product/{productId}/images': {
-    //   patch: updateProductImages
-    // },
     '/product/color/{productId}': {
       post: addProductColor,
       delete: deleteProductColor

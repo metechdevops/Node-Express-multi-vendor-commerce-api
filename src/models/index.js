@@ -1,5 +1,6 @@
 import User from './user.model';
 import Product from './product.model';
+import Service from './service.model';
 import Category from './category.model';
 import Store from './schema/store.model';
 import Address from './schema/address.model';
@@ -16,6 +17,7 @@ import Size from './size.model';
 export {
   User,
   Product,
+  Service,
   Category,
   Store,
   Address,

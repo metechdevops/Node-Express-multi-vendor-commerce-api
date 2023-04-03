@@ -85,6 +85,15 @@ import {
 } from './product.service';
 
 import {
+  queryServices,
+  queryServiceById,
+  createService,
+  updateServiceDetails,
+  deleteService,
+  getServiceStats
+} from './custom.service';
+
+import {
   addProductToCart,
   reduceByOne,
   increaseByOne,
@@ -221,6 +230,15 @@ const productService = {
   getProductStats
 };
 
+const customService = {
+  queryServices,
+  queryServiceById,
+  createService,
+  updateServiceDetails,
+  deleteService,
+  getServiceStats
+};
+
 const cartService = {
   addProductToCart,
   reduceByOne,
@@ -262,6 +280,7 @@ export {
   addressService,
   lookupDataService,
   productService,
+  customService,
   reviewService,
   cartService,
   orderService,
