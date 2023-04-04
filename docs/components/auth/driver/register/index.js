@@ -60,7 +60,10 @@ const DriverSignUpRequestBody = {
               'drivingLicenseNumber',
               'vehicleRegistrationNumber',
               'veichleImage',
-              'addressProof'
+              'addressProof',
+              'rootPermit',
+              'characrCertifiate',
+              'certifiedCopy',
 
             ],
             properties: {

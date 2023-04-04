@@ -101,7 +101,6 @@ export const driverValidationSchema = {
               'vehicleRegistrationNumber',
               'rootPermit',
               'characrCertifiate',
-              'insuranceDocument',
               'certifiedCopy',
               "veichleImage",
               "addressProof"
