@@ -11,7 +11,7 @@ import protect from '../middlewares/protect';
 import { anyMulter } from '../utils/multer';
 
 // Routes
-import reviewRoute from './review.route';
+import serviceReviewRoute from './service.review.route';
 
 const {
   getAllServices,
@@ -25,7 +25,7 @@ const {
 
 const router = express.Router();
 
-router.use('/:serviceId/reviews', reviewRoute);
+router.use('/:serviceId/reviews', serviceReviewRoute);
 
 router.get('/top-5-cheap', getAllServices, top5CheapServices);
 

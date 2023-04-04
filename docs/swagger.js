@@ -94,11 +94,17 @@ import {
 } from './review.swagger';
 
 import {
+  getAllServiceReviews,
+  getServiceReview,
+  addServiceReview,
+  updateServiceReview,
+  deleteServiceReview
+} from './service.review.swagger';
+
+import {
   getAllUsers,
   getUser,
   addUser,
-  updateUserDetails,
-  updateUserProfileImage,
   deleteUser,
   deleteMyAccount
 } from './user.swagger';
@@ -371,6 +377,15 @@ const docs = {
       get: getReview,
       patch: updateReview,
       delete: deleteReview
+    },
+    '/service/{serviceId}/reviews': {
+      get: getAllServiceReviews,
+      post: addServiceReview
+    },
+    '/service/{serviceId}/reviews/{reviewId}': {
+      get: getServiceReview,
+      patch: updateServiceReview,
+      delete: deleteServiceReview
     }
   }
 };

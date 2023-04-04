@@ -6,6 +6,7 @@ import Store from './schema/store.model';
 import Address from './schema/address.model';
 import unitType from './schema/unitType.model';
 import Review from './review.model';
+import serviceReview from './schema/service/review.model';
 import Cart from './cart.model';
 import Order from './order.model';
 import Token from './token.model';
@@ -23,6 +24,7 @@ export {
   Address,
   unitType,
   Review,
+  serviceReview,
   Cart,
   Order,
   Token,

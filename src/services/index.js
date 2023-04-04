@@ -23,6 +23,14 @@ import {
 } from './review.service';
 
 import {
+  createServiceReview,
+  queryServiceReviews,
+  queryServiceReviewById,
+  updateServiceReview,
+  deleteServiceReview
+} from './review2.service';
+
+import {
   createUser,
   queryUsers,
   queryUser,
@@ -155,6 +163,14 @@ const reviewService = {
   deleteReview
 };
 
+const review2Service = {
+  createServiceReview,
+  queryServiceReviews,
+  queryServiceReviewById,
+  updateServiceReview,
+  deleteServiceReview
+};
+
 const mediaService = {
   createMedia,
   createDocumentMedia
@@ -282,6 +298,7 @@ export {
   productService,
   customService,
   reviewService,
+  review2Service,
   cartService,
   orderService,
   discountService,

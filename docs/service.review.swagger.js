@@ -1,12 +1,12 @@
-export const getAllProductReviews = {
+export const getAllServiceReviews = {
   security: [
     {
       bearerAuth: [],
     },
   ],
-  tags: ['Review'],
-  description: 'This route allow you to get all product reviews',
-  opeationId: 'getAllProductReviews',
+  tags: ['serviceReview'],
+  description: 'This route allow you to get all Service ID reviews',
+  opeationId: 'getAllServiceReviews',
   parameters: [
     {
       in: 'header',
@@ -16,9 +16,9 @@ export const getAllProductReviews = {
     },
     {
       in: 'path',
-      name: 'productId',
+      name: 'serviceId',
       type: 'integer',
-      description: 'Product ID'
+      description: 'Service ID'
     },
     {
       in: 'query',
@@ -55,7 +55,7 @@ export const getAllProductReviews = {
 
   responses: {
     200: {
-      description: 'Get All Product Reviews',
+      description: 'Get All Service Reviews',
       content: {
         'application/json': {
           schema: {
@@ -78,7 +78,7 @@ export const getAllProductReviews = {
                       type: 'string',
                       example: '611f7236f4529300507723a2'
                     },
-                    product: {
+                    serviceId: {
                       type: 'string',
                       example: '611f6385628e64b6ff96393c'
                     },
@@ -88,7 +88,7 @@ export const getAllProductReviews = {
                     },
                     review: {
                       type: 'string',
-                      example: 'Amazing Product!!'
+                      example: 'Amazing Service!!'
                     },
                     rating: {
                       type: 'integer',
@@ -113,10 +113,10 @@ export const getAllProductReviews = {
   }
 };
 
-export const getReview = {
-  tags: ['Review'],
+export const getServiceReview = {
+  tags: ['serviceReview'],
   description: "This route allow you to get specific review using it's ID",
-  opeationId: 'getReview',
+  opeationId: 'getServiceReview',
   parameters: [
     {
       in: 'header',
@@ -126,9 +126,9 @@ export const getReview = {
     },
     {
       in: 'path',
-      name: 'productId',
+      name: 'serviceId',
       type: 'integer',
-      description: 'Product ID'
+      description: 'Service ID'
     },
     {
       in: 'path',
@@ -162,7 +162,7 @@ export const getReview = {
                       type: 'string',
                       example: '611f7236f4529300507723a2'
                     },
-                    product: {
+                    serviceId: {
                       type: 'string',
                       example: '611f6385628e64b6ff96393c'
                     },
@@ -172,7 +172,7 @@ export const getReview = {
                     },
                     review: {
                       type: 'string',
-                      example: 'Amazing Product!!'
+                      example: 'Amazing Service!!'
                     },
                     rating: {
                       type: 'integer',
@@ -189,16 +189,16 @@ export const getReview = {
   }
 };
 
-export const addReview = {
-  tags: ['Review'],
+export const addServiceReview = {
+  tags: ['serviceReview'],
   security: [
     {
       bearerAuth: [],
     },
   ],
   description:
-    'This route allow logged in user/seller/admin to make a review on a product',
-  opeationId: 'addReview',
+    'This route allow logged in user/seller/admin to make a review on a Service ID',
+  opeationId: 'addServiceReview',
   parameters: [
     {
       in: 'header',
@@ -208,9 +208,9 @@ export const addReview = {
     },
     {
       in: 'path',
-      name: 'productId',
+      name: 'serviceId',
       type: 'integer',
-      description: 'Product ID'
+      description: 'Service ID'
     }
   ],
   requestBody: {
@@ -257,8 +257,8 @@ export const addReview = {
   }
 };
 
-export const updateReview = {
-  tags: ['Review'],
+export const updateServiceReview = {
+  tags: ['serviceReview'],
   security: [
     {
       bearerAuth: [],
@@ -266,7 +266,7 @@ export const updateReview = {
   ],
   description:
     "This route allow logged in user/seller/admin to update review using it's ID",
-  opeationId: 'updateReview',
+  opeationId: 'updateServiceReview',
   parameters: [
     {
       in: 'header',
@@ -276,9 +276,9 @@ export const updateReview = {
     },
     {
       in: 'path',
-      name: 'productId',
+      name: 'serviceId',
       type: 'integer',
-      description: 'Product ID'
+      description: 'Service ID'
     },
     {
       in: 'path',
@@ -331,8 +331,8 @@ export const updateReview = {
   }
 };
 
-export const deleteReview = {
-  tags: ['Review'],
+export const deleteServiceReview = {
+  tags: ['serviceReview'],
   security: [
     {
       bearerAuth: [],
@@ -340,7 +340,7 @@ export const deleteReview = {
   ],
   description:
     "This route allow logged in user/seller/admin to delete review using it's ID",
-  opeationId: 'deleteReview',
+  opeationId: 'deleteServiceReview',
   parameters: [
     {
       in: 'header',
@@ -350,9 +350,9 @@ export const deleteReview = {
     },
     {
       in: 'path',
-      name: 'productId',
+      name: 'serviceId',
       type: 'integer',
-      description: 'Product ID'
+      description: 'Service ID'
     },
     {
       in: 'path',

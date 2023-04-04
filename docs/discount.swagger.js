@@ -295,7 +295,7 @@ export const deleteDiscountCode = {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     },
     {
       in: 'path',
@@ -357,7 +357,7 @@ export const verifyDiscountCode = {
       in: 'header',
       name: 'Accept-Language',
       type: 'string',
-      example: 'ar_MX'
+      example: 'en_MX'
     }
   ],
   requestBody: {

@@ -95,6 +95,14 @@ import {
 } from './review.controller';
 
 import {
+  getAllServiceReviews,
+  getServiceReview,
+  addServiceReview,
+  updateServiceReview,
+  deleteServiceReview
+} from './service.review.controller';
+
+import {
   addItemToCart,
   reduceByOne,
   increaseByOne,
@@ -230,6 +238,14 @@ const reviewController = {
   deleteReview
 };
 
+const serviceReviewController = {
+  getAllServiceReviews,
+  getServiceReview,
+  addServiceReview,
+  updateServiceReview,
+  deleteServiceReview
+};
+
 const cartController = {
   addItemToCart,
   reduceByOne,
@@ -278,6 +294,7 @@ export {
   addressController,
   lookupDataController,
   reviewController,
+  serviceReviewController,
   cartController,
   orderController,
   discountController,
