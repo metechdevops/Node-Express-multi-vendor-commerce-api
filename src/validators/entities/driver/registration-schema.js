@@ -67,7 +67,7 @@ export const driverValidationSchema = {
             properties: {
                 "code": {
                     "type": "string",
-                    "minLength": 3,
+                    "minLength": 2,
                     "errorMessage": "Country code feild is required"
                 },
                 "number": {
