@@ -77,6 +77,16 @@ import {
 } from './service.swagger';
 
 import {
+  getAllRentals,
+  getRental,
+  addRental,
+  top5CheapRentals,
+  rentalStats,
+  updateRentalDetails,
+  deleteRental
+} from './rental.swagger';
+
+import {
   getCart,
   addItemsToCart,
   increaseProductQuantityByOne,
@@ -100,6 +110,15 @@ import {
   updateServiceReview,
   deleteServiceReview
 } from './service.review.swagger';
+
+import {
+  getAllRentalReviews,
+  getRentalReview,
+  addRentalReview,
+  updateRentalReview,
+  deleteRentalReview
+} from './rental.review.swagger';
+
 
 import {
   getAllUsers,
@@ -275,6 +294,7 @@ const docs = {
       delete: deleteAddress
     },
 
+    // Services Routes
     '/service': {
       get: getAllServices,
       post: addService
@@ -293,6 +313,26 @@ const docs = {
       patch: updateServiceDetails
     },
 
+    // Rental Routes
+    '/rental': {
+      get: getAllRentals,
+      post: addRental
+    },
+    '/rental/{rentalId}': {
+      get: getRental,
+      delete: deleteRental
+    },
+    '/rental/top-5-cheap': {
+      get: top5CheapRentals
+    },
+    '/rental/rental-stats': {
+      get: rentalStats
+    },
+    '/rental/{rentalId}/details': {
+      patch: updateRentalDetails
+    },
+
+    // Products Routes
     '/product': {
       get: getAllProducts,
       post: addProduct
@@ -369,6 +409,8 @@ const docs = {
       patch: orderStatus,
       delete: cancelOrder
     },
+
+    // Product Reviews
     '/product/{productId}/reviews': {
       get: getAllProductReviews,
       post: addReview
@@ -378,6 +420,8 @@ const docs = {
       patch: updateReview,
       delete: deleteReview
     },
+
+    // Service Reviews
     '/service/{serviceId}/reviews': {
       get: getAllServiceReviews,
       post: addServiceReview
@@ -386,7 +430,19 @@ const docs = {
       get: getServiceReview,
       patch: updateServiceReview,
       delete: deleteServiceReview
+    },
+
+    // Service Reviews
+    '/rental/{rentalId}/reviews': {
+      get: getAllRentalReviews,
+      post: addRentalReview
+    },
+    '/rental/{rentalId}/reviews/{reviewId}': {
+      get: getRentalReview,
+      patch: updateRentalReview,
+      delete: deleteRentalReview
     }
+
   }
 };
 

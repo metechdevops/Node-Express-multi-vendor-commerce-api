@@ -44,6 +44,16 @@ import {
 } from './service.controller';
 
 import {
+  getAllRentals,
+  getRental,
+  addRental,
+  updateRentalDetails,
+  deleteRental,
+  top5CheapRentals,
+  rentalStats
+} from './rental.controller';
+
+import {
   createUser,
   getUsers,
   getUser,
@@ -101,6 +111,14 @@ import {
   updateServiceReview,
   deleteServiceReview
 } from './service.review.controller';
+
+import {
+  getAllRentalReviews,
+  getRentalReview,
+  addRentalReview,
+  updateRentalReview,
+  deleteRentalReview
+} from './rental.review.controller';
 
 import {
   addItemToCart,
@@ -230,6 +248,16 @@ const serviceController = {
   serviceStats
 };
 
+const rentalController = {
+  getAllRentals,
+  getRental,
+  addRental,
+  updateRentalDetails,
+  deleteRental,
+  top5CheapRentals,
+  rentalStats
+};
+
 const reviewController = {
   getAllReviews,
   getReview,
@@ -244,6 +272,14 @@ const serviceReviewController = {
   addServiceReview,
   updateServiceReview,
   deleteServiceReview
+};
+
+const rentalReviewController = {
+  getAllRentalReviews,
+  getRentalReview,
+  addRentalReview,
+  updateRentalReview,
+  deleteRentalReview
 };
 
 const cartController = {
@@ -289,12 +325,14 @@ export {
   userController,
   productController,
   serviceController,
+  rentalController,
   categoryController,
   storeController,
   addressController,
   lookupDataController,
   reviewController,
   serviceReviewController,
+  rentalReviewController,
   cartController,
   orderController,
   discountController,

@@ -31,6 +31,14 @@ import {
 } from './review2.service';
 
 import {
+  createRentalReview,
+  queryRentalReviews,
+  queryRentalReviewById,
+  updateRentalReview,
+  deleteRentalReview
+} from './rental.review.service';
+
+import {
   createUser,
   queryUsers,
   queryUser,
@@ -102,6 +110,16 @@ import {
 } from './custom.service';
 
 import {
+  queryRentals,
+  queryRentalById,
+  createRental,
+  updateRentalDetails,
+  deleteRental,
+  getRentalStats
+} from './rental.service';
+
+
+import {
   addProductToCart,
   reduceByOne,
   increaseByOne,
@@ -169,6 +187,14 @@ const review2Service = {
   queryServiceReviewById,
   updateServiceReview,
   deleteServiceReview
+};
+
+const rentalReview = {
+  createRentalReview,
+  queryRentalReviews,
+  queryRentalReviewById,
+  updateRentalReview,
+  deleteRentalReview
 };
 
 const mediaService = {
@@ -255,6 +281,15 @@ const customService = {
   getServiceStats
 };
 
+const rentalService = {
+  queryRentals,
+  queryRentalById,
+  createRental,
+  updateRentalDetails,
+  deleteRental,
+  getRentalStats
+};
+
 const cartService = {
   addProductToCart,
   reduceByOne,
@@ -297,8 +332,10 @@ export {
   lookupDataService,
   productService,
   customService,
+  rentalService,
   reviewService,
   review2Service,
+  rentalReview,
   cartService,
   orderService,
   discountService,
