@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import toJSON from './plugins/index';
+import {CATEGORY_TYPE_ENUM,CATEGORY_TYPE} from '../constants/constants';
 const imageSchema = require('./schema/common/category.image.schema.js')
 
 const categorySchema = mongoose.Schema(
@@ -8,6 +9,19 @@ const categorySchema = mongoose.Schema(
     {
       type: mongoose.Schema.ObjectId,
       ref: 'Product'
+    },
+    service:{
+      type: mongoose.Schema.ObjectId,
+      ref: 'Service'
+    },
+    rental:{
+      type: mongoose.Schema.ObjectId,
+      ref: 'Rental'
+    },
+    contentType: {
+      type: String,
+      enum: CATEGORY_TYPE_ENUM,
+      default: CATEGORY_TYPE.PRODUCT
     },
     name: {
       type: String,

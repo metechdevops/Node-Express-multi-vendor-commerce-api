@@ -1,6 +1,6 @@
 
 import {ImageSchema} from "././../common/index"
-import { USER_ROLE } from "../../../src/constants/constants"
+import { CATEGORY_TYPE, CATEGORY_TYPE_ENUM } from "../../../src/constants/constants"
 
 const CategoryRequestBody = {
   required: true,
@@ -11,19 +11,28 @@ const CategoryRequestBody = {
         properties: {
           name: {
             type: 'string',
-            required: true
+            required: true,
+            example:"New Category"
           },
           parentId: {
             type: 'string',
             required: false
           },
+          contentType: {
+            type: 'string',
+            required: true,
+            example: CATEGORY_TYPE.PRODUCT,
+            enum: CATEGORY_TYPE_ENUM
+          },
           isFeatured: {
             type: 'boolean',
-            required: false
+            required: false,
+            example: false,
           },
           description: {
             type: 'string',
-            required: true
+            required: true,
+            example: "This is new category"
           },
           image: ImageSchema
         }
@@ -57,6 +66,10 @@ const CategoryResponse201 = {
               parentId: {
                 type: 'string',
                 example: "63cbab2be185e4cfb587c804"
+              },
+              contentType : {
+                type: 'string',
+                example: "product"
               },
               isFeatured: {
                 type: 'boolean',

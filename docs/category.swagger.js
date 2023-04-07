@@ -84,6 +84,10 @@ export const getAllCategories = {
                       example:
                         'This category contains all products related to makeup.'
                     },
+                    contentType: {
+                      type: 'string',
+                      example: 'product'
+                    },
                     isFeatured: {
                       type: 'boolean',
                       example: false
@@ -147,80 +151,8 @@ export const getCategory = {
     }
   ],
   responses: {
-    200: {
-      description: "Get category using it's ID",
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            properties: {
-              type: {
-                type: 'string',
-                example: 'Success'
-              },
-              message: {
-                type: 'string',
-                example: 'Category Found Successfully.'
-              },
-              catagory: {
-                type: 'array',
-                items: {
-                  type: 'object',
-                  properties: {
-                    _id: {
-                      type: 'string',
-                      example: '611ed9117ae59e944d27920d'
-                    },
-                    name: {
-                      type: 'string',
-                      example: 'Makeup'
-                    },
-                    description: {
-                      type: 'string',
-                      example:
-                        'This category contains all products related to makeup.'
-                    },
-                    isFeatured: {
-                      type: 'boolean',
-                      example: false
-                    },
-                    image: ImageSchema,
-                    createdAt: {
-                      type: 'string',
-                      example: '2021-08-19T22:20:01.688Z'
-                    },
-                    updatedAt: {
-                      type: 'string',
-                      example: '2021-08-19T22:20:01.688Z'
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    404: {
-      description: 'Error: 404',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            properties: {
-              type: {
-                type: 'string',
-                example: 'Error'
-              },
-              message: {
-                type: 'string',
-                example: 'No Category Found With This ID: {id}'
-              }
-            }
-          }
-        }
-      }
-    }
+    200: CategoryResponse201,
+    404: CategoryResponse400
   }
 };
 

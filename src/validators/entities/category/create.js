@@ -2,6 +2,7 @@ export const CreateSchema = {
     "type": "object",
     "required": [
         "name",
+        "contentType"
     ],
     "properties": {
         name: {
@@ -9,6 +10,12 @@ export const CreateSchema = {
             "minLength": 1,
             "maxLength": 70,
             "errorMessage": "First name feild is required"
+        },
+        contentType: {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20,
+          "errorMessage": "contentType feild is required"
         },
         description: {
             "type": "string",

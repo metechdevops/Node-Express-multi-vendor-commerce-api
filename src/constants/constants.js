@@ -27,6 +27,16 @@ module.exports = {
     SELLER:"seller",
     DRIVER:"driver"
   },
+  CATEGORY_TYPE: {
+    RENTAL:"rental",
+    SERVICE:"service",
+    PRODUCT:"product",
+  },
+  CATEGORY_TYPE_ENUM : [
+    'rental',
+    'service',
+    'product'
+  ],
   ORDER_STATUS: {
     PENDING:"pending",
     PROCESSING:"processing",
