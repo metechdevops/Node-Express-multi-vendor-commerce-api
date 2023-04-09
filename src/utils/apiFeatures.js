@@ -222,10 +222,10 @@ export const serviceListing = catchAsync(async (req, model, populate) => {
 
 
   if (sellerId)
-    queryStr['seller.id'] = sellerId
+    queryStr['seller'] = sellerId
 
   if (categoryId)
-    queryStr['category.id'] = categoryId
+    queryStr['category'] = categoryId
 
   if (isFeaturedProduct)
     queryStr['isFeatured'] = isFeaturedProduct
@@ -327,10 +327,10 @@ export const rentalListing = catchAsync(async (req, model, populate) => {
 
 
   if (sellerId)
-    queryStr['seller.id'] = sellerId
+    queryStr['seller'] = sellerId
 
   if (categoryId)
-    queryStr['category.id'] = categoryId
+    queryStr['category'] = categoryId
 
   if (isFeaturedProduct)
     queryStr['isFeatured'] = isFeaturedProduct

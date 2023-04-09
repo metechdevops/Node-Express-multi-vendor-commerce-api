@@ -27,6 +27,13 @@ export const getAllCategories = {
     },
     {
       in: 'query',
+      name: 'contentType',
+      type: 'string',
+      example: 'product',
+      description: 'Search category by [product, service, rental].'
+    },
+    {
+      in: 'query',
       name: 'limit',
       type: 'string',
       example: '5',
