@@ -16,7 +16,7 @@ import { Category } from '../models/index';
  * @returns { Object<type|message|statusCode|category> }
  */
 export const createCategory = catchAsync(async (body) => {
-  const { name,contentType, description,image } = body;
+  const { name,contentType,parentId,description,image } = body;
 
 
   // 1) Validate required fields
@@ -55,7 +55,8 @@ export const createCategory = catchAsync(async (body) => {
   // 5) Create body
   const object = {
     name,
-    "contentType":contentType,
+    parentId,
+    contentType,
     description,
     image: image,
   };

@@ -144,6 +144,13 @@ import {
 } from './favorite.swagger';
 
 import {
+  addFavoriteService,
+  deleteServiceFromFavorite,
+  checkServiceInFavoriteList,
+  getFavoriteServicesList
+} from './favorite.service.swagger';
+
+import {
   verifyDiscountCode,
   getDiscount,
   getAllDiscountCodes,
@@ -358,6 +365,8 @@ const docs = {
       post: addProductSize,
       delete: deleteProductSize
     },
+
+    // Product Service 
     '/favorite': {
       get: getFavoriteList,
       post: addFavoriteProduct
@@ -368,6 +377,20 @@ const docs = {
     '/favorite/check/{productId}': {
       get: checkProductInFavoriteList
     },
+
+    // Service favorite Routes
+    '/favorite/service': {
+      get: getFavoriteServicesList,
+      post: addFavoriteService
+    },
+    '/favorite/service/{serviceId}': {
+      delete: deleteServiceFromFavorite
+    },
+    '/favorite/service/check/{serviceId}': {
+      get: checkServiceInFavoriteList
+    },
+    
+    // Discount Routes 
     '/discount': {
       get: getAllDiscountCodes
     },

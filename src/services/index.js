@@ -153,6 +153,13 @@ import {
 } from './favorite.service';
 
 import {
+  addFavoriteService,
+  getFavoriteServicesList,
+  deleteServiceFromFavorite,
+  checkServiceInFavoriteList
+} from './favorite.custom.service';
+
+import {
   createMedia,
   createDocumentMedia
 } from './media.service';
@@ -323,6 +330,13 @@ const favoriteService = {
   checkProductInFavoriteList
 };
 
+const favoriteCustomService = {
+  addFavoriteService,
+  getFavoriteServicesList,
+  deleteServiceFromFavorite,
+  checkServiceInFavoriteList
+};
+
 export {
   authService,
   userService,
@@ -340,5 +354,6 @@ export {
   orderService,
   discountService,
   favoriteService,
+  favoriteCustomService,
   mediaService
 };

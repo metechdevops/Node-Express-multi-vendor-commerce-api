@@ -39,6 +39,7 @@ export const messages = {
     noOrder: 'No order found',
     noFavoriteListFound: 'No favorite list found.',
     noProductsInFavorite: 'No products on the favorite list found',
+    noServicesInFavorite: 'No services on the favorite list found',
     selectImage: 'Please select an image!',
     notSeller:
       'Sorry you are not the owner of this product, you cannot perform this operation.',
@@ -56,6 +57,7 @@ export const messages = {
     noDiscountCodesFound: 'No discount codes found',
     noUserFoundWithID: 'No user found with this ID.',
     notFoundInFavoriteList: 'Product not found in favorite list.',
+    notFoundInFavoriteServicesList: 'Product not found in favorite list.',
     colorExists: 'Color already exists.',
     sizeExists: 'Size already exists',
     noColorExists: 'Color does not exist.',
@@ -136,9 +138,15 @@ export const messages = {
     successfulUserDelete: 'Account deleted successfully.',
     successfulDeleteYourAccount: 'Your account deleted successfully.',
     productStatics: 'These are some statistics about products.',
+    
     successfulDeleteProductFromFavorite:
       'Product deleted from favorite list successfully.',
     successfulProductFoundInFavorite: 'Product in favorite list.',
+
+    successfulDeleteServiceFromFavorite:
+    'Service deleted from favorite list successfully.',
+    successfulServiceFoundInFavorite: 'Service in favorite list.',
+    
     successfulCodeVerification:
       'Discount code verification completed successfully.',
     successfulDiscountCodesFound: 'Discount codes found successfully.',
