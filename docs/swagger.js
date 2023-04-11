@@ -151,6 +151,13 @@ import {
 } from './favorite.service.swagger';
 
 import {
+  addFavoriteRental,
+  deleteRentalFromFavorite,
+  checkRentalInFavoriteList,
+  getFavoriteRentalsList
+} from './favorite.rental.swagger';
+
+import {
   verifyDiscountCode,
   getDiscount,
   getAllDiscountCodes,
@@ -388,6 +395,18 @@ const docs = {
     },
     '/favorite/service/check/{serviceId}': {
       get: checkServiceInFavoriteList
+    },
+
+    // Rental favorite Routes
+    '/favorite/rental': {
+      get: getFavoriteRentalsList,
+      post: addFavoriteRental
+    },
+    '/favorite/rental/{rentalId}': {
+      delete: deleteRentalFromFavorite
+    },
+    '/favorite/rental/check/{rentalId}': {
+      get: checkRentalInFavoriteList
     },
     
     // Discount Routes 

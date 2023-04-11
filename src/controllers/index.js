@@ -161,6 +161,13 @@ import {
 } from './favorite.service.controller';
 
 import {
+  addFavoriteRental,
+  getFavoriteRentalsList,
+  deleteRentalFromFavorite,
+  checkRentalInFavoriteList
+} from './favorite.rental.controller';
+
+import {
   createMedia,
   createDocumentMedia
 } from './media.controller';
@@ -329,6 +336,13 @@ const favoriteServiceController = {
   checkServiceInFavoriteList
 };
 
+const favoriteRentalController = {
+  addFavoriteRental,
+  getFavoriteRentalsList,
+  deleteRentalFromFavorite,
+  checkRentalInFavoriteList
+};
+
 const mediaController = {
   createMedia,
   createDocumentMedia
@@ -352,5 +366,6 @@ export {
   discountController,
   favoriteController,
   favoriteServiceController,
+  favoriteRentalController,
   mediaController
 };

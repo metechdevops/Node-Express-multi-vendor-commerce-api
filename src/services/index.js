@@ -160,6 +160,13 @@ import {
 } from './favorite.custom.service';
 
 import {
+  addFavoriteRental,
+  getFavoriteRentalsList,
+  deleteRentalFromFavorite,
+  checkRentalInFavoriteList
+} from './favorite.rental.service';
+
+import {
   createMedia,
   createDocumentMedia
 } from './media.service';
@@ -337,6 +344,13 @@ const favoriteCustomService = {
   checkServiceInFavoriteList
 };
 
+const favoriteRentalService = {
+  addFavoriteRental,
+  getFavoriteRentalsList,
+  deleteRentalFromFavorite,
+  checkRentalInFavoriteList
+};
+
 export {
   authService,
   userService,
@@ -355,5 +369,6 @@ export {
   discountService,
   favoriteService,
   favoriteCustomService,
+  favoriteRentalService,
   mediaService
 };
