@@ -1,5 +1,125 @@
 import {ImageSchema} from "./components/common/index"
 
+const productFavoriteSchema = {
+  type: 'array',
+  items: {
+    type:'object',
+    properties:{
+      productId: {
+        type: 'string',
+        example: '613a6902c5fcab984501f7ee'
+      },
+      productInfo: {
+        type: 'object',
+        properties: {
+          seller: {
+            type: 'object',
+            properties : {
+              id : {
+                type: 'string',
+                example:"611d08a62fc210a30ecfb75b"
+              },
+              name : {
+                type: 'string',
+                example:"Test Category"
+              }
+            }
+          },
+          mainImage: ImageSchema,
+          name: {
+            type: 'string',
+            example: 'MacBook Air (13-inch, Early 2015) 4gb 128gb'
+          },
+          slug: {
+            type: 'string',
+            example: 'macbook-air-(13-inch-early-2015)-4gb-128gb'
+          }
+        }
+      },
+    }
+  }
+}
+
+const serviceFavoriteSchema = {
+  type: 'array',
+  items: {
+    type:'object',
+    properties:{
+      serviceId: {
+        type: 'string',
+        example: '613a6902c5fcab984501f7ee'
+      },
+      serviceInfo: {
+        type: 'object',
+        properties: {
+          seller: {
+            type: 'object',
+            properties : {
+              id : {
+                type: 'string',
+                example:"611d08a62fc210a30ecfb75b"
+              },
+              name : {
+                type: 'string',
+                example:"Test"
+              }
+            }
+          },
+          mainImage: ImageSchema,
+          name: {
+            type: 'string',
+            example: 'MacBook Air (13-inch, Early 2015) 4gb 128gb'
+          },
+          slug: {
+            type: 'string',
+            example: 'macbook-air-(13-inch-early-2015)-4gb-128gb'
+          }
+        }
+      },
+    }
+  }
+}
+
+const rentalFavoriteSchema = {
+  type: 'array',
+  items: {
+    type:'object',
+    properties:{
+      rentalId: {
+        type: 'string',
+        example: '613a6902c5fcab984501f7ee'
+      },
+      rentalInfo: {
+        type: 'object',
+        properties: {
+          seller: {
+            type: 'object',
+            properties : {
+              id : {
+                type: 'string',
+                example:"611d08a62fc210a30ecfb75b"
+              },
+              name : {
+                type: 'string',
+                example:"Test "
+              }
+            }
+          },
+          mainImage: ImageSchema,
+          name: {
+            type: 'string',
+            example: 'MacBook Air (13-inch, Early 2015) 4gb 128gb'
+          },
+          slug: {
+            type: 'string',
+            example: 'macbook-air-(13-inch-early-2015)-4gb-128gb'
+          }
+        }
+      },
+    }
+  }
+}
+
 export const addFavoriteProduct = {
   tags: ['Favorite'],
   description:
@@ -143,45 +263,35 @@ export const getFavoriteList = {
                     type: 'string',
                     example: '611d0cf2ab79f9bb0c388234'
                   },
-                  products: {
-                    type: 'array',
-                    items: {
-                      type:'object',
-                      properties:{
-                        productId: {
-                          type: 'string',
-                          example: '613a6902c5fcab984501f7ee'
-                        },
-                        productInfo: {
-                          type: 'object',
-                          properties: {
-                            seller: {
-                              type: 'object',
-                              properties : {
-                                id : {
-                                  type: 'string',
-                                  example:"611d08a62fc210a30ecfb75b"
-                                },
-                                name : {
-                                  type: 'string',
-                                  example:"Test Category"
-                                }
-                              }
-                            },
-                            mainImage: ImageSchema,
-                            name: {
-                              type: 'string',
-                              example: 'MacBook Air (13-inch, Early 2015) 4gb 128gb'
-                            },
-                            slug: {
-                              type: 'string',
-                              example: 'macbook-air-(13-inch-early-2015)-4gb-128gb'
-                            }
-                          }
-                        },
-                      }
-                    }
-                  }
+                  products: productFavoriteSchema
+                }
+              },
+              service: {
+                type: 'object',
+                properties: {
+                  _id: {
+                    type: 'string',
+                    example: '613a6902c5fcab984501f7ee'
+                  },
+                  user: {
+                    type: 'string',
+                    example: '611d0cf2ab79f9bb0c388234'
+                  },
+                  services: serviceFavoriteSchema
+                }
+              },
+              rental: {
+                type: 'object',
+                properties: {
+                  _id: {
+                    type: 'string',
+                    example: '613a6902c5fcab984501f7ee'
+                  },
+                  user: {
+                    type: 'string',
+                    example: '611d0cf2ab79f9bb0c388234'
+                  },
+                  rentals: rentalFavoriteSchema
                 }
               }
             }

@@ -4,7 +4,11 @@ const mongoose = require('mongoose');
 import catchAsync from '../utils/catchAsync';
 
 // Models
-import { Favorite, Product } from '../models';
+import { 
+  Favorite, 
+  rentalFavorite, 
+  serviceFavorite, 
+  Product } from '../models';
 
 /**
  * @desc    Add product to favorite list service
@@ -86,32 +90,37 @@ export const addFavoriteProduct = catchAsync(async (userId, productId) => {
  * @returns { Object<type|message|statusCode|favorite> }
  */
 export const getFavoriteList = catchAsync(async (userId) => {
+
   const favorite = await Favorite.findOne({ user: userId });
+  const service = await serviceFavorite.findOne({ user: userId });
+  const rental = await rentalFavorite.findOne({ user: userId });
 
   // 1) Check if favorite document doesn't exists
-  if (!favorite) {
-    return {
-      type: 'Error',
-      statusCode: 404,
-      message: 'noFavoriteListFound'
-    };
-  }
+  // if (!favorite) {
+  //   return {
+  //     type: 'Error',
+  //     statusCode: 404,
+  //     message: 'noFavoriteListFound'
+  //   };
+  // }
 
   // 2) Check if favorite products already exist
-  if (favorite.length === 0) {
-    return {
-      type: 'Error',
-      statusCode: 404,
-      message: 'noProductsInFavorite'
-    };
-  }
+  // if (favorite.length === 0) {
+  //   return {
+  //     type: 'Error',
+  //     statusCode: 404,
+  //     message: 'noProductsInFavorite'
+  //   };
+  // }
 
   // 3) If everything is OK, send data
   return {
     type: 'Success',
     statusCode: 200,
     message: 'successfulFavoriteGet',
-    favorite
+    favorite,
+    service,
+    rental
   };
 });
 
