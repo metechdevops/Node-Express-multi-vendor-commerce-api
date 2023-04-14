@@ -13,7 +13,7 @@ import { favoriteService } from '../services';
  */
 export const getFavoriteList = catchAsync(async (req, res) => {
   // 1) Calling addFavoriteProduct service
-  const { type, message, statusCode, favorite, rental, service  } =
+  const { type, message, statusCode, products, rentals, services  } =
     await favoriteService.getFavoriteList(req.user.id);
 
   // 2) Check if something went wrong
@@ -28,9 +28,9 @@ export const getFavoriteList = catchAsync(async (req, res) => {
   return res.status(statusCode).json({
     type,
     message: req.polyglot.t(message),
-    favorite: favorite,
-    rental,
-    service
+    products,
+    rentals,
+    services
   });
 });
 

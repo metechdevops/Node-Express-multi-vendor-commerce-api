@@ -252,7 +252,7 @@ export const getFavoriteList = {
                 type: 'string',
                 example: 'Favorite list successfully retrieved.'
               },
-              favorite: {
+              products: {
                 type: 'object',
                 properties: {
                   _id: {
@@ -266,7 +266,7 @@ export const getFavoriteList = {
                   products: productFavoriteSchema
                 }
               },
-              service: {
+              services: {
                 type: 'object',
                 properties: {
                   _id: {
@@ -280,7 +280,7 @@ export const getFavoriteList = {
                   services: serviceFavoriteSchema
                 }
               },
-              rental: {
+              rentals: {
                 type: 'object',
                 properties: {
                   _id: {

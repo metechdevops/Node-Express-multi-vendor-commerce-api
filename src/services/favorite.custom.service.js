@@ -62,7 +62,7 @@ export const addFavoriteService = catchAsync(async (userId, serviceId) => {
     return {
       type: 'Success',
       statusCode: 200,
-      message: 'successfulFavoriteAdd'
+      message: 'successfulFavoriteServiceAdd'
     };
   }
 
@@ -76,7 +76,7 @@ export const addFavoriteService = catchAsync(async (userId, serviceId) => {
   return {
     type: 'Success',
     statusCode: 200,
-    message: 'successfulFavoriteAdd'
+    message: 'successfulFavoriteServiceAdd'
   };
 });
 

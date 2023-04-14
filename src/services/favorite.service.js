@@ -91,9 +91,9 @@ export const addFavoriteProduct = catchAsync(async (userId, productId) => {
  */
 export const getFavoriteList = catchAsync(async (userId) => {
 
-  const favorite = await Favorite.findOne({ user: userId });
-  const service = await serviceFavorite.findOne({ user: userId });
-  const rental = await rentalFavorite.findOne({ user: userId });
+  const products = await Favorite.findOne({ user: userId });
+  const services = await serviceFavorite.findOne({ user: userId });
+  const rentals = await rentalFavorite.findOne({ user: userId });
 
   // 1) Check if favorite document doesn't exists
   // if (!favorite) {
@@ -118,9 +118,9 @@ export const getFavoriteList = catchAsync(async (userId) => {
     type: 'Success',
     statusCode: 200,
     message: 'successfulFavoriteGet',
-    favorite,
-    service,
-    rental
+    products: products || [],
+    services: services || [],
+    rentals:  rentals || [] 
   };
 });
 
