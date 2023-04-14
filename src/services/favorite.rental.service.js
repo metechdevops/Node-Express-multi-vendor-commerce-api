@@ -62,7 +62,7 @@ export const addFavoriteRental = catchAsync(async (userId, rentalId) => {
     return {
       type: 'Success',
       statusCode: 200,
-      message: 'successfulFavoriteAdd'
+      message: 'successfulFavoriteRentalAdd'
     };
   }
 
@@ -76,7 +76,7 @@ export const addFavoriteRental = catchAsync(async (userId, rentalId) => {
   return {
     type: 'Success',
     statusCode: 200,
-    message: 'successfulFavoriteAdd'
+    message: 'successfulFavoriteRentalAdd'
   };
 });
 
@@ -192,7 +192,7 @@ export const checkRentalInFavoriteList = catchAsync(
       return {
         type: 'Error',
         statusCode: 404,
-        message: 'notFoundInFavoriteRentalsList'
+        message: 'notRentalFoundInFavoriteList'
       };
     }
 
