@@ -129,7 +129,7 @@ Live demo (Feel free to visit) 👉 :  <a href="https://e-commerce-a-p-i.herokua
 
 ## API Usage
 
-Check [Ecommerce API Documentation](https://e-commerce-a-p-i.herokuapp.com/api-docs/#/) for more info.
+Check [Ecommerce API Documentation](https://ecart.codexnova.com/api-docs) for more info.
 
 ## Deployment
 
@@ -168,7 +168,6 @@ List of any major frameworks used to build the project.
 * [Validator](https://www.npmjs.com/package/validator) - A library of string validators and sanitizers.
 * [Winston](https://www.npmjs.com/package/winston) - A logger for just about everything.
 * [XSS Clean](https://www.npmjs.com/package/xss-clean) - Middleware to sanitize user input
-* [Stripe](https://www.npmjs.com/package/stripe) - The Stripe Node library provides convenient access to the Stripe API from applications written in server-side JavaScript.
 * [Swagger UI Express](https://www.npmjs.com/package/swagger-ui-express) - Allows you to serve auto-generated swagger-ui generated API docs from express.
 * [Express Locale](https://www.npmjs.com/package/express-locale) - Express middleware to determine the locale identifier of the incomming request.
 * [Node Polyglot](https://www.npmjs.com/package/node-polyglot) - It provides a simple solution for interpolation and pluralization, based off of Airbnb’s experience adding I18n functionality to its Backbone.js and Node apps.
@@ -194,28 +193,4 @@ $ yarn run start
 Feel free to email me at mle.mahmoud.yasser@gmail.com if you run into any issues or have questions, ideas or concerns.
 Please enjoy and feel free to share your opinion, constructive criticism, or comments about my work. Thank you! 🙂
 
-<!-- CONTRIBUTING -->
-## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<!-- CONTACT -->
-## Contact
-
-Twitter - [@Mahmoud03203227](https://twitter.com/Mahmoud03203227)
-
-Email - [mle.mahmoud.yasser@gmail.com]()
-
-Facebook - [MahmoudYasserMLE](https://www.facebook.com/MahmoudYasserMLE/)
-
-https://github.com/Braineanear/EcommerceAPI
-
-Project: [https://github.com/Braineanear/EcommerceAPI](https://github.com/Braineanear/EcommerceAPI)
-
-Google Auth2 Setup: https://alexb72.medium.com/how-to-send-emails-using-a-nodemailer-gmail-and-oauth2-fe19d66451f9
