@@ -41,6 +41,7 @@ export const messages = {
     categoryImageRequired: 'Image is required, please upload an image!',
     noServiceBookings: 'No service bookings found',
     noServiceBooking: 'No service booking found',
+    noRentalBooking: 'No rental booking found',
     noOrders: 'No orders found',
     noOrder: 'No order found',
     noFavoriteListFound: 'No favorite list found.',
@@ -121,10 +122,15 @@ export const messages = {
     successfulFavoriteRentalAdd: 'Rental added to favorite list successfully.',
     successfulFavoriteGet: 'Favorite list successfully retrieved.',
 
-    successfulServiceBookingCreate: 'ServiceBooking created successfully.',
-    successfulServiceBookingsFound: 'Service Bookings found successfully.',
-    successfulServiceBookingFound: 'Service Booking found successfully.',
-    successfulServiceBookingDeleted: 'Service Booking deleted successfully.',
+    successfulServiceBookingCreate: 'Service booking created successfully.',
+    successfulServiceBookingsFound: 'Service bookings found successfully.',
+    successfulServiceBookingFound: 'Service booking found successfully.',
+    successfulServiceBookingDeleted: 'Service booking deleted successfully.',
+
+    successfulRentalBookingCreate: 'RentalBooking created successfully.',
+    successfulRentalBookingsFound: 'Service Bookings found successfully.',
+    successfulRentalBookingFound: 'Service Booking found successfully.',
+    successfulRentalBookingDeleted: 'Service Booking deleted successfully.',
 
     successfulFavoriteAdd: 'Product added to favorite list successfully.',
     successfulFavoriteServiceAdd: 'Service added to favorite list successfully.',

@@ -12,6 +12,7 @@ import rentalReview from './schema/rental/review.model';
 import Cart from './cart.model';
 import Order from './order.model';
 import serviceBooking from './service.booking.model';
+import rentalBooking from './rental.booking.model';
 import Token from './token.model';
 import Discount from './discount.model';
 import Favorite from './favorite.model';
@@ -35,6 +36,7 @@ export {
   Cart,
   Order,
   serviceBooking,
+  rentalBooking,
   Token,
   Discount,
   Favorite,

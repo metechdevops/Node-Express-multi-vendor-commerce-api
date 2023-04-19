@@ -146,6 +146,14 @@ import {
 } from './service.booking.controller';
 
 import {
+  createRentalBooking,
+  rentalBookingStatus,
+  getAllRentalBookings,
+  getRentalBooking,
+  cancelRentalBooking
+} from './rental.booking.controller';
+
+import {
   getAllDiscountCodes,
   getDiscount,
   verifyDiscountCode,
@@ -329,6 +337,14 @@ const serviceBookingController = {
   cancelServiceBooking
 };
 
+const rentalBookingController = {
+  createRentalBooking,
+  rentalBookingStatus,
+  getAllRentalBookings,
+  getRentalBooking,
+  cancelRentalBooking
+};
+
 const discountController = {
   getAllDiscountCodes,
   getDiscount,
@@ -380,6 +396,7 @@ export {
   cartController,
   orderController,
   serviceBookingController,
+  rentalBookingController,
   discountController,
   favoriteController,
   favoriteServiceController,

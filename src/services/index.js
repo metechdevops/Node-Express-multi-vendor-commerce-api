@@ -145,6 +145,14 @@ import {
 } from './service.booking.service';
 
 import {
+  createRentalBooking,
+  rentalBookingStatus,
+  queryRentalBookings,
+  queryRentalBooking,
+  cancelRentalBooking
+} from './rental.booking.service';
+
+import {
   getAllDiscountCodes,
   getDiscount,
   verifyDiscountCode,
@@ -337,6 +345,14 @@ const serviceBooking = {
   cancelServiceBooking
 };
 
+const rentalBooking = {
+  createRentalBooking,
+  rentalBookingStatus,
+  queryRentalBookings,
+  queryRentalBooking,
+  cancelRentalBooking
+};
+
 const discountService = {
   getAllDiscountCodes,
   getDiscount,
@@ -383,6 +399,7 @@ export {
   cartService,
   orderService,
   serviceBooking,
+  rentalBooking,
   discountService,
   favoriteService,
   favoriteCustomService,

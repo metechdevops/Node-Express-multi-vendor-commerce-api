@@ -145,6 +145,14 @@ import {
 } from './service.booking.swagger';
 
 import {
+  createNewRentalBooking,
+  getAllRentalBookings,
+  getRentalBooking,
+  rentalBookingStatus,
+  cancelRentalBooking
+} from './rental.booking.swagger';
+
+import {
   addFavoriteProduct,
   deleteProductFromFavorite,
   checkProductInFavoriteList,
@@ -469,6 +477,17 @@ const docs = {
       get: getServiceBooking,
       patch: serviceBookingStatus,
       delete: cancelServiceBooking
+    },
+
+    // Rental Booking 
+    '/rental-booking': {
+      get: getAllRentalBookings,
+      post: createNewRentalBooking
+    },
+    '/rental-booking/{id}': {
+      get: getRentalBooking,
+      patch: rentalBookingStatus,
+      delete: cancelRentalBooking
     },
 
     // Product Reviews
