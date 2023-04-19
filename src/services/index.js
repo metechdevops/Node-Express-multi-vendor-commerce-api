@@ -137,6 +137,14 @@ import {
 } from './order.service';
 
 import {
+  createServiceBooking,
+  serviceBookingStatus,
+  queryServiceBookings,
+  queryServiceBooking,
+  cancelServiceBooking
+} from './service.booking.service';
+
+import {
   getAllDiscountCodes,
   getDiscount,
   verifyDiscountCode,
@@ -321,6 +329,14 @@ const orderService = {
   cancelOrder
 };
 
+const serviceBooking = {
+  createServiceBooking,
+  serviceBookingStatus,
+  queryServiceBookings,
+  queryServiceBooking,
+  cancelServiceBooking
+};
+
 const discountService = {
   getAllDiscountCodes,
   getDiscount,
@@ -366,6 +382,7 @@ export {
   rentalReview,
   cartService,
   orderService,
+  serviceBooking,
   discountService,
   favoriteService,
   favoriteCustomService,

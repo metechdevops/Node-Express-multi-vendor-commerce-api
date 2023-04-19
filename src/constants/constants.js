@@ -51,6 +51,30 @@ module.exports = {
     'delivered',
     'cancelled'
   ],
+  BOOKING_STATUS_ENUM : [
+    'pending',
+    'accepted',
+    'rejected',
+    'completed'
+  ],
+  BOOKING_STATUS: {
+    PENDING:"pending",
+    ACCEPTED:"accepted",
+    REJECTED:"rejected",
+    COMPLETED:"completed",
+  },
+  PAYMENT_STATUS_ENUM : [
+    'pending',
+    'paid',
+    'declined',
+    'rollback'
+  ],
+  PAYMENT_STATUS: {
+    PENDING:"pending",
+    PAID:"paid",
+    DELCINED:"declined",
+    ROLLBACK:"rollback",
+  },
   DURATION_TYPE: {
     HOUR:"hourly",
     DAY:"daily",

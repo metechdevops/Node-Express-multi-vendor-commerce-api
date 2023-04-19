@@ -137,6 +137,14 @@ import {
 } from './order.swagger';
 
 import {
+  createNewServiceBooking,
+  getAllServiceBookings,
+  getServiceBooking,
+  serviceBookingStatus,
+  cancelServiceBooking
+} from './service.booking.swagger';
+
+import {
   addFavoriteProduct,
   deleteProductFromFavorite,
   checkProductInFavoriteList,
@@ -450,6 +458,17 @@ const docs = {
       get: getOrder,
       patch: orderStatus,
       delete: cancelOrder
+    },
+
+    // Service Booking 
+    '/service-booking': {
+      get: getAllServiceBookings,
+      post: createNewServiceBooking
+    },
+    '/service-booking/{id}': {
+      get: getServiceBooking,
+      patch: serviceBookingStatus,
+      delete: cancelServiceBooking
     },
 
     // Product Reviews

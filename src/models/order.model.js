@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import validator from 'validator';
 
 import { 
   ORDER_STATUS,
@@ -7,7 +6,7 @@ import {
 } from '../constants/constants';
 import toJSON from './plugins/index';
 
-import phoneSchema from './schema/common/phone.schema';
+import shippingAddressSchema from './schema/common/shipping.address.schema';
 
 const orderSchema = mongoose.Schema(
   {
@@ -37,25 +36,7 @@ const orderSchema = mongoose.Schema(
     deliveredAt: {
       type: Date
     },
-    shippingAddress: {
-      firstName: {type: String},
-      lastName: {type: String},
-      email: {
-        type: String,
-        trim: true,
-        lowercase: true,
-        validate(value) {
-          if (!validator.isEmail(value)) {
-            throw new Error('Invalid email');
-          }
-        }
-      },
-      phone: phoneSchema,
-      address: { type: String, required: true },
-      city: { type: String, required: true },
-      zipCode: { type: String, required: true },
-      country: { type: String, required: true }
-    },
+    shippingAddress: shippingAddressSchema,
     paymentMethod: {
       type: String,
       required: true
