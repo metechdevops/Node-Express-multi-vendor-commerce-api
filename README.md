@@ -172,25 +172,5 @@ List of any major frameworks used to build the project.
 * [Express Locale](https://www.npmjs.com/package/express-locale) - Express middleware to determine the locale identifier of the incomming request.
 * [Node Polyglot](https://www.npmjs.com/package/node-polyglot) - It provides a simple solution for interpolation and pluralization, based off of Airbnb’s experience adding I18n functionality to its Backbone.js and Node apps.
 
-## To-do
-
-* Using MicroServices with Event-Driven.
-
-* Using TypeScript.
-
-## Installation
-
-You can fork the app or you can git-clone the app into your local machine. Once done that, please install all the
-dependencies by running
-```
-$ yarn install
-set your env variables
-$ yarn run start
-```
-
-
-## Known Bugs
-Feel free to email me at mle.mahmoud.yasser@gmail.com if you run into any issues or have questions, ideas or concerns.
-Please enjoy and feel free to share your opinion, constructive criticism, or comments about my work. Thank you! 🙂
 
 
