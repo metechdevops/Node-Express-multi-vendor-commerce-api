@@ -14,6 +14,7 @@ const productSchema = mongoose.Schema(
       trim: true
     },
     slug: String,
+    sku: String,
     mainImage: productImage,
     images: [productImage],
     description: {

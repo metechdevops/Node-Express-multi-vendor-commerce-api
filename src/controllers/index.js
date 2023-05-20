@@ -29,6 +29,7 @@ import {
   updateProductMainImage,
   updateProductImages,
   deleteProduct,
+  importCSVData,
   top5Cheap,
   productStats
 } from './product.controller';
@@ -264,6 +265,7 @@ const productController = {
   updateProductMainImage,
   updateProductImages,
   deleteProduct,
+  importCSVData,
   top5Cheap,
   productStats
 };

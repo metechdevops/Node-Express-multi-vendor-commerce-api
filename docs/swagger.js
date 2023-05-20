@@ -61,6 +61,7 @@ import {
   updateProductDetails,
   deleteProduct,
   addProductColor,
+  ImportCSVData,
   addProductSize,
   deleteProductColor,
   deleteProductSize
@@ -366,6 +367,9 @@ const docs = {
     '/product': {
       get: getAllProducts,
       post: addProduct
+    },
+    '/product/import-csv-data': {
+      post: ImportCSVData
     },
     '/product/{productId}': {
       get: getProduct,

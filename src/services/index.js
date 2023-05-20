@@ -97,6 +97,7 @@ import {
   updateProductMainImage,
   updateProductImages,
   deleteProduct,
+  importCSVData,
   getProductStats
 } from './product.service';
 
@@ -299,6 +300,7 @@ const productService = {
   updateProductMainImage,
   updateProductImages,
   deleteProduct,
+  importCSVData,
   getProductStats
 };
 

@@ -26,6 +26,7 @@ const {
   updateProductImages,
   deleteProduct,
   top5Cheap,
+  importCSVData,
   productStats
 } = productController;
 
@@ -54,9 +55,7 @@ router.post('/', anyMulter(), addProduct);
 
 router.patch('/:productId/details', updateProductDetails);
 
-// router.patch('/:productId/main-image', anyMulter(), updateProductMainImage);
-
-// router.patch('/:productId/images', anyMulter(), updateProductImages);
+router.post('/import-csv-data', importCSVData);
 
 router.delete('/:productId', deleteProduct);
 

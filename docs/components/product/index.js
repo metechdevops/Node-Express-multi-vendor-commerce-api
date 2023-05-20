@@ -193,6 +193,87 @@ const updateProductBody = {
   }
 }
 
+const bulkImportDataBody = {
+  description: 'Bulk product body.',
+  content: {
+    'application/json': {
+      schema: {
+        type: 'object',
+        required: [
+          "products"
+        ],
+        properties: {
+          products: {
+            type: 'array',
+            items: {
+              type: 'object',
+              required: [
+                "name",
+                "sku",
+                "description",
+                "unitType",
+                "unitValue",
+                "price",
+                "quantity",
+              ],
+              properties: {
+                name: {
+                  type: 'string',
+                  example:"Test product"
+                },
+                sku: {
+                  type: 'string',
+                  example:"EDSFD-343"
+                },
+                description: {
+                  type: 'string',
+                  example:"This is test product description"
+                },
+                shortDescription: {
+                    type: 'string',
+                    example:"This is test product short description"
+                },
+                unitType: {
+                    type: 'string',
+                    example:"cm"
+                },
+                unitValue: {
+                    type: 'string',
+                    example:"10"
+                },
+                price: {
+                  type: 'integer',
+                  example: 200
+                },
+                priceDiscount: {
+                  type: 'integer',
+                  example: 10
+                },
+                isFeatured: {
+                  type: 'boolean',
+                  example: false
+                },
+                quantity: {
+                  type: 'integer',
+                  example: 20
+                },
+                tags: {
+                    type: 'array',
+                    items: {
+                        type: "string",
+                        example:"tag1, tag2, tag3"
+                    }
+                },
+              }
+            }
+          },
+          
+        }
+      }
+    }
+  }
+}
+
 const addProduct201 = {
     description: 'Add New Product 201 response',
     content: {
@@ -348,6 +429,29 @@ const addProduct201 = {
       }
     }
   }
+
+  const csvImport201 = {
+    description: 'CSV Import Product 201 response',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'object',
+          properties: {
+            type: {
+              type: 'string',
+              example: 'Success'
+            },
+            message: {
+              type: 'string',
+              example: 'Product csv data imported successfully.'
+            },
+          }
+        }
+      }
+    }
+  }
+
+  
 
 const productObjectSchema = {
     type: 'object',
@@ -516,11 +620,35 @@ const addProduct400 = {
     }
 }
 
+const csvImport400 = {
+  description: 'Error: 400',
+  content: {
+    'application/json': {
+      schema: {
+        type: 'object',
+        properties: {
+          type: {
+            type: 'string',
+            example: 'Error'
+          },
+          message: {
+            type: 'string',
+            example: 'Something went wrong.'
+          }
+        }
+      }
+    }
+  }
+}
+
 
 module.exports = {
   addProductRequestBody,
   updateProductBody,
+  bulkImportDataBody,
   productObjectSchema,
   addProduct201,
+  csvImport201,
+  csvImport400,
   addProduct400
 }

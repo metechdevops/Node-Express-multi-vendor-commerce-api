@@ -2,9 +2,12 @@ import { ImageSchema } from './components/common';
 
 const {
   addProductRequestBody,
+  bulkImportDataBody,
   updateProductBody,
   productObjectSchema,
   addProduct201,
+  csvImport201,
+  csvImport400,
   addProduct400,
   addProduct404
 } = require ('./components/product')
@@ -245,6 +248,30 @@ export const addProduct = {
   responses: {
     201: addProduct201,
     400: addProduct400
+  }
+};
+
+export const ImportCSVData = {
+  tags: ['Product'],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
+  description: 'This route allow you to import products csv data',
+  opeationId: 'importCSVData',
+  parameters: [
+    {
+      in: 'header',
+      name: 'Accept-Language',
+      type: 'string',
+      example: 'en_MX'
+    }
+  ],
+  requestBody: bulkImportDataBody,
+  responses: {
+    201: csvImport201,
+    400: csvImport400
   }
 };
 

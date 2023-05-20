@@ -298,6 +298,107 @@ export const updateProductDetails = catchAsync(
 );
 
 /**
+ * @desc    Import CSV Product Details
+ * @param   { Object } body - Body object data
+ * @param   { String } sellerId - Seller ID
+ * @returns { Object<type|message|statusCode> }
+ */
+export const importCSVData = catchAsync(
+  async (sellerId, body) => {
+
+    const {products} = body;
+    
+    // Get products SKU's
+    const SKUs = products.map((item) => item.sku)
+    
+    // Get All the products by SKU's
+    const oldProducts = await Product.aggregate([{"$match":{sku:{"$in":SKUs}}}])
+
+    // Get New products SKU's
+    const oldProductSKU = oldProducts.map((item) => item.sku)
+
+
+
+    // -------- Update existing product data ----------------
+    const promises = []
+    oldProducts.map(async product => {
+
+      // Get Product Updated Payload  
+      const newData = products.find((item) => item.sku == product.sku)
+
+      // 2) Deep copy of two objects
+      const newObject = _.merge(product, newData);
+      // write update to database
+      promises.push(Product.updateOne({_id:product._id}, {$set: {...newObject}}))
+
+    })
+    await Promise.all(promises);
+
+
+    // -------- Adding new product entries ----------------
+    const newProductEntries = products.filter((item) => !oldProductSKU.includes(item.sku))
+    newProductEntries.map(async product => {
+      newCSVImportProduct(product,sellerId)
+    })
+
+
+    // 4) If everything is OK, send data
+    return {
+      type: 'Success',
+      message: 'successfulProductDetails',
+      statusCode: 200,
+      // result
+    };
+  }
+);
+
+/**
+ * @desc    CVS new product Import
+ * @param   { Object } body - Body object data
+ * @param   { String } seller - Product seller ID
+ * @returns { Object<type|product> }
+ */
+const newCSVImportProduct = catchAsync(async (body, seller) => {
+  
+  const {
+    price,
+    priceDiscount,
+    quantity,
+    sold,
+  } = body;
+
+
+  body.price = Number(price) || 0
+  body.priceDiscount = Number(priceDiscount) || 0
+  body.quantity = Number(quantity) || 0
+  body.sold = Number(sold) || 0
+ 
+  // Set Default Feature Image 
+  body.mainImage = {
+    original: "https://i.pravatar.cc/300",
+    web: "https://i.pravatar.cc/500",
+    mobile:"https://i.pravatar.cc/200"
+  }
+
+  // Get Product Seller Info
+  const sellerObject  = await User.findById(seller)
+  if(sellerObject){
+    body.seller = {'id':sellerObject._id,name:`${sellerObject.firstName} ${sellerObject.lastName}`}
+  }
+  body.sellerInfo = sellerObject._id
+
+  body['priceAfterDiscount'] = Number(price);
+
+  if (priceDiscount !== 0) {
+    body.priceAfterDiscount = Number(price) - (Number(price) / 100) * Number(priceDiscount);
+  }
+
+  let product = await Product.create(body);
+  
+  return await product.save();
+});
+
+/**
  * @desc    Update Product Color
  * @param   { String } productId - Product ID
  * @param   { String } sellerId - Seller ID

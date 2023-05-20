@@ -208,6 +208,38 @@ export const updateProductDetails = catchAsync(async (req, res) => {
 });
 
 /**
+ * @desc      Import Product CSV Controller
+ * @param     { Object } req - Request object
+ * @param     { Object } res - Response object
+ * @property  { String } req.params.productId - Product ID
+ * @property  { String } req.user.id - Seller ID
+ * @property  { Object } req.body - Body object data
+ * @returns   { JSON } - A JSON object representing the type, message and the product
+ */
+export const importCSVData = catchAsync(async (req, res) => {
+  // 1) Update product details using it's ID
+  const { type, message, statusCode } =
+    await productService.importCSVData(
+      req.user.id,
+      req.body
+    );
+
+  // 2) Check if there is an error
+  if (type === 'Error') {
+    return res.status(statusCode).json({
+      type,
+      message: req.polyglot.t(message)
+    });
+  }
+
+  // 3) If everything is OK, send product
+  return res.status(statusCode).json({
+    type,
+    message: req.polyglot.t(message),
+  });
+});
+
+/**
  * @desc      Update Product Main Image Controller
  * @param     { Object } req - Request object
  * @param     { Object } res - Response object
