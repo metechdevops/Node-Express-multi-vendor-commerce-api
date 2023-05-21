@@ -70,7 +70,7 @@ const rentalBookingSchema = mongoose.Schema(
     },
     rental: {
       type: mongoose.Types.ObjectId,
-      ref: 'Service'
+      ref: 'Rental'
     },
     bookingDate: { 
       type: Date, 

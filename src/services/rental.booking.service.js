@@ -199,16 +199,16 @@ export const queryRentalBookings = catchAsync(async (req) => {
   const {user} = req
 
   if(user.role == 'seller')
-    // req.query.seller = { "$elemMatch" : {'seller.id':  user._id.toString() }};
     req.query.seller = req.user._id.toString();
   else if (user.role == 'user') 
     req.query.user = req.user._id.toString();
   
 
   const populateQuery = [
+    { path: 'rental', select: 'mainImage price name'},
     { path: 'user', select: 'profileImage lastName firstName email'},
     { path: 'seller', select: 'profileImage lastName firstName email'},
-    { path: 'rental', select: 'mainImage price name'},
+    
   ];
 
   // 1) Get all bookings
