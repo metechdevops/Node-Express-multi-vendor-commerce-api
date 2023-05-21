@@ -168,7 +168,7 @@ export const createRental = catchAsync(async (body, files, seller) => {
   }
 
 
-  const message  = rental_ID ? 'successfulRentalDetails': 'successfulRentalCreate';
+  const message  = rental_ID ? 'successfulRentalDetails': 'Successfully Created Rental';
   const statusCode = rental_ID ? 200: 201;  
 
   // 8) If everything is OK, send data

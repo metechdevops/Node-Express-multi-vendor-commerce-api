@@ -6,7 +6,7 @@ import catchAsync from '../utils/catchAsync';
 import APIFeatures from '../utils/apiFeatures';
 import dataUri from '../utils/datauri';
 import { uploadFile, destroyFile } from '../utils/cloudinary';
-import {CreateSchema} from '../validators/entities/category/create';
+import {CreateSchema} from '../validators/entities/store/create';
 import validator from '../validators/field-validator';
 
 // Models
