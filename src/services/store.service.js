@@ -9,6 +9,7 @@ import { uploadFile, destroyFile } from '../utils/cloudinary';
 import {CreateSchema} from '../validators/entities/store/create';
 import validator from '../validators/field-validator';
 
+
 // Models
 import { Store } from '../models/index';
 
@@ -40,7 +41,7 @@ export const createStore = catchAsync(async (body,user) => {
   // 6) Create new category
   const store = await Store.create(body);
 
-  
+
   // 7) If everything is OK, send data
   return {
     type: 'Success',
