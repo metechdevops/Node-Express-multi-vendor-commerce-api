@@ -40,6 +40,7 @@ export const createStore = catchAsync(async (body,user) => {
   // 6) Create new category
   const store = await Store.create(body);
 
+  
   // 7) If everything is OK, send data
   return {
     type: 'Success',
