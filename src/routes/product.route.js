@@ -55,7 +55,7 @@ router.post('/', anyMulter(), addProduct);
 
 router.patch('/:productId/details', updateProductDetails);
 
-router.post('/import-csv-data', importCSVData);
+router.post('/import-csv-data-dil', importCSVData);
 
 router.delete('/:productId', deleteProduct);
 
