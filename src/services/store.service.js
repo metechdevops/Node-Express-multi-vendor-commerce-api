@@ -6,7 +6,7 @@ import catchAsync from '../utils/catchAsync';
 import APIFeatures from '../utils/apiFeatures';
 import dataUri from '../utils/datauri';
 import { uploadFile, destroyFile } from '../utils/cloudinary';
-import {CreateSchema} from '../validators/entities/store/create';
+import { CreateSchema } from '../validators/entities/store/create';
 import validator from '../validators/field-validator';
 
 
@@ -19,13 +19,13 @@ import { Store } from '../models/index';
  * @param   { Object } file - Store image
  * @returns { Object<type|message|statusCode|category> }
  */
-export const createStore = catchAsync(async (body,user) => {
+export const createStore = catchAsync(async (body, user) => {
 
   // 1) Validate required fields
-  let fieldErrors = validator.validate(body,CreateSchema);
-  
+  let fieldErrors = validator.validate(body, CreateSchema);
+
   // 2) Check if body request data is valid.
-  if(fieldErrors){
+  if (fieldErrors) {
 
     fieldErrors = fieldErrors.map((item) => item.message)
     return {
