@@ -368,7 +368,7 @@ const docs = {
       get: getAllProducts,
       post: addProduct
     },
-    '/product/import-csv-data': {
+    '/product/import-data': {
       post: ImportCSVData
     },
     '/product/{productId}': {
